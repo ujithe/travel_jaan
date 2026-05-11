@@ -3,6 +3,9 @@ import { Head, Link } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 
 export default function BlogIndex({ posts }) {
+    const postList = posts?.data ?? [];
+    const paginationLinks = posts?.links ?? [];
+
     return (
         <AppLayout title="Blog - JAAN Travels">
             <Head>
@@ -14,7 +17,7 @@ export default function BlogIndex({ posts }) {
                     <h1 className="text-4xl font-bold mb-12">Travel Blog</h1>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {posts.data.map((post) => (
+                        {postList.map((post) => (
                             <Link key={post.id} href={route('blog.show', post.slug)}>
                                 <article className="bg-white rounded-lg overflow-hidden shadow hover:shadow-lg transition h-full">
                                     {post.featured_image && (
@@ -48,19 +51,33 @@ export default function BlogIndex({ posts }) {
                     </div>
 
                     {/* Pagination */}
-                    {posts.links && posts.links.length > 0 && (
+                    {paginationLinks.length > 0 && (
                         <div className="mt-12 flex justify-center gap-2">
-                            {posts.links.map((link, index) => (
-                                <Link
-                                    key={index}
-                                    href={link.url}
-                                    className={`px-4 py-2 rounded ${link.active
-                                            ? 'bg-blue-900 text-white'
-                                            : 'bg-white border border-gray-200 hover:border-blue-900'
-                                        }`}
-                                    dangerouslySetInnerHTML={{ __html: link.label }}
-                                />
-                            ))}
+                            {paginationLinks.map((link, index) => {
+                                const classes = `px-4 py-2 rounded ${link.active
+                                    ? 'bg-blue-900 text-white'
+                                    : 'bg-white border border-gray-200 hover:border-blue-900'
+                                    }`;
+
+                                if (!link.url) {
+                                    return (
+                                        <span
+                                            key={index}
+                                            className={`${classes} text-gray-400 cursor-not-allowed`}
+                                            dangerouslySetInnerHTML={{ __html: link.label }}
+                                        />
+                                    );
+                                }
+
+                                return (
+                                    <Link
+                                        key={index}
+                                        href={link.url}
+                                        className={classes}
+                                        dangerouslySetInnerHTML={{ __html: link.label }}
+                                    />
+                                );
+                            })}
                         </div>
                     )}
                 </div>
