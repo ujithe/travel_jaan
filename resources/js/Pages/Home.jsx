@@ -72,7 +72,7 @@ export default function Home({ destinations, specialOffers, testimonials, servic
                         {/* CTA Buttons */}
                         <div className="flex flex-col sm:flex-row justify-center gap-4">
                             <a
-                                href="https://wa.me/94712345678"
+                                href="https://wa.me/94765933255"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-block cta-btn bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg"
@@ -80,10 +80,10 @@ export default function Home({ destinations, specialOffers, testimonials, servic
                                 📱 Book via WhatsApp Now
                             </a>
                             <a
-                                href="tel:+94112345678"
+                                href="tel:+94765933255"
                                 className="inline-block cta-btn bg-white text-blue-900 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg"
                             >
-                                📞 Call +94 11 234 5678
+                                📞 Call +94 76 593 3255
                             </a>
                         </div>
                     </div>
@@ -112,7 +112,7 @@ export default function Home({ destinations, specialOffers, testimonials, servic
                                         Expires: {new Date(offer.expires_at).toLocaleDateString()}
                                     </p>
                                     <a
-                                        href="https://wa.me/94712345678"
+                                        href="https://wa.me/94765933255"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="block w-full bg-green-500 text-white text-center py-2 rounded hover:bg-green-600 transition"
@@ -231,7 +231,7 @@ export default function Home({ destinations, specialOffers, testimonials, servic
                         WhatsApp us now and get your tickets confirmed same day!
                     </p>
                     <a
-                        href="https://wa.me/94712345678"
+                        href="https://wa.me/94765933255"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg transition"

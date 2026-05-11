@@ -23,7 +23,7 @@ export default function Services({ services }) {
                                     <p className="text-gray-600 text-sm mb-6">{service.details}</p>
                                 )}
                                 <a
-                                    href="https://wa.me/94712345678"
+                                    href="https://wa.me/94765933255"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="inline-block text-blue-600 font-semibold hover:text-blue-800"
@@ -86,7 +86,7 @@ export default function Services({ services }) {
                     <p className="text-lg text-gray-200 mb-6">Contact us on WhatsApp or phone for any service inquiry</p>
                     <div className="flex gap-4 justify-center flex-wrap">
                         <a
-                            href="https://wa.me/94712345678"
+                            href="https://wa.me/94765933255"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded transition"

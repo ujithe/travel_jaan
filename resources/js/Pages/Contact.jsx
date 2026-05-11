@@ -28,15 +28,15 @@ export default function Contact() {
 
                                 <div>
                                     <h3 className="font-bold text-lg mb-2">📱 Mobile</h3>
-                                    <a href="tel:+94712345678" className="text-2xl font-bold text-blue-600 hover:text-blue-800">
-                                        +94 71 234 5678
+                                    <a href="tel:+94765933255" className="text-2xl font-bold text-blue-600 hover:text-blue-800">
+                                        +94 76 593 3255
                                     </a>
                                 </div>
 
                                 <div>
                                     <h3 className="font-bold text-lg mb-2">💬 WhatsApp</h3>
-                                    <a href="https://wa.me/94712345678" target="_blank" rel="noopener noreferrer" className="text-2xl font-bold text-green-600 hover:text-green-800">
-                                        +94 71 234 5678
+                                    <a href="https://wa.me/94765933255" target="_blank" rel="noopener noreferrer" className="text-2xl font-bold text-green-600 hover:text-green-800">
+                                        +94 76 593 3255
                                     </a>
                                 </div>
 
@@ -112,7 +112,7 @@ export default function Contact() {
                             {/* Quick Book */}
                             <div className="mt-8 bg-green-500 text-white p-6 rounded-lg text-center">
                                 <h3 className="font-bold text-lg mb-4">Book Now on WhatsApp!</h3>
-                                <a href="https://wa.me/94712345678" target="_blank" rel="noopener noreferrer" className="inline-block bg-white text-green-600 px-6 py-2 rounded font-bold hover:bg-gray-100">
+                                <a href="https://wa.me/94765933255" target="_blank" rel="noopener noreferrer" className="inline-block bg-white text-green-600 px-6 py-2 rounded font-bold hover:bg-gray-100">
                                     Start Conversation
                                 </a>
                             </div>

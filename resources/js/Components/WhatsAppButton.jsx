@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function WhatsAppButton() {
-    const whatsappNumber = '94712345678'; // Replace with actual number
+    const whatsappNumber = '94765933255';
     const prefilledMessage = encodeURIComponent(
         'Hi JAAN Travels, I need air tickets from ___ to ___. Travel date: ___'
     );

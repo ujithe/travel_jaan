@@ -71,7 +71,7 @@ export default function SpecialOffers({ offers }) {
 
                                         {/* CTA */}
                                         <a
-                                            href="https://wa.me/94712345678"
+                                            href="https://wa.me/94765933255"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="block w-full bg-green-500 hover:bg-green-600 text-white text-center font-bold py-3 rounded-lg transition"
@@ -96,7 +96,7 @@ export default function SpecialOffers({ offers }) {
                             Follow us and WhatsApp to get notified about new deals as soon as they're released.
                         </p>
                         <a
-                            href="https://wa.me/94712345678"
+                            href="https://wa.me/94765933255"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded transition"

@@ -300,7 +300,7 @@ Edit `resources/js/Pages/Home.jsx` to:
 - Floating button on all pages
 - Pre-filled message template
 - Direct WhatsApp URL scheme: `https://wa.me/{number}?text={message}`
-- Phone number format: Without '+' and spaces (e.g., 94712345678)
+- Phone number format: Without '+' and spaces (e.g., 94765933255)
 
 ### Destination Landing Pages
 - Each destination has URL like `/destinations/{slug}`

@@ -76,7 +76,7 @@ export default function DestinationShow({ destination, relatedDestinations }) {
                             </div>
                             <div className="space-y-3">
                                 <a
-                                    href="https://wa.me/94712345678"
+                                    href="https://wa.me/94765933255"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="block w-full bg-green-500 text-white text-center py-3 rounded-lg font-bold hover:bg-green-600 transition"
@@ -163,7 +163,7 @@ export default function DestinationShow({ destination, relatedDestinations }) {
                     <h2 className="text-3xl font-bold mb-4">Ready to Book Your Ticket to {destination.name}?</h2>
                     <p className="text-lg text-gray-200 mb-6">Get the cheapest fare and confirmed booking same day!</p>
                     <a
-                        href="https://wa.me/94712345678"
+                        href="https://wa.me/94765933255"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg transition"

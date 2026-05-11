@@ -48,7 +48,7 @@ export default function BlogShow({ post, relatedPosts }) {
                             </p>
                             <div className="flex gap-4 flex-wrap">
                                 <a
-                                    href="https://wa.me/94712345678"
+                                    href="https://wa.me/94765933255"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="bg-green-500 text-white px-6 py-2 rounded font-bold hover:bg-green-600"
@@ -56,7 +56,7 @@ export default function BlogShow({ post, relatedPosts }) {
                                     WhatsApp Us
                                 </a>
                                 <a
-                                    href="tel:+94112345678"
+                                    href="tel:+94765933255"
                                     className="bg-blue-900 text-white px-6 py-2 rounded font-bold hover:bg-blue-800"
                                 >
                                     Call Us
