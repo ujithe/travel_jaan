@@ -27,9 +27,8 @@ export default function SpecialOffers({ offers }) {
                                 return (
                                     <div
                                         key={offer.id}
-                                        className={`rounded-lg p-6 shadow-lg hover:shadow-xl transition ${
-                                            isExpiring ? 'bg-red-50 border-2 border-red-300' : 'bg-white'
-                                        }`}
+                                        className={`rounded-lg p-6 shadow-lg hover:shadow-xl transition ${isExpiring ? 'bg-red-50 border-2 border-red-300' : 'bg-white'
+                                            }`}
                                     >
                                         {/* Deal Badge */}
                                         {isExpiring && (

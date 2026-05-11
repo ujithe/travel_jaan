@@ -54,11 +54,10 @@ export default function BlogIndex({ posts }) {
                                 <Link
                                     key={index}
                                     href={link.url}
-                                    className={`px-4 py-2 rounded ${
-                                        link.active
+                                    className={`px-4 py-2 rounded ${link.active
                                             ? 'bg-blue-900 text-white'
                                             : 'bg-white border border-gray-200 hover:border-blue-900'
-                                    }`}
+                                        }`}
                                     dangerouslySetInnerHTML={{ __html: link.label }}
                                 />
                             ))}

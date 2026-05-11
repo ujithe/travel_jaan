@@ -3,23 +3,43 @@
 @tailwind utilities;
 
 /* Custom site tweaks for improved UX */
-:root{
-	--brand-blue:#0B4BCB;
-	--brand-dark:#062647;
+:root {
+    --brand-blue: #0b4bcb;
+    --brand-dark: #062647;
 }
 
 /* Buttons */
-.cta-btn{transition:transform .18s ease, box-shadow .18s ease}
-.cta-btn:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(11,75,203,0.12)}
+.cta-btn {
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+}
+.cta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(11, 75, 203, 0.12);
+}
 
 /* Card subtle lift */
-.card-hover{transition:transform .18s ease, box-shadow .18s ease}
-.card-hover:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(2,6,23,0.06)}
+.card-hover {
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+}
+.card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(2, 6, 23, 0.06);
+}
 
 /* Accessibility: focus visible */
-a:focus, button:focus{outline:3px solid rgba(11,75,203,0.18);outline-offset:3px}
+a:focus,
+button:focus {
+    outline: 3px solid rgba(11, 75, 203, 0.18);
+    outline-offset: 3px;
+}
 
 /* Small responsive tweaks */
-@media (max-width:640px){
-	.text-4xl{font-size:2rem}
+@media (max-width: 640px) {
+    .text-4xl {
+        font-size: 2rem;
+    }
 }
