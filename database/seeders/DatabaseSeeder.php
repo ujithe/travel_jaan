@@ -12,6 +12,7 @@ use App\Models\FAQ;
 use App\Models\Setting;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -63,7 +64,7 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($destinations as $dest) {
-            $slug = \Str::slug($dest['name']);
+            $slug = Str::slug($dest['name']);
             Destination::updateOrCreate(
                 ['slug' => $slug],
                 array_merge($dest, ['slug' => $slug])
@@ -95,7 +96,7 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($services as $service) {
-            $slug = \Str::slug($service['title']);
+            $slug = Str::slug($service['title']);
             Service::updateOrCreate(
                 ['slug' => $slug],
                 array_merge($service, ['slug' => $slug, 'is_active' => true])

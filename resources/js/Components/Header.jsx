@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, usePage } from '@inertiajs/react';
+import Logo from '../Components/assets/logo.png';
 
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -21,12 +22,7 @@ export default function Header() {
                 <div className="flex justify-between items-center h-16">
                     {/* Logo */}
                     <Link href="/" className="flex items-center space-x-2">
-                        <div className="text-2xl font-bold text-blue-900">
-                            ✈ JAAN
-                        </div>
-                        <span className="text-xs font-semibold text-yellow-600 leading-none">
-                            TRAVELS
-                        </span>
+                        <img src={Logo} alt="Travel Jaan Logo" className="h-[150px] w-[150px]" />
                     </Link>
 
                     {/* Desktop Navigation */}
