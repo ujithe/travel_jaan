@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
 
 class ServiceController extends Controller
 {
@@ -34,7 +35,7 @@ class ServiceController extends Controller
             'is_active' => 'boolean',
         ]);
 
-        $validated['slug'] = \Str::slug($validated['title']);
+        $validated['slug'] = Str::slug($validated['title']);
 
         Service::create($validated);
 
@@ -59,7 +60,7 @@ class ServiceController extends Controller
             'is_active' => 'boolean',
         ]);
 
-        $validated['slug'] = \Str::slug($validated['title']);
+        $validated['slug'] = Str::slug($validated['title']);
 
         $service->update($validated);
 
