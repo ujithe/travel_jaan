@@ -56,9 +56,9 @@ export default function SpecialOffers({ offers }) {
                                                     <span className="text-sm font-semibold text-red-700">{offer.route}</span>
                                                 </div>
                                             )}
-                                            <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-red-700">
+                                            {/* <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-red-700">
                                                 {formatLkr(offer.price)}
-                                            </div>
+                                            </div> */}
                                             {offer.discount_percent && (
                                                 <div className="absolute right-4 top-4 rounded-full bg-green-600 px-3 py-1 text-xs font-semibold text-white">
                                                     Save {offer.discount_percent}%
