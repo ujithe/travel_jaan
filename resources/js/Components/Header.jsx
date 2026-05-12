@@ -24,7 +24,7 @@ export default function Header() {
                         <img
                             src={Logo}
                             alt="Travel Jaan Logo"
-                            className="h-12 w-auto object-contain sm:h-14 md:h-16"
+                            className="h-12 w-auto object-contain sm:h-14 md:h-32"
                         />
                     </Link>
 

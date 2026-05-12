@@ -373,7 +373,7 @@ export default function Home({ destinations, specialOffers, testimonials, servic
                             <div className="text-center">
                                 <Link
                                     href={route('destinations.index')}
-                                    className="inline-block bg-blue-900 text-white px-6 py-2 rounded hover:bg-blue-800 transition"
+                                    className="inline-block bg-blue-900 text-white px-6 py-2 mt-5 rounded hover:bg-blue-800 transition"
                                 >
                                     View All Destinations →
                                 </Link>

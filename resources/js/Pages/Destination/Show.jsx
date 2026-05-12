@@ -8,33 +8,68 @@ export default function DestinationShow({ destination, relatedDestinations }) {
             <Head>
                 <meta
                     name="description"
-                    content={`Cheap flights from Colombo to ${destination.name}. Starting from LKR ${destination.starting_fare.toLocaleString()}. Book now on WhatsApp!`}
+                    content={`Get a same-day flight quote from Colombo to ${destination.name}. Chat with JAAN Travels on WhatsApp to confirm your booking.`}
                 />
             </Head>
 
-            {/* Hero Section */}
-            <section className="bg-gradient-to-r from-blue-900 to-blue-800 text-white py-12">
+            <section className="relative overflow-hidden bg-slate-950 py-14 text-white sm:py-16">
+                <div
+                    className="absolute inset-0 opacity-80"
+                    style={{
+                        backgroundImage:
+                            'radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.25), transparent 35%), radial-gradient(circle at 85% 0%, rgba(251, 191, 36, 0.2), transparent 35%), linear-gradient(180deg, rgba(15,23,42,0.95), rgba(30,41,59,0.96))',
+                    }}
+                />
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center">
-                        <span className="text-5xl sm:text-6xl mb-4 block">{destination.flag_icon || '🌍'}</span>
-                        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-                            Flights to {destination.name}
-                        </h1>
-                        <p className="text-lg sm:text-xl text-gray-200 mb-6">
-                            {destination.country} • {destination.region}
-                        </p>
-                        <div className="bg-yellow-500 text-blue-900 inline-block px-6 py-3 rounded-lg font-bold text-base sm:text-lg mb-6">
-                            From LKR {destination.starting_fare.toLocaleString()}
+                    <div className="relative grid gap-8 md:grid-cols-[1.2fr_0.8fr] md:items-end">
+                        <div>
+                            <p className="mb-4 inline-flex rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs uppercase tracking-[0.2em] text-slate-200">
+                                WhatsApp First Booking
+                            </p>
+                            <h1 className="text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
+                                Flights to {destination.name}
+                            </h1>
+                            <p className="mt-3 text-base text-slate-200 sm:text-lg">
+                                {destination.country} · {destination.region}
+                            </p>
+                            <p className="mt-6 max-w-2xl text-sm text-slate-200 sm:text-base">
+                                Tell us your travel date and passenger count on WhatsApp. Our team checks live inventory and sends you the best available options the same day.
+                            </p>
+
+                            {/* <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                                <a
+                                    href="https://wa.me/94765933255"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center justify-center rounded-lg bg-emerald-500 px-6 py-3 text-sm font-bold text-white transition hover:bg-emerald-600"
+                                >
+                                    Start WhatsApp Quote
+                                </a>
+                                <a
+                                    href="tel:+94765933255"
+                                    className="inline-flex items-center justify-center rounded-lg border border-white/30 px-6 py-3 text-sm font-bold text-white transition hover:border-white/60"
+                                >
+                                    Call Support
+                                </a>
+                            </div> */}
+                        </div>
+
+                        <div className="rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur sm:p-6">
+                            <div className="mb-4 text-5xl">{destination.flag_icon || '🌍'}</div>
+                            <h2 className="text-xl font-semibold">What You Get</h2>
+                            <ul className="mt-4 space-y-3 text-sm text-slate-200">
+                                <li>Live fare check by our ticketing team</li>
+                                <li>Same-day booking confirmation</li>
+                                <li>Personal travel assistance over WhatsApp</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Main Content */}
             <section className="py-12 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                        {/* Info */}
                         <div className="md:col-span-2">
                             <h2 className="text-3xl font-bold mb-6">About {destination.name}</h2>
                             {destination.description ? (
@@ -45,92 +80,93 @@ export default function DestinationShow({ destination, relatedDestinations }) {
                                 </p>
                             )}
 
-                            {/* Info Cards */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                                <div className="bg-blue-50 p-4 rounded-lg">
-                                    <p className="text-gray-600 text-sm">Airport Code</p>
-                                    <p className="text-2xl font-bold text-blue-900">{destination.code}</p>
+                                <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                                    <p className="text-xs uppercase tracking-wide text-slate-500">Airport Code</p>
+                                    <p className="text-2xl font-bold text-slate-900">{destination.code}</p>
                                 </div>
-                                <div className="bg-blue-50 p-4 rounded-lg">
-                                    <p className="text-gray-600 text-sm">Country</p>
-                                    <p className="text-xl font-bold text-blue-900">{destination.country}</p>
+                                <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                                    <p className="text-xs uppercase tracking-wide text-slate-500">Country</p>
+                                    <p className="text-xl font-bold text-slate-900">{destination.country}</p>
                                 </div>
-                                <div className="bg-blue-50 p-4 rounded-lg">
-                                    <p className="text-gray-600 text-sm">Region</p>
-                                    <p className="text-xl font-bold text-blue-900">{destination.region}</p>
+                                <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                                    <p className="text-xs uppercase tracking-wide text-slate-500">Region</p>
+                                    <p className="text-xl font-bold text-slate-900">{destination.region}</p>
                                 </div>
-                                <div className="bg-blue-50 p-4 rounded-lg">
-                                    <p className="text-gray-600 text-sm">Starting From</p>
-                                    <p className="text-xl font-bold text-green-600">LKR {destination.starting_fare.toLocaleString()}</p>
+                                <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                                    <p className="text-xs uppercase tracking-wide text-slate-500">Support</p>
+                                    <p className="text-xl font-bold text-slate-900">24/7 WhatsApp</p>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Booking Card */}
-                        <div className="bg-blue-50 rounded-lg p-6 h-fit">
-                            <h3 className="text-2xl font-bold mb-4 text-blue-900">Book Now!</h3>
-                            <div className="bg-green-500 text-white p-4 rounded-lg mb-4 text-center">
-                                <p className="text-sm mb-2">Cheapest Price</p>
-                                <p className="text-3xl font-bold">LKR {destination.starting_fare.toLocaleString()}</p>
-                                <p className="text-xs mt-1">Starting from</p>
+                        <div className="h-fit rounded-2xl border border-slate-200 bg-slate-50 p-6 md:sticky md:top-24">
+                            <h3 className="mb-2 text-2xl font-bold text-slate-900">Get Your Quote</h3>
+                            <p className="mb-4 text-sm text-slate-600">
+                                Send route, travel date, and passenger count. We will reply with available flight options.
+                            </p>
+                            <div className="mb-5 rounded-xl bg-white p-4">
+                                <p className="text-xs uppercase tracking-wide text-slate-500">Fast Process</p>
+                                <ul className="mt-3 space-y-2 text-sm text-slate-700">
+                                    <li>1. Share your travel details</li>
+                                    <li>2. Receive verified flight options</li>
+                                    <li>3. Confirm instantly on WhatsApp</li>
+                                </ul>
                             </div>
                             <div className="space-y-3">
                                 <a
                                     href="https://wa.me/94765933255"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="block w-full bg-green-500 text-white text-center py-3 rounded-lg font-bold hover:bg-green-600 transition"
+                                    className="block w-full rounded-lg bg-emerald-500 py-3 text-center font-bold text-white transition hover:bg-emerald-600"
                                 >
-                                    📱 Book via WhatsApp
+                                    Ask on WhatsApp
                                 </a>
-                                <a
+                                {/* <a
                                     href="tel:+94112345678"
-                                    className="block w-full bg-blue-900 text-white text-center py-3 rounded-lg font-bold hover:bg-blue-800 transition"
+                                    className="block w-full rounded-lg bg-slate-900 py-3 text-center font-bold text-white transition hover:bg-slate-700"
                                 >
-                                    📞 Call +94 11 234 5678
-                                </a>
+                                    Call +94 76 593 3255
+                                </a> */}
                             </div>
 
-                            {/* Trust Badge */}
-                            <div className="mt-6 p-4 bg-white rounded-lg text-center">
-                                <p className="text-yellow-600 font-bold mb-2">✓ Best Price Guarantee</p>
-                                <p className="text-sm text-gray-600">Same-day booking confirmation</p>
+                            <div className="mt-6 rounded-xl bg-white p-4 text-center">
+                                <p className="mb-1 font-bold text-slate-900">Trusted JAAN Team</p>
+                                <p className="text-sm text-slate-600">Fast response and same-day confirmations</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Why Choose Us */}
             <section className="py-12 bg-gray-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 className="text-3xl font-bold mb-8 text-center">Why Book {destination.name} with JAAN Travels?</h2>
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                        <div className="bg-white p-6 rounded-lg text-center">
-                            <div className="text-4xl mb-3">💰</div>
-                            <h3 className="font-bold mb-2">Best Price</h3>
-                            <p className="text-sm text-gray-600">Lowest fares guaranteed</p>
+                        <div className="bg-white p-6 rounded-xl text-center shadow-sm">
+                            <div className="mb-3 text-4xl">🕒</div>
+                            <h3 className="font-bold mb-2">Quick Replies</h3>
+                            <p className="text-sm text-gray-600">Ticketing support on WhatsApp without delays</p>
                         </div>
-                        <div className="bg-white p-6 rounded-lg text-center">
+                        <div className="bg-white p-6 rounded-xl text-center shadow-sm">
                             <div className="text-4xl mb-3">⚡</div>
                             <h3 className="font-bold mb-2">Same-Day</h3>
-                            <p className="text-sm text-gray-600">Confirm within hours</p>
+                            <p className="text-sm text-gray-600">Booking confirmations within hours</p>
                         </div>
-                        <div className="bg-white p-6 rounded-lg text-center">
+                        <div className="bg-white p-6 rounded-xl text-center shadow-sm">
                             <div className="text-4xl mb-3">💬</div>
-                            <h3 className="font-bold mb-2">WhatsApp Easy</h3>
-                            <p className="text-sm text-gray-600">Simple messaging booking</p>
+                            <h3 className="font-bold mb-2">Simple Process</h3>
+                            <p className="text-sm text-gray-600">Send details once and get curated options</p>
                         </div>
-                        <div className="bg-white p-6 rounded-lg text-center">
+                        <div className="bg-white p-6 rounded-xl text-center shadow-sm">
                             <div className="text-4xl mb-3">✅</div>
                             <h3 className="font-bold mb-2">Trusted</h3>
-                            <p className="text-sm text-gray-600">10+ years in business</p>
+                            <p className="text-sm text-gray-600">Experienced travel advisors from Sri Lanka</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Related Destinations */}
             {relatedDestinations.length > 0 && (
                 <section className="py-12 bg-white">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -142,13 +178,11 @@ export default function DestinationShow({ destination, relatedDestinations }) {
                                     href={route('destinations.show', dest.slug)}
                                     className="group"
                                 >
-                                    <div className="bg-blue-50 rounded-lg p-4 hover:shadow-lg transition h-full">
-                                        <div className="text-3xl mb-2">{dest.flag_icon || '🌍'}</div>
+                                    <div className="h-full rounded-xl border border-slate-200 bg-slate-50 p-4 transition group-hover:shadow-lg">
+                                        <div className="mb-2 text-3xl">{dest.flag_icon || '🌍'}</div>
                                         <h4 className="font-bold text-gray-900 group-hover:text-blue-600">{dest.name}</h4>
-                                        <p className="text-sm text-gray-600 mb-2">{dest.country}</p>
-                                        <p className="text-blue-600 font-semibold">
-                                            From LKR {dest.starting_fare.toLocaleString()}
-                                        </p>
+                                        <p className="mb-3 text-sm text-gray-600">{dest.country}</p>
+                                        <p className="text-sm font-semibold text-slate-800">View Route</p>
                                     </div>
                                 </Link>
                             ))}
@@ -157,18 +191,17 @@ export default function DestinationShow({ destination, relatedDestinations }) {
                 </section>
             )}
 
-            {/* CTA */}
             <section className="bg-blue-900 text-white py-12">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h2 className="text-3xl font-bold mb-4">Ready to Book Your Ticket to {destination.name}?</h2>
-                    <p className="text-lg text-gray-200 mb-6">Get the cheapest fare and confirmed booking same day!</p>
+                    <p className="text-lg text-gray-200 mb-6">Get your flight options and confirm the best one directly on WhatsApp.</p>
                     <a
                         href="https://wa.me/94765933255"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg transition"
                     >
-                        📱 Chat on WhatsApp Now
+                        Chat on WhatsApp Now
                     </a>
                 </div>
             </section>
