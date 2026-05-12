@@ -9,7 +9,7 @@ export default function Footer() {
                 aria-hidden="true"
             />
             <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-6 md:flex md:items-center md:justify-between">
+                {/* <div className="rounded-2xl border border-white/10 bg-white/5 p-6 md:flex md:items-center md:justify-between">
                     <div>
                         <p className="text-xs uppercase tracking-[0.3em] text-slate-300">Fast Quotes</p>
                         <p className="mt-2 text-lg font-semibold font-['Playfair_Display']">
@@ -30,7 +30,7 @@ export default function Footer() {
                             View Destinations
                         </Link>
                     </div>
-                </div>
+                </div> */}
 
                 <div className="mt-12 grid gap-8 lg:grid-cols-4">
                     <div className="lg:col-span-2">
@@ -39,8 +39,8 @@ export default function Footer() {
                             Sri Lanka's cheapest air tickets with same-day booking via WhatsApp.
                         </p>
                         <div className="mt-4 text-sm text-slate-300">
-                            <p>Colombo, Sri Lanka</p>
-                            <p>Mon - Sat: 9AM - 6PM</p>
+                            <p>No.46, Husdon Road, Colombo 03, Sri Lanka</p>
+                            <p>Mon - Fri: 9AM - 6PM</p>
                             <p>WhatsApp replies: 24/7</p>
                         </div>
                     </div>
@@ -74,14 +74,30 @@ export default function Footer() {
                     <div className="rounded-lg border border-white/10 bg-white/5 p-5">
                         <h4 className="text-sm font-semibold uppercase tracking-wide">Contact</h4>
                         <div className="mt-4 space-y-2 text-sm text-slate-300">
-                            <p>+94 11 234 5678</p>
-                            <p>+94 71 234 5678</p>
+                            <p>+94 76 593 3255</p>
                             <p>info@jaantravels.lk</p>
                         </div>
                         <div className="mt-4 flex gap-3 text-sm">
-                            <a href="#" className="text-slate-300 hover:text-amber-300">FB</a>
-                            <a href="#" className="text-slate-300 hover:text-amber-300">IG</a>
-                            <a href="#" className="text-slate-300 hover:text-amber-300">WA</a>
+                            <a href="#" aria-label="Facebook" className="text-slate-300 hover:text-amber-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                                    <path d="M18 3h-3a4 4 0 00-4 4v3H8v4h3v7h4v-7h3l1-4h-4V7a1 1 0 011-1h2V3z" />
+                                </svg>
+                            </a>
+
+                            <a href="#" aria-label="Instagram" className="text-slate-300 hover:text-amber-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                                    <rect x="3" y="3" width="18" height="18" rx="5" />
+                                    <circle cx="12" cy="12" r="3" />
+                                    <circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" stroke="none" />
+                                </svg>
+                            </a>
+
+                            <a href="#" aria-label="WhatsApp" className="text-slate-300 hover:text-amber-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="9" />
+                                    <path d="M8.2 10.2c.6-.7 1.5-1.1 2.5-1.1.3 0 .6 0 .9.1.3.1.5.3.6.6l.5 1.2c.1.3 0 .6-.2.8l-1 1c-.2.2-.5.4-.8.3-.6-.1-1.2-.4-1.7-.8-.5-.4-.9-.9-1.3-1.4-.4-.5-.7-1.1-.8-1.7-.1-.3.1-.6.3-.8l1.2-.5c.3-.1.5 0 .7.2z" />
+                                </svg>
+                            </a>
                         </div>
                     </div>
                 </div>

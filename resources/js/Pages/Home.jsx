@@ -188,7 +188,7 @@ export default function Home({ destinations, specialOffers, testimonials, servic
                                     </span>
                                 </div>
 
-                                <div className="hero-anim flex flex-col sm:flex-row gap-4">
+                                {/* <div className="hero-anim flex flex-col sm:flex-row gap-4">
                                     <a
                                         href="https://wa.me/94765933255"
                                         target="_blank"
@@ -203,7 +203,7 @@ export default function Home({ destinations, specialOffers, testimonials, servic
                                     >
                                         Call +94 76 593 3255
                                     </a>
-                                </div>
+                                </div> */}
 
                                 <div className="hero-anim grid gap-4 sm:grid-cols-3">
                                     <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
@@ -221,7 +221,7 @@ export default function Home({ destinations, specialOffers, testimonials, servic
                                 </div>
                             </div>
 
-                            <div className="hero-anim hero-visual relative">
+                            {/* <div className="hero-anim hero-visual relative">
                                 <div className="absolute -top-6 -left-6 h-20 w-20 rounded-3xl border border-white/15" />
                                 <div className="rounded-[32px] border border-white/15 bg-white/10 p-6 shadow-2xl backdrop-blur">
                                     <div className="overflow-hidden rounded-2xl bg-white text-slate-900">
@@ -266,7 +266,7 @@ export default function Home({ destinations, specialOffers, testimonials, servic
                                         ))}
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </section>
