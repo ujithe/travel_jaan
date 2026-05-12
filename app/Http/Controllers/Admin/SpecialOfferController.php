@@ -11,7 +11,9 @@ class SpecialOfferController extends Controller
 {
     public function index()
     {
-        $offers = SpecialOffer::orderBy('expires_at', 'desc')->paginate(20);
+        $offers = SpecialOffer::orderBy('order')
+            ->orderBy('expires_at', 'desc')
+            ->paginate(20);
 
         return Inertia::render('Admin/SpecialOffers/Index', [
             'offers' => $offers,
@@ -32,9 +34,13 @@ class SpecialOfferController extends Controller
             'route' => 'required|string|max:255',
             'discount_percent' => 'nullable|integer|min:0|max:100',
             'expires_at' => 'required|date|after:today',
-            'is_active' => 'boolean',
+            'image' => 'nullable|url|max:2048',
+            'is_active' => 'nullable|boolean',
             'order' => 'nullable|integer',
         ]);
+
+        $validated['is_active'] = $request->boolean('is_active');
+        $validated['order'] = $validated['order'] ?? 0;
 
         SpecialOffer::create($validated);
 
@@ -57,9 +63,13 @@ class SpecialOfferController extends Controller
             'route' => 'required|string|max:255',
             'discount_percent' => 'nullable|integer|min:0|max:100',
             'expires_at' => 'required|date',
-            'is_active' => 'boolean',
+            'image' => 'nullable|url|max:2048',
+            'is_active' => 'nullable|boolean',
             'order' => 'nullable|integer',
         ]);
+
+        $validated['is_active'] = $request->boolean('is_active');
+        $validated['order'] = $validated['order'] ?? 0;
 
         $specialOffer->update($validated);
 

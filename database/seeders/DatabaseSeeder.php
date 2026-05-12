@@ -24,11 +24,14 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Create test admin user if not exists
-        if (!User::where('email', 'admin@jaantravels.lk')->exists()) {
+        if (!User::where('email', 'admin@gmail.com')->exists()) {
             User::factory()->create([
                 'name' => 'Admin',
-                'email' => 'admin@jaantravels.lk',
+                'email' => 'admin@gmail.com',
+                'is_admin' => true,
             ]);
+        } else {
+            User::where('email', 'admin@gmail.com')->update(['is_admin' => true]);
         }
 
         // Seed Destinations

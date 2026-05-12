@@ -21,6 +21,29 @@ class AuthenticatedSessionController extends Controller
         return Inertia::render('Auth/Login', [
             'canResetPassword' => Route::has('password.request'),
             'status' => session('status'),
+            'isAdminLogin' => false,
+        ]);
+    }
+
+    /**
+     * Display the admin login view.
+     */
+    public function createAdmin(Request $request): Response|RedirectResponse
+    {
+        if (Auth::check()) {
+            if ($request->user()?->is_admin) {
+                return redirect()->route('admin.dashboard');
+            }
+
+            Auth::guard('web')->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+        }
+
+        return Inertia::render('Auth/Login', [
+            'canResetPassword' => Route::has('password.request'),
+            'status' => session('status'),
+            'isAdminLogin' => true,
         ]);
     }
 
@@ -34,6 +57,32 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         return redirect()->intended(route('dashboard', absolute: false));
+    }
+
+    /**
+     * Handle an incoming admin authentication request.
+     */
+    public function storeAdmin(LoginRequest $request): RedirectResponse
+    {
+        if (Auth::check() && $request->user()?->is_admin) {
+            return redirect()->route('admin.dashboard');
+        }
+
+        $request->authenticate();
+
+        if (! $request->user()?->is_admin) {
+            Auth::guard('web')->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return back()->withErrors([
+                'email' => 'This account does not have admin access.',
+            ]);
+        }
+
+        $request->session()->regenerate();
+
+        return redirect()->intended(route('admin.dashboard', absolute: false));
     }
 
     /**

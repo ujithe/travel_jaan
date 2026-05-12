@@ -5,13 +5,17 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Destination;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class DestinationController extends Controller
 {
     public function index()
     {
-        $destinations = Destination::orderBy('region')->orderBy('name')->paginate(20);
+        $destinations = Destination::orderBy('order')
+            ->orderBy('region')
+            ->orderBy('name')
+            ->paginate(20);
 
         return Inertia::render('Admin/Destinations/Index', [
             'destinations' => $destinations,
@@ -32,11 +36,15 @@ class DestinationController extends Controller
             'region' => 'required|string|max:255',
             'description' => 'nullable|string',
             'starting_fare' => 'required|numeric|min:0',
+            'flag_icon' => 'nullable|string|max:255',
+            'image' => 'nullable|url|max:2048',
             'order' => 'nullable|integer',
-            'is_featured' => 'boolean',
+            'is_featured' => 'nullable|boolean',
         ]);
 
-        $validated['slug'] = \Str::slug($validated['name']);
+        $validated['slug'] = $this->generateUniqueSlug($validated['name']);
+        $validated['is_featured'] = $request->boolean('is_featured');
+        $validated['order'] = $validated['order'] ?? 0;
 
         Destination::create($validated);
 
@@ -59,11 +67,15 @@ class DestinationController extends Controller
             'region' => 'required|string|max:255',
             'description' => 'nullable|string',
             'starting_fare' => 'required|numeric|min:0',
+            'flag_icon' => 'nullable|string|max:255',
+            'image' => 'nullable|url|max:2048',
             'order' => 'nullable|integer',
-            'is_featured' => 'boolean',
+            'is_featured' => 'nullable|boolean',
         ]);
 
-        $validated['slug'] = \Str::slug($validated['name']);
+        $validated['slug'] = $this->generateUniqueSlug($validated['name'], $destination->id);
+        $validated['is_featured'] = $request->boolean('is_featured');
+        $validated['order'] = $validated['order'] ?? 0;
 
         $destination->update($validated);
 
@@ -75,5 +87,24 @@ class DestinationController extends Controller
         $destination->delete();
 
         return redirect()->route('admin.destinations.index')->with('success', 'Destination deleted successfully');
+    }
+
+    private function generateUniqueSlug(string $name, ?int $ignoreId = null): string
+    {
+        $base = Str::slug($name);
+        $slug = $base;
+        $counter = 2;
+
+        while (
+            Destination::query()
+                ->when($ignoreId, fn ($query) => $query->where('id', '!=', $ignoreId))
+                ->where('slug', $slug)
+                ->exists()
+        ) {
+            $slug = "{$base}-{$counter}";
+            $counter++;
+        }
+
+        return $slug;
     }
 }

@@ -14,7 +14,15 @@ class PageController extends Controller
 {
     public function home()
     {
-        $destinations = Destination::orderBy('order')->take(12)->get();
+        $destinations = Destination::where('is_featured', true)
+            ->orderBy('order')
+            ->take(12)
+            ->get();
+
+        if ($destinations->isEmpty()) {
+            $destinations = Destination::orderBy('order')->take(12)->get();
+        }
+
         $specialOffers = SpecialOffer::active()->orderBy('order')->take(6)->get();
         $testimonials = Testimonial::approved()->featured()->orderBy('order')->take(5)->get();
         $services = Service::active()->orderBy('order')->take(6)->get();
