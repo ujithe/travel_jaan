@@ -353,9 +353,9 @@ export default function Home({ destinations, specialOffers, testimonials, servic
                                                         <span className="text-sm font-semibold text-slate-700">{destination.name}</span>
                                                     </div>
                                                 )}
-                                                <div className="absolute left-3 bottom-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-blue-700">
+                                                {/* <div className="absolute left-3 bottom-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-blue-700">
                                                     From {formatLkr(destination.starting_fare)}
-                                                </div>
+                                                </div> */}
                                             </div>
                                             <div className="p-4">
                                                 <div className="flex items-center gap-2 mb-1">
