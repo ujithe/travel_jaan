@@ -17,23 +17,27 @@ export default function Header() {
     ];
 
     return (
-        <header className="sticky top-0 z-40 bg-white shadow">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-center h-16">
+        <header className="sticky top-0 z-40 border-b border-white/10 bg-slate-950/85 backdrop-blur shadow-[0_20px_50px_rgba(0,0,0,0.35)]">
+            <div className='px-8'>
+                <div className="flex justify-between items-center h-16 md:h-20 w-[100%]">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center space-x-2">
-                        <img src={Logo} alt="Travel Jaan Logo" className="h-[150px] w-[150px]" />
+                    <Link href="/" className="flex items-center gap-3">
+                        <img
+                            src={Logo}
+                            alt="Travel Jaan Logo"
+                            className="h-[150px] w-[150px] md:h-[150px] md:w-[150px] object-contain"
+                        />
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <nav className="hidden md:flex space-x-1">
+                    <nav className="hidden md:flex items-center gap-6">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${url === link.href
-                                        ? 'bg-blue-100 text-blue-900'
-                                        : 'text-gray-700 hover:bg-gray-100'
+                                className={`relative text-xs uppercase tracking-[0.22em] transition-colors ${url === link.href
+                                    ? 'text-amber-300'
+                                    : 'text-slate-200 hover:text-amber-200'
                                     }`}
                             >
                                 {link.label}
@@ -42,10 +46,10 @@ export default function Header() {
                     </nav>
 
                     {/* CTA Buttons */}
-                    <div className="hidden md:flex items-center space-x-3">
+                    <div className="hidden md:flex items-center gap-3">
                         <a
                             href="tel:+94112345678"
-                            className="px-4 py-2 bg-blue-900 text-white rounded-md hover:bg-blue-800 transition"
+                            className="px-4 py-2 rounded-full border border-white/30 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:border-amber-200 hover:text-amber-200"
                         >
                             Call Now
                         </a>
@@ -53,7 +57,7 @@ export default function Header() {
                             href="https://wa.me/94765933255"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition"
+                            className="px-4 py-2 rounded-full bg-amber-300 text-xs font-semibold uppercase tracking-[0.2em] text-slate-900 transition hover:bg-amber-200"
                         >
                             WhatsApp
                         </a>
@@ -61,8 +65,9 @@ export default function Header() {
 
                     {/* Mobile Menu Button */}
                     <button
-                        className="md:hidden p-2"
+                        className="md:hidden p-2 text-white/90 hover:text-white"
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        aria-label="Toggle navigation"
                     >
                         <svg
                             className="w-6 h-6"
@@ -82,20 +87,25 @@ export default function Header() {
 
                 {/* Mobile Navigation */}
                 {mobileMenuOpen && (
-                    <nav className="md:hidden pb-4 space-y-2">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100"
-                            >
-                                {link.label}
-                            </Link>
-                        ))}
-                        <div className="pt-2 space-y-2">
+                    <nav className="md:hidden mt-4 rounded-2xl border border-white/10 bg-slate-950/95 p-4 shadow-lg">
+                        <div className="space-y-3">
+                            {navLinks.map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className={`block text-xs uppercase tracking-[0.2em] transition ${url === link.href
+                                        ? 'text-amber-300'
+                                        : 'text-slate-200 hover:text-amber-200'
+                                        }`}
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
+                        </div>
+                        <div className="mt-4 space-y-3">
                             <a
                                 href="tel:+94112345678"
-                                className="block px-3 py-2 bg-blue-900 text-white rounded-md text-center"
+                                className="block px-4 py-2 rounded-full border border-white/30 text-xs font-semibold uppercase tracking-[0.2em] text-center text-white"
                             >
                                 Call Now
                             </a>
@@ -103,7 +113,7 @@ export default function Header() {
                                 href="https://wa.me/94765933255"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="block px-3 py-2 bg-green-500 text-white rounded-md text-center"
+                                className="block px-4 py-2 rounded-full bg-amber-300 text-xs font-semibold uppercase tracking-[0.2em] text-center text-slate-900"
                             >
                                 WhatsApp
                             </a>

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,6 +8,16 @@
 :root {
     --brand-blue: #0b4bcb;
     --brand-dark: #062647;
+    --font-body: "Space Grotesk", "Segoe UI", sans-serif;
+    --font-display: "Fraunces", "Georgia", serif;
+}
+
+body {
+    font-family: var(--font-body);
+}
+
+.font-display {
+    font-family: var(--font-display);
 }
 
 /* Buttons */

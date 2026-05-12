@@ -3,6 +3,19 @@ import { Head } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 
 export default function SpecialOffers({ offers }) {
+    const formatLkr = (value) => {
+        if (value === null || value === undefined) {
+            return 'Price on request'
+        }
+
+        const amount = Number(value)
+        if (Number.isNaN(amount)) {
+            return `LKR ${value}`
+        }
+
+        return `LKR ${amount.toLocaleString()}`
+    }
+
     return (
         <AppLayout title="Special Offers - JAAN Travels">
             <Head>
@@ -27,57 +40,75 @@ export default function SpecialOffers({ offers }) {
                                 return (
                                     <div
                                         key={offer.id}
-                                        className={`rounded-lg p-6 shadow-lg hover:shadow-xl transition ${isExpiring ? 'bg-red-50 border-2 border-red-300' : 'bg-white'
+                                        className={`overflow-hidden rounded-2xl border shadow-lg hover:shadow-xl transition ${isExpiring ? 'bg-red-50 border-red-200' : 'bg-white border-slate-100'
                                             }`}
                                     >
-                                        {/* Deal Badge */}
-                                        {isExpiring && (
-                                            <div className="bg-red-600 text-white px-3 py-1 rounded text-sm font-bold mb-3 inline-block">
-                                                ⏰ Expiring Soon!
+                                        <div className="relative h-44">
+                                            {offer.image ? (
+                                                <img
+                                                    src={offer.image}
+                                                    alt={offer.title}
+                                                    className="h-full w-full object-cover"
+                                                    loading="lazy"
+                                                />
+                                            ) : (
+                                                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-rose-100 via-white to-amber-100">
+                                                    <span className="text-sm font-semibold text-red-700">{offer.route}</span>
+                                                </div>
+                                            )}
+                                            <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-red-700">
+                                                {formatLkr(offer.price)}
                                             </div>
-                                        )}
-
-                                        <h3 className="text-2xl font-bold mb-2 text-gray-900">{offer.title}</h3>
-                                        <p className="text-gray-600 mb-4">{offer.description}</p>
-
-                                        {/* Route */}
-                                        <div className="mb-4 p-3 bg-blue-50 rounded">
-                                            <p className="text-sm text-gray-600">Route</p>
-                                            <p className="font-bold text-lg text-blue-900">{offer.route}</p>
-                                        </div>
-
-                                        {/* Price */}
-                                        <div className="mb-4">
-                                            <span className="text-4xl font-bold text-red-600">
-                                                LKR {offer.price.toLocaleString()}
-                                            </span>
                                             {offer.discount_percent && (
-                                                <span className="ml-3 bg-green-100 text-green-800 px-3 py-1 rounded text-sm font-bold">
+                                                <div className="absolute right-4 top-4 rounded-full bg-green-600 px-3 py-1 text-xs font-semibold text-white">
                                                     Save {offer.discount_percent}%
-                                                </span>
+                                                </div>
+                                            )}
+                                            {isExpiring && (
+                                                <div className="absolute left-4 bottom-4 rounded-full bg-red-600 px-3 py-1 text-xs font-semibold text-white">
+                                                    Expiring Soon
+                                                </div>
                                             )}
                                         </div>
 
-                                        {/* Expiry */}
-                                        <div className="mb-6 p-3 bg-gray-100 rounded">
-                                            <p className="text-sm text-gray-600">Expires In</p>
-                                            <p className="font-bold text-lg">
-                                                {daysLeft > 0 ? `${daysLeft} days` : 'Expired'}
-                                            </p>
-                                            <p className="text-xs text-gray-500">
-                                                {new Date(offer.expires_at).toLocaleDateString()}
-                                            </p>
-                                        </div>
+                                        <div className="p-6">
+                                            <h3 className="text-2xl font-bold mb-2 text-gray-900">{offer.title}</h3>
+                                            <p className="text-gray-600 mb-4">{offer.description}</p>
 
-                                        {/* CTA */}
-                                        <a
-                                            href="https://wa.me/94765933255"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="block w-full bg-green-500 hover:bg-green-600 text-white text-center font-bold py-3 rounded-lg transition"
-                                        >
-                                            📱 Book This Deal
-                                        </a>
+                                            {/* Route */}
+                                            <div className="mb-4 p-3 bg-blue-50 rounded">
+                                                <p className="text-sm text-gray-600">Route</p>
+                                                <p className="font-bold text-lg text-blue-900">{offer.route}</p>
+                                            </div>
+
+                                            {/* Price */}
+                                            <div className="mb-4">
+                                                <span className="text-4xl font-bold text-red-600">
+                                                    {formatLkr(offer.price)}
+                                                </span>
+                                            </div>
+
+                                            {/* Expiry */}
+                                            <div className="mb-6 p-3 bg-gray-100 rounded">
+                                                <p className="text-sm text-gray-600">Expires In</p>
+                                                <p className="font-bold text-lg">
+                                                    {daysLeft > 0 ? `${daysLeft} days` : 'Expired'}
+                                                </p>
+                                                <p className="text-xs text-gray-500">
+                                                    {new Date(offer.expires_at).toLocaleDateString()}
+                                                </p>
+                                            </div>
+
+                                            {/* CTA */}
+                                            <a
+                                                href="https://wa.me/94765933255"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="block w-full bg-green-500 hover:bg-green-600 text-white text-center font-bold py-3 rounded-lg transition"
+                                            >
+                                                📱 Book This Deal
+                                            </a>
+                                        </div>
                                     </div>
                                 );
                             })}
