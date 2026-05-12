@@ -17,7 +17,7 @@ export default function BlogPostForm({ postData = null }) {
         excerpt: postData?.excerpt ?? '',
         content: postData?.content ?? '',
         author: postData?.author ?? 'JAAN Travels',
-        featured_image: postData?.featured_image ?? '',
+        featured_image_file: null,
         is_published: Boolean(postData?.is_published),
         published_at: toDateTimeInput(postData?.published_at),
         seo_title: postData?.seo_title ?? '',
@@ -29,11 +29,11 @@ export default function BlogPostForm({ postData = null }) {
         event.preventDefault();
 
         if (isEdit) {
-            put(route('admin.blog-posts.update', postData.id));
+            put(route('admin.blog-posts.update', postData.slug), { forceFormData: true });
             return;
         }
 
-        post(route('admin.blog-posts.store'));
+        post(route('admin.blog-posts.store'), { forceFormData: true });
     };
 
     return (
@@ -61,14 +61,23 @@ export default function BlogPostForm({ postData = null }) {
                     {errors.author && <p className="mt-1 text-sm text-red-600">{errors.author}</p>}
                 </div>
                 <div>
-                    <label className="mb-1 block text-sm font-medium text-slate-700">Featured Image URL</label>
+                    <label className="mb-1 block text-sm font-medium text-slate-700">Featured Image Upload</label>
                     <input
-                        type="url"
-                        value={data.featured_image}
-                        onChange={(event) => setData('featured_image', event.target.value)}
+                        type="file"
+                        accept="image/*"
+                        onChange={(event) => setData('featured_image_file', event.target.files[0] ?? null)}
                         className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
                     />
-                    {errors.featured_image && <p className="mt-1 text-sm text-red-600">{errors.featured_image}</p>}
+                    {postData?.featured_image && (
+                        <img
+                            src={postData.featured_image}
+                            alt={`${postData.title} current`}
+                            className="mt-3 h-20 w-32 rounded border border-slate-200 object-cover"
+                        />
+                    )}
+                    {errors.featured_image_file && (
+                        <p className="mt-1 text-sm text-red-600">{errors.featured_image_file}</p>
+                    )}
                 </div>
                 <div>
                     <label className="mb-1 block text-sm font-medium text-slate-700">Published At</label>

@@ -8,7 +8,7 @@ export default function BlogPostsIndex({ posts }) {
             return;
         }
 
-        router.delete(route('admin.blog-posts.destroy', post.id));
+        router.delete(route('admin.blog-posts.destroy', post.slug));
     };
 
     return (
@@ -51,7 +51,7 @@ export default function BlogPostsIndex({ posts }) {
                                 <td className="px-4 py-3">
                                     <div className="flex gap-3">
                                         <Link
-                                            href={route('admin.blog-posts.edit', post.id)}
+                                            href={route('admin.blog-posts.edit', post.slug)}
                                             className="text-slate-900 underline"
                                         >
                                             Edit

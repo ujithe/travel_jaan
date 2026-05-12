@@ -19,7 +19,7 @@ export default function SpecialOfferForm({ offer = null }) {
         route: offer?.route ?? '',
         discount_percent: offer?.discount_percent ?? '',
         expires_at: toDateTimeInput(offer?.expires_at),
-        image: offer?.image ?? '',
+        image_file: null,
         is_active: offer?.is_active ?? true,
         order: offer?.order ?? 0,
     });
@@ -28,11 +28,11 @@ export default function SpecialOfferForm({ offer = null }) {
         event.preventDefault();
 
         if (isEdit) {
-            put(route('admin.special-offers.update', offer.id));
+            put(route('admin.special-offers.update', offer.id), { forceFormData: true });
             return;
         }
 
-        post(route('admin.special-offers.store'));
+        post(route('admin.special-offers.store'), { forceFormData: true });
     };
 
     return (
@@ -111,14 +111,21 @@ export default function SpecialOfferForm({ offer = null }) {
             </div>
 
             <div>
-                <label className="mb-1 block text-sm font-medium text-slate-700">Image URL</label>
+                <label className="mb-1 block text-sm font-medium text-slate-700">Image Upload</label>
                 <input
-                    type="url"
-                    value={data.image}
-                    onChange={(event) => setData('image', event.target.value)}
+                    type="file"
+                    accept="image/*"
+                    onChange={(event) => setData('image_file', event.target.files[0] ?? null)}
                     className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
                 />
-                {errors.image && <p className="mt-1 text-sm text-red-600">{errors.image}</p>}
+                {offer?.image && (
+                    <img
+                        src={offer.image}
+                        alt={`${offer.title} current`}
+                        className="mt-3 h-20 w-32 rounded border border-slate-200 object-cover"
+                    />
+                )}
+                {errors.image_file && <p className="mt-1 text-sm text-red-600">{errors.image_file}</p>}
             </div>
 
             <div>

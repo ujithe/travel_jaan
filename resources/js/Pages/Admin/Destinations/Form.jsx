@@ -12,7 +12,7 @@ export default function DestinationForm({ destination = null }) {
         description: destination?.description ?? '',
         starting_fare: destination?.starting_fare ?? '',
         flag_icon: destination?.flag_icon ?? '',
-        image: destination?.image ?? '',
+        image_file: null,
         order: destination?.order ?? 0,
         is_featured: Boolean(destination?.is_featured),
     });
@@ -21,11 +21,11 @@ export default function DestinationForm({ destination = null }) {
         event.preventDefault();
 
         if (isEdit) {
-            put(route('admin.destinations.update', destination.slug));
+            put(route('admin.destinations.update', destination.slug), { forceFormData: true });
             return;
         }
 
-        post(route('admin.destinations.store'));
+        post(route('admin.destinations.store'), { forceFormData: true });
     };
 
     return (
@@ -110,14 +110,21 @@ export default function DestinationForm({ destination = null }) {
                     {errors.flag_icon && <p className="mt-1 text-sm text-red-600">{errors.flag_icon}</p>}
                 </div>
                 <div>
-                    <label className="mb-1 block text-sm font-medium text-slate-700">Image URL</label>
+                    <label className="mb-1 block text-sm font-medium text-slate-700">Image Upload</label>
                     <input
-                        type="url"
-                        value={data.image}
-                        onChange={(event) => setData('image', event.target.value)}
+                        type="file"
+                        accept="image/*"
+                        onChange={(event) => setData('image_file', event.target.files[0] ?? null)}
                         className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
                     />
-                    {errors.image && <p className="mt-1 text-sm text-red-600">{errors.image}</p>}
+                    {destination?.image && (
+                        <img
+                            src={destination.image}
+                            alt={`${destination.name} current`}
+                            className="mt-3 h-20 w-32 rounded border border-slate-200 object-cover"
+                        />
+                    )}
+                    {errors.image_file && <p className="mt-1 text-sm text-red-600">{errors.image_file}</p>}
                 </div>
             </div>
 

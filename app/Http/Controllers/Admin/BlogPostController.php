@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\BlogPost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 
@@ -34,7 +35,7 @@ class BlogPostController extends Controller
             'excerpt' => 'required|string',
             'content' => 'required|string',
             'author' => 'nullable|string|max:255',
-            'featured_image' => 'nullable|url|max:2048',
+            'featured_image_file' => 'nullable|image|max:5120',
             'is_published' => 'nullable|boolean',
             'published_at' => 'nullable|date|required_if:is_published,1',
             'seo_title' => 'nullable|string|max:255',
@@ -45,6 +46,12 @@ class BlogPostController extends Controller
         $validated['slug'] = $this->generateUniqueSlug($validated['title']);
         $validated['author'] = $validated['author'] ?? 'JAAN Travels';
         $validated['is_published'] = $request->boolean('is_published');
+        unset($validated['featured_image_file']);
+
+        if ($request->hasFile('featured_image_file')) {
+            $path = $request->file('featured_image_file')->store('blog-posts', 'public');
+            $validated['featured_image'] = Storage::url($path);
+        }
 
         BlogPost::create($validated);
 
@@ -65,7 +72,7 @@ class BlogPostController extends Controller
             'excerpt' => 'required|string',
             'content' => 'required|string',
             'author' => 'nullable|string|max:255',
-            'featured_image' => 'nullable|url|max:2048',
+            'featured_image_file' => 'nullable|image|max:5120',
             'is_published' => 'nullable|boolean',
             'published_at' => 'nullable|date|required_if:is_published,1',
             'seo_title' => 'nullable|string|max:255',
@@ -76,6 +83,13 @@ class BlogPostController extends Controller
         $validated['slug'] = $this->generateUniqueSlug($validated['title'], $blog_post->id);
         $validated['author'] = $validated['author'] ?? 'JAAN Travels';
         $validated['is_published'] = $request->boolean('is_published');
+        unset($validated['featured_image_file']);
+
+        if ($request->hasFile('featured_image_file')) {
+            $this->deleteStoredImage($blog_post->featured_image);
+            $path = $request->file('featured_image_file')->store('blog-posts', 'public');
+            $validated['featured_image'] = Storage::url($path);
+        }
 
         $blog_post->update($validated);
 
@@ -84,6 +98,7 @@ class BlogPostController extends Controller
 
     public function destroy(BlogPost $blog_post)
     {
+        $this->deleteStoredImage($blog_post->featured_image);
         $blog_post->delete();
 
         return redirect()->route('admin.blog-posts.index')->with('success', 'Blog post deleted successfully');
@@ -106,5 +121,27 @@ class BlogPostController extends Controller
         }
 
         return $slug;
+    }
+
+    private function deleteStoredImage(?string $url): void
+    {
+        if (! $url) {
+            return;
+        }
+
+        $path = $this->storagePathFromUrl($url);
+        if ($path && Storage::disk('public')->exists($path)) {
+            Storage::disk('public')->delete($path);
+        }
+    }
+
+    private function storagePathFromUrl(string $url): ?string
+    {
+        $path = parse_url($url, PHP_URL_PATH);
+        if (! $path || ! str_starts_with($path, '/storage/')) {
+            return null;
+        }
+
+        return ltrim(substr($path, strlen('/storage/')), '/');
     }
 }
