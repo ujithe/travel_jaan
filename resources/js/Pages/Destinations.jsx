@@ -24,14 +24,14 @@ export default function Destinations({ destinations }) {
 
             <section className="py-12 bg-gray-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h1 className="text-4xl font-bold mb-8">Our Destinations</h1>
+                    <h1 className="text-3xl sm:text-4xl font-bold mb-8">Our Destinations</h1>
 
                     {Object.entries(destinations).map(([region, regionDestinations]) => (
                         <div key={region} className="mb-12">
                             <h2 className="text-2xl font-bold text-blue-900 mb-6 pb-3 border-b-2 border-yellow-400">
                                 {region}
                             </h2>
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                                 {regionDestinations.map((destination) => (
                                     <Link
                                         key={destination.id}

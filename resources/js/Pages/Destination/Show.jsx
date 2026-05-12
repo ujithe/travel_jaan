@@ -16,14 +16,14 @@ export default function DestinationShow({ destination, relatedDestinations }) {
             <section className="bg-gradient-to-r from-blue-900 to-blue-800 text-white py-12">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center">
-                        <span className="text-6xl mb-4 block">{destination.flag_icon || '🌍'}</span>
-                        <h1 className="text-4xl md:text-5xl font-bold mb-4">
+                        <span className="text-5xl sm:text-6xl mb-4 block">{destination.flag_icon || '🌍'}</span>
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
                             Flights to {destination.name}
                         </h1>
-                        <p className="text-xl text-gray-200 mb-6">
+                        <p className="text-lg sm:text-xl text-gray-200 mb-6">
                             {destination.country} • {destination.region}
                         </p>
-                        <div className="bg-yellow-500 text-blue-900 inline-block px-6 py-3 rounded-lg font-bold text-lg mb-6">
+                        <div className="bg-yellow-500 text-blue-900 inline-block px-6 py-3 rounded-lg font-bold text-base sm:text-lg mb-6">
                             From LKR {destination.starting_fare.toLocaleString()}
                         </div>
                     </div>
@@ -46,7 +46,7 @@ export default function DestinationShow({ destination, relatedDestinations }) {
                             )}
 
                             {/* Info Cards */}
-                            <div className="grid grid-cols-2 gap-4 mb-8">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                                 <div className="bg-blue-50 p-4 rounded-lg">
                                     <p className="text-gray-600 text-sm">Airport Code</p>
                                     <p className="text-2xl font-bold text-blue-900">{destination.code}</p>
@@ -135,7 +135,7 @@ export default function DestinationShow({ destination, relatedDestinations }) {
                 <section className="py-12 bg-white">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <h2 className="text-3xl font-bold mb-8">More Destinations in {destination.region}</h2>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                             {relatedDestinations.map((dest) => (
                                 <Link
                                     key={dest.id}

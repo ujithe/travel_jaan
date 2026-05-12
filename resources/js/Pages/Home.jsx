@@ -162,13 +162,13 @@ export default function Home({ destinations, specialOffers, testimonials, servic
                         />
                     </div>
 
-                    <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+                    <div className="relative min-h-[100svh] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-24">
                         <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
                             <div className="space-y-6">
                                 <p className="hero-anim text-xs uppercase tracking-[0.35em] text-amber-300">
                                     JAAN TRAVELS
                                 </p>
-                                <h1 className="hero-anim font-display text-4xl md:text-6xl font-semibold leading-tight">
+                                <h1 className="hero-anim font-display text-4xl sm:text-5xl md:text-6xl font-semibold leading-tight">
                                     Cheapest air tickets, confirmed the same day.
                                 </h1>
                                 <p className="hero-anim text-lg text-slate-200 max-w-xl">

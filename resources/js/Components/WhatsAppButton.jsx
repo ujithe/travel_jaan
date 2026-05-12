@@ -8,17 +8,17 @@ export default function WhatsAppButton() {
 
     return (
         <>
-            {/* Floating WhatsApp Button */}
             <a
                 href={`https://wa.me/${whatsappNumber}?text=${prefilledMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="fixed bottom-6 right-6 z-50 animate-bounce"
+                className="fixed bottom-4 right-4 z-50 animate-bounce sm:bottom-6 sm:right-6"
                 title="Chat with us on WhatsApp"
+                aria-label="Chat with us on WhatsApp"
             >
-                <div className="bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg flex items-center justify-center cursor-pointer">
+                <div className="flex items-center justify-center rounded-full bg-green-500 p-3 text-white shadow-lg transition hover:bg-green-600 sm:p-4 cursor-pointer">
                     <svg
-                        className="w-6 h-6"
+                        className="h-5 w-5 sm:h-6 sm:w-6"
                         fill="currentColor"
                         viewBox="0 0 24 24"
                     >
@@ -27,7 +27,6 @@ export default function WhatsAppButton() {
                 </div>
             </a>
 
-            {/* Pulse Animation */}
             <style>{`
                 @keyframes bounce {
                     0%, 100% {

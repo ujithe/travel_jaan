@@ -24,8 +24,8 @@ export default function SpecialOffers({ offers }) {
 
             <section className="py-12 bg-gray-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h1 className="text-4xl font-bold mb-3 text-center">🎉 Special Offers</h1>
-                    <p className="text-xl text-gray-600 text-center mb-12">
+                    <h1 className="text-3xl sm:text-4xl font-bold mb-3 text-center">🎉 Special Offers</h1>
+                    <p className="text-lg sm:text-xl text-gray-600 text-center mb-12">
                         Limited time deals on flights to your favorite destinations
                     </p>
 
@@ -83,7 +83,7 @@ export default function SpecialOffers({ offers }) {
 
                                             {/* Price */}
                                             <div className="mb-4">
-                                                <span className="text-4xl font-bold text-red-600">
+                                                <span className="text-3xl sm:text-4xl font-bold text-red-600">
                                                     {formatLkr(offer.price)}
                                                 </span>
                                             </div>

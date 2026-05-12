@@ -11,7 +11,7 @@ export default function About() {
 
             <section className="py-12 bg-blue-900 text-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h1 className="text-4xl font-bold mb-6">About JAAN Travels</h1>
+                    <h1 className="text-3xl sm:text-4xl font-bold mb-6">About JAAN Travels</h1>
                     <p className="text-xl text-gray-200">Sri Lanka's trusted airline ticket provider since 2014</p>
                 </div>
             </section>
@@ -58,21 +58,21 @@ export default function About() {
                     </div>
 
                     {/* Stats */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-12">
                         <div className="text-center">
-                            <p className="text-4xl font-bold text-blue-900">10+</p>
+                            <p className="text-3xl sm:text-4xl font-bold text-blue-900">10+</p>
                             <p className="text-gray-600">Years in Business</p>
                         </div>
                         <div className="text-center">
-                            <p className="text-4xl font-bold text-blue-900">50K+</p>
+                            <p className="text-3xl sm:text-4xl font-bold text-blue-900">50K+</p>
                             <p className="text-gray-600">Happy Customers</p>
                         </div>
                         <div className="text-center">
-                            <p className="text-4xl font-bold text-blue-900">100+</p>
+                            <p className="text-3xl sm:text-4xl font-bold text-blue-900">100+</p>
                             <p className="text-gray-600">Destinations</p>
                         </div>
                         <div className="text-center">
-                            <p className="text-4xl font-bold text-blue-900">IATA</p>
+                            <p className="text-3xl sm:text-4xl font-bold text-blue-900">IATA</p>
                             <p className="text-gray-600">Certified</p>
                         </div>
                     </div>
@@ -83,7 +83,7 @@ export default function About() {
             <section className="py-12 bg-gray-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 className="text-3xl font-bold text-center mb-8">Partner Airlines</h2>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
                         {['Emirates', 'Qatar Airways', 'Sri Lankan', 'FlyDubai', 'Air Arabia', 'Oman Air', 'Kuwait Airways', 'Saudi Airlines'].map((airline) => (
                             <div key={airline} className="bg-white p-6 rounded-lg text-center shadow">
                                 <p className="font-semibold text-gray-700">{airline}</p>

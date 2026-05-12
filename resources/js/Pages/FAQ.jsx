@@ -13,7 +13,7 @@ export default function FAQ({ faqs }) {
 
             <section className="py-12 bg-gray-50">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h1 className="text-4xl font-bold mb-12 text-center">Frequently Asked Questions</h1>
+                    <h1 className="text-3xl sm:text-4xl font-bold mb-12 text-center">Frequently Asked Questions</h1>
 
                     {Object.entries(faqs).map(([category, categoryFaqs]) => (
                         <div key={category} className="mb-12">
@@ -26,9 +26,9 @@ export default function FAQ({ faqs }) {
                                     <div key={faq.id} className="bg-white rounded-lg border border-gray-200 hover:shadow-md transition">
                                         <button
                                             onClick={() => setOpenId(openId === faq.id ? null : faq.id)}
-                                            className="w-full p-6 text-left flex justify-between items-start hover:bg-gray-50"
+                                            className="w-full p-4 sm:p-6 text-left flex justify-between items-start gap-4 hover:bg-gray-50"
                                         >
-                                            <span className="font-semibold text-gray-900">{faq.question}</span>
+                                            <span className="font-semibold text-gray-900 text-left">{faq.question}</span>
                                             <span className="ml-4 text-blue-900 flex-shrink-0">
                                                 {openId === faq.id ? '−' : '+'}
                                             </span>
@@ -46,23 +46,23 @@ export default function FAQ({ faqs }) {
                     ))}
 
                     {/* More Questions */}
-                    <div className="bg-blue-50 rounded-lg p-8 text-center mt-12">
+                    <div className="bg-blue-50 rounded-lg p-6 sm:p-8 text-center mt-12">
                         <h2 className="text-2xl font-bold mb-4">Can't find your answer?</h2>
                         <p className="text-gray-700 mb-6">
                             Feel free to reach out to us on WhatsApp or phone - we're here to help!
                         </p>
-                        <div className="flex gap-4 justify-center flex-wrap">
+                        <div className="flex flex-col gap-3 sm:flex-row justify-center flex-wrap">
                             <a
                                 href="https://wa.me/94765933255"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600"
+                                className="bg-green-500 text-white px-6 py-2 rounded text-center hover:bg-green-600"
                             >
                                 WhatsApp Us
                             </a>
                             <a
                                 href="tel:+94765933255"
-                                className="bg-blue-900 text-white px-6 py-2 rounded hover:bg-blue-800"
+                                className="bg-blue-900 text-white px-6 py-2 rounded text-center hover:bg-blue-800"
                             >
                                 Call +94 76 593 3255
                             </a>

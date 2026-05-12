@@ -11,7 +11,7 @@ export default function Contact() {
 
             <section className="py-12 bg-gray-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h1 className="text-4xl font-bold mb-12 text-center">Contact JAAN Travels</h1>
+                    <h1 className="text-3xl sm:text-4xl font-bold mb-12 text-center">Contact JAAN Travels</h1>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {/* Contact Info */}
@@ -21,21 +21,21 @@ export default function Contact() {
                             <div className="space-y-6 mb-8">
                                 <div>
                                     <h3 className="font-bold text-lg mb-2">📞 Primary Phone</h3>
-                                    <a href="tel:+94112345678" className="text-2xl font-bold text-blue-600 hover:text-blue-800">
+                                    <a href="tel:+94112345678" className="text-xl sm:text-2xl font-bold text-blue-600 hover:text-blue-800 break-words">
                                         +94 11 234 5678
                                     </a>
                                 </div>
 
                                 <div>
                                     <h3 className="font-bold text-lg mb-2">📱 Mobile</h3>
-                                    <a href="tel:+94765933255" className="text-2xl font-bold text-blue-600 hover:text-blue-800">
+                                    <a href="tel:+94765933255" className="text-xl sm:text-2xl font-bold text-blue-600 hover:text-blue-800 break-words">
                                         +94 76 593 3255
                                     </a>
                                 </div>
 
                                 <div>
                                     <h3 className="font-bold text-lg mb-2">💬 WhatsApp</h3>
-                                    <a href="https://wa.me/94765933255" target="_blank" rel="noopener noreferrer" className="text-2xl font-bold text-green-600 hover:text-green-800">
+                                    <a href="https://wa.me/94765933255" target="_blank" rel="noopener noreferrer" className="text-xl sm:text-2xl font-bold text-green-600 hover:text-green-800 break-words">
                                         +94 76 593 3255
                                     </a>
                                 </div>
@@ -68,9 +68,9 @@ export default function Contact() {
                             {/* Social Links */}
                             <div className="border-t pt-6">
                                 <h3 className="font-bold mb-4">Follow Us</h3>
-                                <div className="flex gap-4">
-                                    <a href="#" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Facebook</a>
-                                    <a href="#" className="bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700">Instagram</a>
+                                <div className="flex flex-col gap-3 sm:flex-row">
+                                    <a href="#" className="bg-blue-600 text-white px-4 py-2 rounded text-center hover:bg-blue-700">Facebook</a>
+                                    <a href="#" className="bg-pink-600 text-white px-4 py-2 rounded text-center hover:bg-pink-700">Instagram</a>
                                 </div>
                             </div>
                         </div>

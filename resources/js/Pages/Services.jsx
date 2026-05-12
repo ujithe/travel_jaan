@@ -11,11 +11,11 @@ export default function Services({ services }) {
 
             <section className="py-12 bg-gray-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h1 className="text-4xl font-bold mb-12 text-center">Our Services</h1>
+                    <h1 className="text-3xl sm:text-4xl font-bold mb-12 text-center">Our Services</h1>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {services.map((service) => (
-                            <div key={service.id} className="bg-white rounded-lg shadow hover:shadow-lg transition p-8">
+                            <div key={service.id} className="bg-white rounded-lg shadow hover:shadow-lg transition p-6 sm:p-8">
                                 <div className="text-5xl mb-4">{service.icon}</div>
                                 <h3 className="text-2xl font-bold text-blue-900 mb-3">{service.title}</h3>
                                 <p className="text-gray-700 mb-4">{service.description}</p>
@@ -36,7 +36,7 @@ export default function Services({ services }) {
 
                     {/* Detailed Section */}
                     <div className="mt-16">
-                        <h2 className="text-3xl font-bold mb-8 text-center">Why Choose Our Services?</h2>
+                        <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center">Why Choose Our Services?</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div className="bg-blue-50 p-8 rounded-lg">
                                 <h3 className="text-xl font-bold mb-4">✈ International Air Ticketing</h3>
@@ -82,7 +82,7 @@ export default function Services({ services }) {
             {/* CTA */}
             <section className="bg-blue-900 text-white py-12">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl font-bold mb-4">Book Your Service Today</h2>
+                    <h2 className="text-2xl sm:text-3xl font-bold mb-4">Book Your Service Today</h2>
                     <p className="text-lg text-gray-200 mb-6">Contact us on WhatsApp or phone for any service inquiry</p>
                     <div className="flex gap-4 justify-center flex-wrap">
                         <a

@@ -15,7 +15,7 @@ export default function BlogShow({ post, relatedPosts }) {
                     {/* Article Header */}
                     <article>
                         <header className="mb-8">
-                            <h1 className="text-4xl font-bold mb-4 text-gray-900">{post.title}</h1>
+                            <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900">{post.title}</h1>
                             <div className="flex flex-wrap gap-4 text-sm text-gray-600 border-b pb-4">
                                 <span>By {post.author}</span>
                                 <span>📅 {new Date(post.published_at).toLocaleDateString()}</span>
@@ -28,12 +28,12 @@ export default function BlogShow({ post, relatedPosts }) {
                             <img
                                 src={post.featured_image}
                                 alt={post.title}
-                                className="w-full h-96 object-cover rounded-lg mb-8"
+                                className="w-full h-64 sm:h-96 object-cover rounded-lg mb-8"
                             />
                         )}
 
                         {/* Content */}
-                        <div className="bg-white p-8 rounded-lg mb-8">
+                        <div className="bg-white p-6 sm:p-8 rounded-lg mb-8">
                             <p className="text-lg text-gray-600 mb-6 italic">{post.excerpt}</p>
                             <div className="prose prose-lg max-w-none text-gray-700">
                                 {post.content}
@@ -46,18 +46,18 @@ export default function BlogShow({ post, relatedPosts }) {
                             <p className="text-gray-700 mb-4">
                                 Contact JAAN Travels now to book your cheapest flights!
                             </p>
-                            <div className="flex gap-4 flex-wrap">
+                            <div className="flex flex-col gap-3 sm:flex-row flex-wrap">
                                 <a
                                     href="https://wa.me/94765933255"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="bg-green-500 text-white px-6 py-2 rounded font-bold hover:bg-green-600"
+                                    className="bg-green-500 text-white px-6 py-2 rounded font-bold text-center hover:bg-green-600"
                                 >
                                     WhatsApp Us
                                 </a>
                                 <a
                                     href="tel:+94765933255"
-                                    className="bg-blue-900 text-white px-6 py-2 rounded font-bold hover:bg-blue-800"
+                                    className="bg-blue-900 text-white px-6 py-2 rounded font-bold text-center hover:bg-blue-800"
                                 >
                                     Call Us
                                 </a>
