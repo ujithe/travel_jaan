@@ -3,6 +3,18 @@ import { useForm } from '@inertiajs/react';
 
 export default function DestinationForm({ destination = null }) {
     const isEdit = Boolean(destination);
+    const baseRegionOptions = [
+        'Middle East',
+        'South Asia',
+        'Southeast Asia',
+        'East Asia',
+        'Europe',
+        'Oceania',
+        'North America',
+        'South America',
+        'Africa',
+    ];
+    const customRegionValue = '__custom__';
 
     const { data, setData, post, put, processing, errors } = useForm({
         name: destination?.name ?? '',
@@ -63,13 +75,111 @@ export default function DestinationForm({ destination = null }) {
                 </div>
                 <div>
                     <label className="mb-1 block text-sm font-medium text-slate-700">Region</label>
-                    <input
-                        type="text"
-                        value={data.region}
-                        onChange={(event) => setData('region', event.target.value)}
+                    <select
+                        value={data.region && !baseRegionOptions.includes(data.region) ? customRegionValue : data.region}
+                        onChange={(event) => {
+                            const nextValue = event.target.value;
+                            if (nextValue === customRegionValue) {
+                                setData('region', '');
+                                return;
+                            }
+                            setData('region', nextValue);
+                        }}
                         className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
                         required
-                    />
+                    >
+                        <option value="" disabled>
+                            Select a region
+                        </option>
+                        {baseRegionOptions.map((region) => (
+                            <option key={region} value={region}>
+                                {region}
+                            </option>
+                        ))}
+                        <option value={customRegionValue}>Custom region...</option>
+                    </select>
+                    {(!data.region || baseRegionOptions.includes(data.region)) ? null : null}
+                    {data.region && !baseRegionOptions.includes(data.region) ? null : null}
+                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
+                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
+                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
+                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
+                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
+                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
+                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
+                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
+                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
+                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
                     {errors.region && <p className="mt-1 text-sm text-red-600">{errors.region}</p>}
                 </div>
                 <div>
