@@ -210,14 +210,21 @@ php artisan migrate
 php artisan db:seed
 ```
 
-### 4. Build Frontend
+### 4. Storage Setup
+
+Create the symbolic link to make uploaded images accessible to the public:
+```bash
+php artisan storage:link
+```
+
+### 5. Build Frontend
 
 ```bash
 npm run dev          # Development
 npm run build        # Production
 ```
 
-### 5. Running the Application
+### 6. Running the Application
 
 ```bash
 # Local development server
@@ -227,7 +234,7 @@ php artisan serve
 npm run dev
 ```
 
-### 6. Access the Application
+### 7. Access the Application
 
 - Website: `http://localhost:8000`
 - Admin Login: Create user or use seeded credentials
