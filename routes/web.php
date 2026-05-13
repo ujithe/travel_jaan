@@ -15,7 +15,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/destinations', [PageController::class, 'destinations'])->name('destinations.index');
-Route::get('/destinations/{destination}', [PageController::class, 'destination'])->name('destinations.show');
+Route::get('/colombo-to-{destination}', [PageController::class, 'destination'])->name('destinations.show');
+Route::get('/destinations/{destination}', function (string $destination) {
+    return redirect("/colombo-to-{$destination}", 301);
+})->name('destinations.legacy');
 Route::get('/services', [PageController::class, 'services'])->name('services.index');
 Route::get('/services/{service}', [PageController::class, 'service'])->name('services.show');
 Route::get('/special-offers', [PageController::class, 'specialOffers'])->name('special-offers.index');
