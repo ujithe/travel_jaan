@@ -12,6 +12,7 @@ use App\Models\FAQ;
 use App\Models\Setting;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
@@ -28,10 +29,14 @@ class DatabaseSeeder extends Seeder
             User::factory()->create([
                 'name' => 'Admin',
                 'email' => 'admin@gmail.com',
+                'password' => Hash::make('Admin@123'),
                 'is_admin' => true,
             ]);
         } else {
-            User::where('email', 'admin@gmail.com')->update(['is_admin' => true]);
+            User::where('email', 'admin@gmail.com')->update([
+                'password' => Hash::make('Admin@123'),
+                'is_admin' => true,
+            ]);
         }
 
         // Seed Destinations
