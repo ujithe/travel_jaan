@@ -93,20 +93,7 @@ export default function About() {
                 </div>
             </section>
 
-            {/* CTA */}
-            <section className="bg-blue-900 text-white py-12">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl font-bold mb-4">Start Saving on Airfare Today</h2>
-                    <a
-                        href="https://wa.me/94765933255"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded"
-                    >
-                        Chat on WhatsApp
-                    </a>
-                </div>
-            </section>
+
         </AppLayout>
     );
 }

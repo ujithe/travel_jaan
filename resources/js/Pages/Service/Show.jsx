@@ -27,29 +27,7 @@ export default function ServiceShow({ service }) {
                         )}
                     </div>
 
-                    {/* CTA Section */}
-                    <div className="bg-green-50 border-2 border-green-200 rounded-lg p-6 sm:p-8 text-center">
-                        <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-green-900">Ready to Use This Service?</h2>
-                        <p className="text-lg text-gray-700 mb-6">
-                            Contact JAAN Travels now via WhatsApp or phone to get started.
-                        </p>
-                        <div className="flex flex-col gap-3 sm:flex-row justify-center flex-wrap">
-                            <a
-                                href="https://wa.me/94765933255"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg text-center transition"
-                            >
-                                📱 WhatsApp Now
-                            </a>
-                            <a
-                                href="tel:+94112345678"
-                                className="bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 px-8 rounded-lg text-center transition"
-                            >
-                                📞 Call +94 11 234 5678
-                            </a>
-                        </div>
-                    </div>
+
 
                     {/* Related Services */}
                     <div className="mt-12">

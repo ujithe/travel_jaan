@@ -363,23 +363,7 @@ export default function Home({ destinations, specialOffers, testimonials, servic
                     </section>
                 )}
 
-                {/* CTA Section */}
-                <section className="bg-blue-900 text-white py-12">
-                    <div ref={ctaRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                        <h2 className="text-3xl font-bold mb-4">Ready to Book Your Cheapest Ticket?</h2>
-                        <p className="text-xl text-gray-200 mb-6">
-                            WhatsApp us now and get your tickets confirmed same day!
-                        </p>
-                        <a
-                            href="https://wa.me/94765933255"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg transition"
-                        >
-                            Chat on WhatsApp
-                        </a>
-                    </div>
-                </section>
+
             </div>
         </AppLayout>
     );

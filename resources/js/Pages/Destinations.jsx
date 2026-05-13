@@ -57,21 +57,7 @@ export default function Destinations({ destinations }) {
                 </div>
             </section>
 
-            {/* CTA */}
-            <section className="bg-blue-900 text-white py-12">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-2xl font-bold mb-4">Don't see your destination?</h2>
-                    <p className="mb-6">We can book tickets to almost anywhere in the world!</p>
-                    <a
-                        href="https://wa.me/94765933255"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded"
-                    >
-                        WhatsApp Us
-                    </a>
-                </div>
-            </section>
+
         </AppLayout>
     );
 }

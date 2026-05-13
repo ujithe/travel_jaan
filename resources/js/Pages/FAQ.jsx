@@ -45,29 +45,7 @@ export default function FAQ({ faqs }) {
                         </div>
                     ))}
 
-                    {/* More Questions */}
-                    <div className="bg-blue-50 rounded-lg p-6 sm:p-8 text-center mt-12">
-                        <h2 className="text-2xl font-bold mb-4">Can't find your answer?</h2>
-                        <p className="text-gray-700 mb-6">
-                            Feel free to reach out to us on WhatsApp or phone - we're here to help!
-                        </p>
-                        <div className="flex flex-col gap-3 sm:flex-row justify-center flex-wrap">
-                            <a
-                                href="https://wa.me/94765933255"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="bg-green-500 text-white px-6 py-2 rounded text-center hover:bg-green-600"
-                            >
-                                WhatsApp Us
-                            </a>
-                            <a
-                                href="tel:+94765933255"
-                                className="bg-blue-900 text-white px-6 py-2 rounded text-center hover:bg-blue-800"
-                            >
-                                Call +94 76 593 3255
-                            </a>
-                        </div>
-                    </div>
+
                 </div>
             </section>
         </AppLayout>

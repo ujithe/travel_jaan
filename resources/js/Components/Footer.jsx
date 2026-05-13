@@ -3,11 +3,30 @@ import { Link } from '@inertiajs/react';
 
 export default function Footer() {
     return (
-        <footer className="relative overflow-hidden bg-slate-950 text-white">
+        <>
+            <section className="bg-blue-900 text-white py-12 mt-12">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 className="text-3xl font-bold mb-4">Ready to Book Your Cheapest Ticket?</h2>
+                    <p className="text-xl text-gray-200 mb-6">
+                        WhatsApp us now and get your tickets confirmed same day!
+                    </p>
+                    <a
+                        href="https://wa.me/94765933255"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg transition"
+                    >
+                        Chat on WhatsApp
+                    </a>
+                </div>
+            </section>
+
+            <footer className="relative overflow-hidden bg-slate-950 text-white">
             <div
                 className="absolute inset-0 bg-[radial-gradient(circle_at_20%_15%,rgba(251,191,36,0.14),transparent_40%),radial-gradient(circle_at_80%_0%,rgba(14,165,233,0.12),transparent_45%)]"
                 aria-hidden="true"
             />
+            
             <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
                 {/* <div className="rounded-2xl border border-white/10 bg-white/5 p-6 md:flex md:items-center md:justify-between">
                     <div>
@@ -122,5 +141,6 @@ export default function Footer() {
                 </div>
             </div>
         </footer>
+        </>
     );
 }

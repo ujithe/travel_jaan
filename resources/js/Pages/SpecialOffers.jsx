@@ -97,21 +97,7 @@ export default function SpecialOffers({ offers }) {
                         </div>
                     )}
 
-                    {/* Info Box */}
-                    <div className="mt-12 bg-blue-50 rounded-lg p-8 text-center">
-                        <h2 className="text-2xl font-bold mb-4">Don't Miss Out!</h2>
-                        <p className="text-gray-700 mb-6">
-                            Follow us and WhatsApp to get notified about new deals as soon as they're released.
-                        </p>
-                        <a
-                            href="https://wa.me/94765933255"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded transition"
-                        >
-                            📱 Add to WhatsApp
-                        </a>
-                    </div>
+                    
                 </div>
             </section>
 
