@@ -3,19 +3,6 @@ import { Head } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 
 export default function SpecialOffers({ offers }) {
-    const formatLkr = (value) => {
-        if (value === null || value === undefined) {
-            return 'Price on request'
-        }
-
-        const amount = Number(value)
-        if (Number.isNaN(amount)) {
-            return `LKR ${value}`
-        }
-
-        return `LKR ${amount.toLocaleString()}`
-    }
-
     return (
         <AppLayout title="Special Offers - JAAN Travels">
             <Head>
@@ -56,9 +43,6 @@ export default function SpecialOffers({ offers }) {
                                                     <span className="text-sm font-semibold text-red-700">{offer.route}</span>
                                                 </div>
                                             )}
-                                            {/* <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-red-700">
-                                                {formatLkr(offer.price)}
-                                            </div> */}
                                             {offer.discount_percent && (
                                                 <div className="absolute right-4 top-4 rounded-full bg-green-600 px-3 py-1 text-xs font-semibold text-white">
                                                     Save {offer.discount_percent}%
@@ -79,13 +63,6 @@ export default function SpecialOffers({ offers }) {
                                             <div className="mb-4 p-3 bg-blue-50 rounded">
                                                 <p className="text-sm text-gray-600">Route</p>
                                                 <p className="font-bold text-lg text-blue-900">{offer.route}</p>
-                                            </div>
-
-                                            {/* Price */}
-                                            <div className="mb-4">
-                                                <span className="text-3xl sm:text-4xl font-bold text-red-600">
-                                                    {formatLkr(offer.price)}
-                                                </span>
                                             </div>
 
                                             {/* Expiry */}

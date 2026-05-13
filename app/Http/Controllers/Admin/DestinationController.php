@@ -13,8 +13,7 @@ class DestinationController extends Controller
 {
     public function index()
     {
-        $destinations = Destination::orderBy('order')
-            ->orderBy('region')
+        $destinations = Destination::orderBy('region')
             ->orderBy('name')
             ->paginate(20);
 
@@ -36,16 +35,12 @@ class DestinationController extends Controller
             'country' => 'required|string|max:255',
             'region' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'starting_fare' => 'required|numeric|min:0',
-            'flag_icon' => 'nullable|string|max:255',
             'image_file' => 'nullable|image|max:5120',
-            'order' => 'nullable|integer',
             'is_featured' => 'nullable|boolean',
         ]);
 
         $validated['slug'] = $this->generateUniqueSlug($validated['name']);
         $validated['is_featured'] = $request->boolean('is_featured');
-        $validated['order'] = $validated['order'] ?? 0;
         unset($validated['image_file']);
 
         if ($request->hasFile('image_file')) {
@@ -73,16 +68,12 @@ class DestinationController extends Controller
             'country' => 'required|string|max:255',
             'region' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'starting_fare' => 'required|numeric|min:0',
-            'flag_icon' => 'nullable|string|max:255',
             'image_file' => 'nullable|image|max:5120',
-            'order' => 'nullable|integer',
             'is_featured' => 'nullable|boolean',
         ]);
 
         $validated['slug'] = $this->generateUniqueSlug($validated['name'], $destination->id);
         $validated['is_featured'] = $request->boolean('is_featured');
-        $validated['order'] = $validated['order'] ?? 0;
         unset($validated['image_file']);
 
         if ($request->hasFile('image_file')) {
@@ -112,9 +103,9 @@ class DestinationController extends Controller
 
         while (
             Destination::query()
-                ->when($ignoreId, fn ($query) => $query->where('id', '!=', $ignoreId))
-                ->where('slug', $slug)
-                ->exists()
+            ->when($ignoreId, fn($query) => $query->where('id', '!=', $ignoreId))
+            ->where('slug', $slug)
+            ->exists()
         ) {
             $slug = "{$base}-{$counter}";
             $counter++;

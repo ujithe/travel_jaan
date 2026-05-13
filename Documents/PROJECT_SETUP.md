@@ -5,6 +5,7 @@
 JAAN Travels is a Laravel + Inertia + React web application for booking international air tickets. The system is designed to showcase the cheapest air fares with a focus on WhatsApp-based same-day booking.
 
 ### Tech Stack
+
 - **Backend**: Laravel 11 (PHP Framework)
 - **Frontend**: React 18 + Inertia.js (Server-side rendering)
 - **Database**: MySQL/PostgreSQL
@@ -12,6 +13,7 @@ JAAN Travels is a Laravel + Inertia + React web application for booking internat
 - **Styling**: Tailwind CSS
 
 ### Key Features
+
 - ✈ Destination listings with starting fares
 - 💰 Special offers and promotions (admin-editable)
 - 💬 WhatsApp integration for bookings
@@ -98,20 +100,23 @@ resources/js/
 ## Database Schema
 
 ### Destinations Table
+
 ```sql
 - id, name, slug, code, country, region
-- description, starting_fare, flag_icon, image
+- description, image
 - order, is_featured, timestamps
 ```
 
 ### Special Offers Table
+
 ```sql
-- id, title, description, price
+- id, title, description
 - route, discount_percent, expires_at
 - image, is_active, order, timestamps
 ```
 
 ### Blog Posts Table
+
 ```sql
 - id, title, slug, excerpt, content
 - featured_image, author, published_at, is_published
@@ -119,12 +124,14 @@ resources/js/
 ```
 
 ### Services Table
+
 ```sql
 - id, title, slug, description, details
 - icon, image, order, is_active, timestamps
 ```
 
 ### Testimonials Table
+
 ```sql
 - id, customer_name, message, rating
 - route, savings, image
@@ -132,12 +139,14 @@ resources/js/
 ```
 
 ### FAQs Table
+
 ```sql
 - id, question, answer, category
 - order, is_active, timestamps
 ```
 
 ### Settings Table
+
 ```sql
 - id, key (unique), value, timestamps
 ```
@@ -147,6 +156,7 @@ resources/js/
 ## Routes
 
 ### Public Routes
+
 - `GET /` - Homepage
 - `GET /about` - About Us
 - `GET /destinations` - Destinations List
@@ -160,6 +170,7 @@ resources/js/
 - `GET /blog/{slug}` - Blog Post
 
 ### Admin Routes (Protected by auth)
+
 - `GET /admin/destinations` - Destinations Management
 - `CRUD /admin/destinations` - Create, Read, Update, Delete Destinations
 - `CRUD /admin/blog-posts` - Blog Management
@@ -173,35 +184,41 @@ resources/js/
 ## Setup Instructions
 
 ### 1. Installation
+
 ```bash
 composer install
 npm install
 ```
 
 ### 2. Environment Configuration
+
 ```bash
 cp .env.example .env
 php artisan key:generate
 ```
 
 Update `.env` with:
+
 - Database credentials
 - WhatsApp number (in config/jaan.php)
 - Any other environment variables
 
 ### 3. Database Setup
+
 ```bash
 php artisan migrate
 php artisan db:seed
 ```
 
 ### 4. Build Frontend
+
 ```bash
 npm run dev          # Development
 npm run build        # Production
 ```
 
 ### 5. Running the Application
+
 ```bash
 # Local development server
 php artisan serve
@@ -211,6 +228,7 @@ npm run dev
 ```
 
 ### 6. Access the Application
+
 - Website: `http://localhost:8000`
 - Admin Login: Create user or use seeded credentials
 - Admin Panel: `http://localhost:8000/admin/*`
@@ -220,6 +238,7 @@ npm run dev
 ## Admin Panel Features
 
 ### Content Management
+
 - **Destinations**: Add, edit, delete travel destinations with fares
 - **Special Offers**: Create time-limited promotional deals
 - **Blog Posts**: Write and publish SEO-optimized articles
@@ -228,6 +247,7 @@ npm run dev
 - **Services**: Define travel services offered
 
 ### Admin Routes
+
 - POST/PATCH/DELETE operations require admin authentication
 - Admin users are created via Tinker or seeders
 - Role-based access control can be added via packages like Spatie
@@ -237,6 +257,7 @@ npm run dev
 ## SEO Features
 
 ### On-Page SEO
+
 - Unique meta titles and descriptions per page
 - Proper H1 → H2 → H3 heading hierarchy
 - Alt text support for images
@@ -246,6 +267,7 @@ npm run dev
 - Mobile-first responsive design
 
 ### Technical SEO
+
 - Google Search Console compatible
 - Google Analytics 4 integration ready
 - XML sitemap generation ready
@@ -260,14 +282,17 @@ npm run dev
 ## Customization Guide
 
 ### Adding a New Destination
+
 1. Create in database: `php artisan tinker`
-   ```php
-   Destination::create([...]);
-   ```
+    ```php
+    Destination::create([...]);
+    ```
 2. Or use Admin Panel: `/admin/destinations`
 
 ### Customizing Company Info
+
 Edit `config/jaan.php` with:
+
 - Company name, phone, email
 - WhatsApp number
 - Office address and hours
@@ -275,19 +300,23 @@ Edit `config/jaan.php` with:
 - Business metrics
 
 ### Modifying the Homepage
+
 Edit `resources/js/Pages/Home.jsx` to:
+
 - Change hero section
 - Add/remove sections
 - Customize colors and layouts
 - Update CTA buttons
 
 ### Adding New Pages
+
 1. Create React component in `resources/js/Pages/`
 2. Add controller method in `PageController.php`
 3. Add route in `routes/web.php`
 4. Link in navigation (Header.jsx)
 
 ### Styling
+
 - Tailwind CSS used for all styling
 - Colors: Navy Blue (#1e3a8a), Gold (#eab308), Green (#22c55e)
 - Customize in component inline classes or `tailwind.config.js`
@@ -297,18 +326,21 @@ Edit `resources/js/Pages/Home.jsx` to:
 ## Important Notes
 
 ### WhatsApp Integration
+
 - Floating button on all pages
 - Pre-filled message template
 - Direct WhatsApp URL scheme: `https://wa.me/{number}?text={message}`
 - Phone number format: Without '+' and spaces (e.g., 94765933255)
 
 ### Destination Landing Pages
+
 - Each destination has URL like `/destinations/{slug}`
 - SEO-optimized for route keywords
 - Shows related destinations
 - Call-to-action to WhatsApp book
 
 ### Mobile-First Design
+
 - All components mobile-responsive
 - Minimum tap target: 44px
 - No horizontal scrolling
@@ -335,11 +367,13 @@ Edit `resources/js/Pages/Home.jsx` to:
 ## Troubleshooting
 
 ### Migrations not running
+
 ```bash
 php artisan migrate:fresh --seed
 ```
 
 ### Frontend not updating
+
 ```bash
 npm run dev
 # or
@@ -348,6 +382,7 @@ php artisan cache:clear
 ```
 
 ### Database errors
+
 ```bash
 php artisan db:seed
 # or specific seeder
@@ -374,6 +409,7 @@ php artisan db:seed --class=DatabaseSeeder
 ## Support & Contact
 
 For questions or issues:
+
 - Email: admin@jaantravels.lk
 - WhatsApp: +94 71 234 5678
 - Phone: +94 11 234 5678

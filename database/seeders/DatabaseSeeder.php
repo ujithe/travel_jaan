@@ -42,33 +42,33 @@ class DatabaseSeeder extends Seeder
         // Seed Destinations
         $destinations = [
             // Middle East
-            ['name' => 'Dubai', 'code' => 'DXB', 'country' => 'United Arab Emirates', 'region' => 'Middle East', 'starting_fare' => 65000, 'flag_icon' => '🇦🇪', 'is_featured' => true],
-            ['name' => 'Abu Dhabi', 'code' => 'AUH', 'country' => 'United Arab Emirates', 'region' => 'Middle East', 'starting_fare' => 68000, 'flag_icon' => '🇦🇪'],
-            ['name' => 'Doha', 'code' => 'DOH', 'country' => 'Qatar', 'region' => 'Middle East', 'starting_fare' => 72000, 'flag_icon' => '🇶🇦', 'is_featured' => true],
-            ['name' => 'Riyadh', 'code' => 'RUH', 'country' => 'Saudi Arabia', 'region' => 'Middle East', 'starting_fare' => 75000, 'flag_icon' => '🇸🇦'],
-            ['name' => 'Jeddah', 'code' => 'JED', 'country' => 'Saudi Arabia', 'region' => 'Middle East', 'starting_fare' => 78000, 'flag_icon' => '🇸🇦'],
-            ['name' => 'Kuwait', 'code' => 'KWI', 'country' => 'Kuwait', 'region' => 'Middle East', 'starting_fare' => 80000, 'flag_icon' => '🇰🇼'],
-            ['name' => 'Muscat', 'code' => 'MCT', 'country' => 'Oman', 'region' => 'Middle East', 'starting_fare' => 65000, 'flag_icon' => '🇴🇲'],
-            ['name' => 'Bahrain', 'code' => 'BAH', 'country' => 'Bahrain', 'region' => 'Middle East', 'starting_fare' => 72000, 'flag_icon' => '🇧🇭'],
+            ['name' => 'Dubai', 'code' => 'DXB', 'country' => 'United Arab Emirates', 'region' => 'Middle East', 'is_featured' => true],
+            ['name' => 'Abu Dhabi', 'code' => 'AUH', 'country' => 'United Arab Emirates', 'region' => 'Middle East'],
+            ['name' => 'Doha', 'code' => 'DOH', 'country' => 'Qatar', 'region' => 'Middle East', 'is_featured' => true],
+            ['name' => 'Riyadh', 'code' => 'RUH', 'country' => 'Saudi Arabia', 'region' => 'Middle East'],
+            ['name' => 'Jeddah', 'code' => 'JED', 'country' => 'Saudi Arabia', 'region' => 'Middle East'],
+            ['name' => 'Kuwait', 'code' => 'KWI', 'country' => 'Kuwait', 'region' => 'Middle East'],
+            ['name' => 'Muscat', 'code' => 'MCT', 'country' => 'Oman', 'region' => 'Middle East'],
+            ['name' => 'Bahrain', 'code' => 'BAH', 'country' => 'Bahrain', 'region' => 'Middle East'],
 
             // Southeast Asia
-            ['name' => 'Singapore', 'code' => 'SIN', 'country' => 'Singapore', 'region' => 'Southeast Asia', 'starting_fare' => 45000, 'flag_icon' => '🇸🇬', 'is_featured' => true],
-            ['name' => 'Kuala Lumpur', 'code' => 'KUL', 'country' => 'Malaysia', 'region' => 'Southeast Asia', 'starting_fare' => 42000, 'flag_icon' => '🇲🇾'],
-            ['name' => 'Bangkok', 'code' => 'BKK', 'country' => 'Thailand', 'region' => 'Southeast Asia', 'starting_fare' => 48000, 'flag_icon' => '🇹🇭'],
-            ['name' => 'Male', 'code' => 'MLE', 'country' => 'Maldives', 'region' => 'Southeast Asia', 'starting_fare' => 35000, 'flag_icon' => '🇲🇻'],
+            ['name' => 'Singapore', 'code' => 'SIN', 'country' => 'Singapore', 'region' => 'Southeast Asia', 'is_featured' => true],
+            ['name' => 'Kuala Lumpur', 'code' => 'KUL', 'country' => 'Malaysia', 'region' => 'Southeast Asia'],
+            ['name' => 'Bangkok', 'code' => 'BKK', 'country' => 'Thailand', 'region' => 'Southeast Asia'],
+            ['name' => 'Male', 'code' => 'MLE', 'country' => 'Maldives', 'region' => 'Southeast Asia'],
 
             // Europe
-            ['name' => 'London', 'code' => 'LHR', 'country' => 'United Kingdom', 'region' => 'Europe', 'starting_fare' => 95000, 'flag_icon' => '🇬🇧', 'is_featured' => true],
-            ['name' => 'Paris', 'code' => 'CDG', 'country' => 'France', 'region' => 'Europe', 'starting_fare' => 98000, 'flag_icon' => '🇫🇷'],
-            ['name' => 'Amsterdam', 'code' => 'AMS', 'country' => 'Netherlands', 'region' => 'Europe', 'starting_fare' => 92000, 'flag_icon' => '🇳🇱'],
+            ['name' => 'London', 'code' => 'LHR', 'country' => 'United Kingdom', 'region' => 'Europe', 'is_featured' => true],
+            ['name' => 'Paris', 'code' => 'CDG', 'country' => 'France', 'region' => 'Europe'],
+            ['name' => 'Amsterdam', 'code' => 'AMS', 'country' => 'Netherlands', 'region' => 'Europe'],
 
             // Australia
-            ['name' => 'Sydney', 'code' => 'SYD', 'country' => 'Australia', 'region' => 'Oceania', 'starting_fare' => 120000, 'flag_icon' => '🇦🇺', 'is_featured' => true],
-            ['name' => 'Melbourne', 'code' => 'MEL', 'country' => 'Australia', 'region' => 'Oceania', 'starting_fare' => 125000, 'flag_icon' => '🇦🇺'],
+            ['name' => 'Sydney', 'code' => 'SYD', 'country' => 'Australia', 'region' => 'Oceania', 'is_featured' => true],
+            ['name' => 'Melbourne', 'code' => 'MEL', 'country' => 'Australia', 'region' => 'Oceania'],
 
             // South Asia
-            ['name' => 'Mumbai', 'code' => 'BOM', 'country' => 'India', 'region' => 'South Asia', 'starting_fare' => 35000, 'flag_icon' => '🇮🇳'],
-            ['name' => 'Delhi', 'code' => 'DEL', 'country' => 'India', 'region' => 'South Asia', 'starting_fare' => 38000, 'flag_icon' => '🇮🇳'],
+            ['name' => 'Mumbai', 'code' => 'BOM', 'country' => 'India', 'region' => 'South Asia'],
+            ['name' => 'Delhi', 'code' => 'DEL', 'country' => 'India', 'region' => 'South Asia'],
         ];
 
         foreach ($destinations as $dest) {
@@ -81,9 +81,9 @@ class DatabaseSeeder extends Seeder
 
         // Seed Special Offers
         $offers = [
-            ['title' => 'Dubai Flash Sale', 'description' => 'Limited time offer for Dubai flights', 'price' => 59000, 'route' => 'Colombo to Dubai', 'discount_percent' => 10, 'expires_at' => now()->addDays(7), 'is_active' => true],
-            ['title' => 'Singapore Special', 'description' => 'Get the cheapest fares to Singapore', 'price' => 39000, 'route' => 'Colombo to Singapore', 'discount_percent' => 15, 'expires_at' => now()->addDays(14), 'is_active' => true],
-            ['title' => 'UK Adventure', 'description' => 'Fly to London at the best price', 'price' => 85000, 'route' => 'Colombo to London', 'discount_percent' => 12, 'expires_at' => now()->addDays(10), 'is_active' => true],
+            ['title' => 'Dubai Flash Sale', 'description' => 'Limited time offer for Dubai flights', 'route' => 'Colombo to Dubai', 'discount_percent' => 10, 'expires_at' => now()->addDays(7), 'is_active' => true],
+            ['title' => 'Singapore Special', 'description' => 'Get the cheapest fares to Singapore', 'route' => 'Colombo to Singapore', 'discount_percent' => 15, 'expires_at' => now()->addDays(14), 'is_active' => true],
+            ['title' => 'UK Adventure', 'description' => 'Fly to London at the best price', 'route' => 'Colombo to London', 'discount_percent' => 12, 'expires_at' => now()->addDays(10), 'is_active' => true],
         ];
 
         foreach ($offers as $offer) {

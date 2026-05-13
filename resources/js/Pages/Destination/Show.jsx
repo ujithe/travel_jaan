@@ -55,7 +55,6 @@ export default function DestinationShow({ destination, relatedDestinations }) {
                         </div>
 
                         <div className="rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur sm:p-6">
-                            <div className="mb-4 text-5xl">{destination.flag_icon || '🌍'}</div>
                             <h2 className="text-xl font-semibold">What You Get</h2>
                             <ul className="mt-4 space-y-3 text-sm text-slate-200">
                                 <li>Live fare check by our ticketing team</li>
@@ -179,7 +178,6 @@ export default function DestinationShow({ destination, relatedDestinations }) {
                                     className="group"
                                 >
                                     <div className="h-full rounded-xl border border-slate-200 bg-slate-50 p-4 transition group-hover:shadow-lg">
-                                        <div className="mb-2 text-3xl">{dest.flag_icon || '🌍'}</div>
                                         <h4 className="font-bold text-gray-900 group-hover:text-blue-600">{dest.name}</h4>
                                         <p className="mb-3 text-sm text-gray-600">{dest.country}</p>
                                         <p className="text-sm font-semibold text-slate-800">View Route</p>

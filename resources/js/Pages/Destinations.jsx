@@ -3,19 +3,6 @@ import { Head, Link } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 
 export default function Destinations({ destinations }) {
-    const formatLkr = (value) => {
-        if (value === null || value === undefined) {
-            return 'Price on request'
-        }
-
-        const amount = Number(value)
-        if (Number.isNaN(amount)) {
-            return `LKR ${value}`
-        }
-
-        return `LKR ${amount.toLocaleString()}`
-    }
-
     return (
         <AppLayout title="Destinations - JAAN Travels">
             <Head>
@@ -52,13 +39,9 @@ export default function Destinations({ destinations }) {
                                                         <span className="text-sm font-semibold text-slate-700">{destination.name}</span>
                                                     </div>
                                                 )}
-                                                {/* <div className="absolute left-3 bottom-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-blue-700">
-                                                    From {formatLkr(destination.starting_fare)}
-                                                </div> */}
                                             </div>
                                             <div className="p-4">
                                                 <div className="flex items-center gap-2 mb-1">
-                                                    <span className="text-2xl">{destination.flag_icon || '🌍'}</span>
                                                     <h3 className="font-bold text-lg text-gray-900 group-hover:text-blue-600">
                                                         {destination.name}
                                                     </h3>

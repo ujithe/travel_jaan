@@ -31,7 +31,6 @@ class SpecialOfferController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'price' => 'required|numeric|min:0',
             'route' => 'required|string|max:255',
             'discount_percent' => 'nullable|integer|min:0|max:100',
             'expires_at' => 'required|date|after:today',
@@ -66,7 +65,6 @@ class SpecialOfferController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'price' => 'required|numeric|min:0',
             'route' => 'required|string|max:255',
             'discount_percent' => 'nullable|integer|min:0|max:100',
             'expires_at' => 'required|date',

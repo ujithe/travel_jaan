@@ -34,7 +34,6 @@ export default function SpecialOffersIndex({ offers }) {
                         <tr>
                             <th className="px-4 py-3">Title</th>
                             <th className="px-4 py-3">Route</th>
-                            <th className="px-4 py-3">Price</th>
                             <th className="px-4 py-3">Expires</th>
                             <th className="px-4 py-3">Active</th>
                             <th className="px-4 py-3">Actions</th>
@@ -45,7 +44,6 @@ export default function SpecialOffersIndex({ offers }) {
                             <tr key={offer.id} className="border-t border-slate-100">
                                 <td className="px-4 py-3 font-medium text-slate-900">{offer.title}</td>
                                 <td className="px-4 py-3 text-slate-700">{offer.route}</td>
-                                <td className="px-4 py-3 text-slate-700">LKR {Number(offer.price).toLocaleString()}</td>
                                 <td className="px-4 py-3 text-slate-700">
                                     {new Date(offer.expires_at).toLocaleString()}
                                 </td>

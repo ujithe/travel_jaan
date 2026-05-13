@@ -34,9 +34,7 @@ export default function DestinationsIndex({ destinations }) {
                         <tr>
                             <th className="px-4 py-3">Name</th>
                             <th className="px-4 py-3">Region</th>
-                            <th className="px-4 py-3">Fare</th>
                             <th className="px-4 py-3">Featured</th>
-                            <th className="px-4 py-3">Order</th>
                             <th className="px-4 py-3">Actions</th>
                         </tr>
                     </thead>
@@ -44,15 +42,10 @@ export default function DestinationsIndex({ destinations }) {
                         {(destinations?.data ?? []).map((destination) => (
                             <tr key={destination.id} className="border-t border-slate-100">
                                 <td className="px-4 py-3 font-medium text-slate-900">
-                                    {destination.flag_icon ? `${destination.flag_icon} ` : ''}
                                     {destination.name}
                                 </td>
                                 <td className="px-4 py-3 text-slate-700">{destination.region}</td>
-                                <td className="px-4 py-3 text-slate-700">
-                                    LKR {Number(destination.starting_fare).toLocaleString()}
-                                </td>
                                 <td className="px-4 py-3 text-slate-700">{destination.is_featured ? 'Yes' : 'No'}</td>
-                                <td className="px-4 py-3 text-slate-700">{destination.order}</td>
                                 <td className="px-4 py-3">
                                     <div className="flex gap-3">
                                         <Link

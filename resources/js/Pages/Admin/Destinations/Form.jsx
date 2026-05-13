@@ -10,10 +10,7 @@ export default function DestinationForm({ destination = null }) {
         country: destination?.country ?? '',
         region: destination?.region ?? '',
         description: destination?.description ?? '',
-        starting_fare: destination?.starting_fare ?? '',
-        flag_icon: destination?.flag_icon ?? '',
         image_file: null,
-        order: destination?.order ?? 0,
         is_featured: Boolean(destination?.is_featured),
     });
 
@@ -74,40 +71,6 @@ export default function DestinationForm({ destination = null }) {
                         required
                     />
                     {errors.region && <p className="mt-1 text-sm text-red-600">{errors.region}</p>}
-                </div>
-                <div>
-                    <label className="mb-1 block text-sm font-medium text-slate-700">Starting Fare (LKR)</label>
-                    <input
-                        type="number"
-                        min="0"
-                        step="0.01"
-                        value={data.starting_fare}
-                        onChange={(event) => setData('starting_fare', event.target.value)}
-                        className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
-                        required
-                    />
-                    {errors.starting_fare && <p className="mt-1 text-sm text-red-600">{errors.starting_fare}</p>}
-                </div>
-                <div>
-                    <label className="mb-1 block text-sm font-medium text-slate-700">Order</label>
-                    <input
-                        type="number"
-                        min="0"
-                        value={data.order}
-                        onChange={(event) => setData('order', event.target.value)}
-                        className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
-                    />
-                    {errors.order && <p className="mt-1 text-sm text-red-600">{errors.order}</p>}
-                </div>
-                <div>
-                    <label className="mb-1 block text-sm font-medium text-slate-700">Flag Emoji / Icon</label>
-                    <input
-                        type="text"
-                        value={data.flag_icon}
-                        onChange={(event) => setData('flag_icon', event.target.value)}
-                        className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
-                    />
-                    {errors.flag_icon && <p className="mt-1 text-sm text-red-600">{errors.flag_icon}</p>}
                 </div>
                 <div>
                     <label className="mb-1 block text-sm font-medium text-slate-700">Image Upload</label>

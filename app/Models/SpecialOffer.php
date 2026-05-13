@@ -9,7 +9,6 @@ class SpecialOffer extends Model
     protected $fillable = [
         'title',
         'description',
-        'price',
         'route',
         'discount_percent',
         'expires_at',
@@ -19,7 +18,6 @@ class SpecialOffer extends Model
     ];
 
     protected $casts = [
-        'price' => 'decimal:2',
         'is_active' => 'boolean',
         'expires_at' => 'datetime',
     ];

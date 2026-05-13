@@ -15,7 +15,6 @@ export default function SpecialOfferForm({ offer = null }) {
     const { data, setData, post, put, processing, errors } = useForm({
         title: offer?.title ?? '',
         description: offer?.description ?? '',
-        price: offer?.price ?? '',
         route: offer?.route ?? '',
         discount_percent: offer?.discount_percent ?? '',
         expires_at: toDateTimeInput(offer?.expires_at),
@@ -60,19 +59,6 @@ export default function SpecialOfferForm({ offer = null }) {
                         required
                     />
                     {errors.route && <p className="mt-1 text-sm text-red-600">{errors.route}</p>}
-                </div>
-                <div>
-                    <label className="mb-1 block text-sm font-medium text-slate-700">Price (LKR)</label>
-                    <input
-                        type="number"
-                        min="0"
-                        step="0.01"
-                        value={data.price}
-                        onChange={(event) => setData('price', event.target.value)}
-                        className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
-                        required
-                    />
-                    {errors.price && <p className="mt-1 text-sm text-red-600">{errors.price}</p>}
                 </div>
                 <div>
                     <label className="mb-1 block text-sm font-medium text-slate-700">Discount %</label>
