@@ -24,6 +24,9 @@ export default function DestinationForm({ destination = null }) {
         description: destination?.description ?? '',
         image_file: null,
         is_featured: Boolean(destination?.is_featured),
+        seo_title: destination?.seo_title ?? '',
+        seo_description: destination?.seo_description ?? '',
+        seo_keywords: destination?.seo_keywords ?? '',
     });
 
     const submit = (event) => {
@@ -139,6 +142,51 @@ export default function DestinationForm({ destination = null }) {
                 Show in homepage "Popular Destinations"
             </label>
             {errors.is_featured && <p className="mt-1 text-sm text-red-600">{errors.is_featured}</p>}
+
+            {/* SEO Section */}
+            <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-slate-500">SEO Settings</h3>
+                <div className="space-y-4">
+                    <div>
+                        <label className="mb-1 block text-sm font-medium text-slate-700">SEO Title</label>
+                        <input
+                            type="text"
+                            value={data.seo_title}
+                            onChange={(event) => setData('seo_title', event.target.value)}
+                            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+                            placeholder={`Flights to ${data.name || 'Destination'} - JAAN Travels`}
+                            maxLength={255}
+                        />
+                        <p className="mt-1 text-xs text-slate-400">Recommended: 50–60 characters. Leave blank to use default.</p>
+                        {errors.seo_title && <p className="mt-1 text-sm text-red-600">{errors.seo_title}</p>}
+                    </div>
+                    <div>
+                        <label className="mb-1 block text-sm font-medium text-slate-700">SEO Description</label>
+                        <textarea
+                            value={data.seo_description}
+                            onChange={(event) => setData('seo_description', event.target.value)}
+                            className="h-20 w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+                            placeholder="A short description for search engines..."
+                            maxLength={500}
+                        />
+                        <p className="mt-1 text-xs text-slate-400">Recommended: 150–160 characters. Leave blank to use default.</p>
+                        {errors.seo_description && <p className="mt-1 text-sm text-red-600">{errors.seo_description}</p>}
+                    </div>
+                    <div>
+                        <label className="mb-1 block text-sm font-medium text-slate-700">SEO Keywords</label>
+                        <input
+                            type="text"
+                            value={data.seo_keywords}
+                            onChange={(event) => setData('seo_keywords', event.target.value)}
+                            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+                            placeholder="cheap flights, colombo to dubai, jaan travels"
+                            maxLength={255}
+                        />
+                        <p className="mt-1 text-xs text-slate-400">Comma-separated keywords.</p>
+                        {errors.seo_keywords && <p className="mt-1 text-sm text-red-600">{errors.seo_keywords}</p>}
+                    </div>
+                </div>
+            </div>
 
             <div className="flex gap-3">
                 <button

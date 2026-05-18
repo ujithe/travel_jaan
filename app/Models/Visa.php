@@ -11,8 +11,10 @@ class Visa extends Model
         'slug',
         'options',
         'image',
-
         'is_active',
+        'seo_title',
+        'seo_description',
+        'seo_keywords',
     ];
 
     protected $casts = [

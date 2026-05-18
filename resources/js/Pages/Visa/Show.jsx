@@ -15,12 +15,15 @@ export default function VisaShow({ visa, relatedVisas }) {
     };
 
     return (
-        <AppLayout title={`Visa for ${visa.name} - JAAN Travels`}>
+        <AppLayout title={visa.seo_title || `Visa for ${visa.name} - JAAN Travels`}>
             <Head>
                 <meta
                     name="description"
-                    content={`Visa assistance from Colombo to ${visa.name}. Fast processing with WhatsApp support.`}
+                    content={visa.seo_description || `Visa assistance from Colombo to ${visa.name}. Fast processing with WhatsApp support.`}
                 />
+                {visa.seo_keywords && (
+                    <meta name="keywords" content={visa.seo_keywords} />
+                )}
             </Head>
 
             <section className="relative overflow-hidden bg-slate-950 py-14 text-white sm:py-16">

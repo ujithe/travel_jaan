@@ -15,6 +15,9 @@ class Destination extends Model
         'description',
         'image',
         'is_featured',
+        'seo_title',
+        'seo_description',
+        'seo_keywords',
     ];
 
     protected $casts = [

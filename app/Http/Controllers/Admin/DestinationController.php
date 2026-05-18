@@ -37,6 +37,9 @@ class DestinationController extends Controller
             'description' => 'nullable|string',
             'image_file' => 'nullable|image|max:10240',
             'is_featured' => 'nullable|boolean',
+            'seo_title' => 'nullable|string|max:255',
+            'seo_description' => 'nullable|string|max:500',
+            'seo_keywords' => 'nullable|string|max:255',
         ]);
 
         $validated['slug'] = $this->generateUniqueSlug($validated['name']);
@@ -70,6 +73,9 @@ class DestinationController extends Controller
             'description' => 'nullable|string',
             'image_file' => 'nullable|image|max:10240',
             'is_featured' => 'nullable|boolean',
+            'seo_title' => 'nullable|string|max:255',
+            'seo_description' => 'nullable|string|max:500',
+            'seo_keywords' => 'nullable|string|max:255',
         ]);
 
         $validated['slug'] = $this->generateUniqueSlug($validated['name'], $destination->id);

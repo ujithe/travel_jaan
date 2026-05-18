@@ -4,12 +4,15 @@ import AppLayout from '@/Layouts/AppLayout';
 
 export default function DestinationShow({ destination, relatedDestinations }) {
     return (
-        <AppLayout title={`Flights to ${destination.name} - JAAN Travels`}>
+        <AppLayout title={destination.seo_title || `Flights to ${destination.name} - JAAN Travels`}>
             <Head>
                 <meta
                     name="description"
-                    content={`Get a same-day flight quote from Colombo to ${destination.name}. Chat with JAAN Travels on WhatsApp to confirm your booking.`}
+                    content={destination.seo_description || `Get a same-day flight quote from Colombo to ${destination.name}. Chat with JAAN Travels on WhatsApp to confirm your booking.`}
                 />
+                {destination.seo_keywords && (
+                    <meta name="keywords" content={destination.seo_keywords} />
+                )}
             </Head>
 
             <section className="relative overflow-hidden bg-slate-950 py-14 text-white sm:py-16">
