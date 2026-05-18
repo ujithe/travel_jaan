@@ -6,9 +6,9 @@ return [
     'email' => 'info@jaantravels.lk',
     'phone' => [
         'primary' => '+94 11 234 5678',
-        'mobile' => '+94 71 234 5678',
+        'mobile' => '+94 765933255',
     ],
-    'whatsapp' => '+94 71 234 5678',
+    'whatsapp' => '+94 765933255',
     'address' => [
         'street' => '123 Independence Avenue',
         'city' => 'Colombo 7',

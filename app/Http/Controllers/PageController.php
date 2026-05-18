@@ -15,12 +15,12 @@ class PageController extends Controller
     public function home()
     {
         $destinations = Destination::where('is_featured', true)
-            ->orderBy('order')
+            ->orderBy('name')
             ->take(12)
             ->get();
 
         if ($destinations->isEmpty()) {
-            $destinations = Destination::orderBy('order')->take(12)->get();
+            $destinations = Destination::orderBy('name')->take(12)->get();
         }
 
         $specialOffers = SpecialOffer::active()->orderBy('order')->take(6)->get();
