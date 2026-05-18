@@ -8,6 +8,7 @@ use App\Models\SpecialOffer;
 use App\Models\BlogPost;
 use App\Models\Service;
 use App\Models\Testimonial;
+use App\Models\Visa;
 use App\Models\FAQ;
 use App\Models\Setting;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -76,6 +77,106 @@ class DatabaseSeeder extends Seeder
             Destination::updateOrCreate(
                 ['slug' => $slug],
                 array_merge($dest, ['slug' => $slug])
+            );
+        }
+
+        // Seed Visas
+        $visas = [
+            [
+                'name' => 'Oman',
+                'options' => [
+                    '10 Days Visit - LKR 8,700',
+                    '30 Days Visit - LKR 30,450',
+                ],
+            ],
+            [
+                'name' => 'India',
+                'options' => [
+                    '30 Days Double - LKR 12,441',
+                    '1 Year Multiple - LKR 13,137',
+                    '1 Year Business (No Docs) - LKR 41,412',
+                    '60 Days Triple Entry - LKR 24,621',
+                ],
+            ],
+            [
+                'name' => 'Malaysia',
+                'options' => [
+                    '30 Days Single (With Docs) - LKR 13,137',
+                    '30 Days Single (Without Docs) - LKR 34,636',
+                    '6 Months Tourist Multiple - LKR 62,999',
+                    '6 Months Business Multiple - LKR 72,395',
+                ],
+            ],
+            [
+                'name' => 'China',
+                'options' => [
+                    '14 Days Tourist - LKR 30,885 / 34,636',
+                    'Express - LKR 44,022 / 50,345',
+                    '30 Days Business - LKR 43,076 / 50,345',
+                    '6 Months Multiple - LKR 66,033',
+                    '1 Year Multiple - LKR 81,780',
+                ],
+            ],
+            [
+                'name' => 'Azerbaijan',
+                'options' => [
+                    '30 Days Single - LKR 15,660',
+                ],
+            ],
+            [
+                'name' => 'Georgia',
+                'options' => [
+                    'With Package - LKR 75,429',
+                    'Visa Only - LKR 96,396',
+                ],
+            ],
+            [
+                'name' => 'Indonesia',
+                'options' => [
+                    '60 Days Single - LKR 30,363',
+                    '1 Year Multiple - LKR 83,946',
+                    '1 Year Business (No Docs) - LKR 113,187',
+                ],
+            ],
+            [
+                'name' => 'Pakistan',
+                'options' => [
+                    '90 Days Multiple - LKR 12,093',
+                ],
+            ],
+            [
+                'name' => 'Cambodia',
+                'options' => [
+                    'Visa Fee - LKR 15,747',
+                ],
+            ],
+            [
+                'name' => 'Laos',
+                'options' => [
+                    'Visa Fee - LKR 25,665',
+                ],
+            ],
+            [
+                'name' => 'Uzbekistan',
+                'options' => [
+                    'Single - LKR 14,181',
+                    'Double - LKR 19,401',
+                    'Multiple - LKR 25,665',
+                ],
+            ],
+            [
+                'name' => 'Kenya',
+                'options' => [
+                    '90 Days Single - LKR 19,401',
+                ],
+            ],
+        ];
+
+        foreach ($visas as $index => $visa) {
+            $slug = Str::slug($visa['name']);
+            Visa::updateOrCreate(
+                ['slug' => $slug],
+                array_merge($visa, ['slug' => $slug, 'order' => $index, 'is_active' => true])
             );
         }
 

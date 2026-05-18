@@ -8,6 +8,7 @@ use App\Models\FAQ;
 use App\Models\Service;
 use App\Models\SpecialOffer;
 use App\Models\Testimonial;
+use App\Models\Visa;
 use Inertia\Inertia;
 
 class PageController extends Controller
@@ -26,12 +27,14 @@ class PageController extends Controller
         $specialOffers = SpecialOffer::active()->orderBy('order')->take(6)->get();
         $testimonials = Testimonial::approved()->featured()->orderBy('order')->take(5)->get();
         $services = Service::active()->orderBy('order')->take(6)->get();
+        $visas = Visa::active()->orderBy('order')->take(8)->get();
 
         return Inertia::render('Home', [
             'destinations' => $destinations,
             'specialOffers' => $specialOffers,
             'testimonials' => $testimonials,
             'services' => $services,
+            'visas' => $visas,
         ]);
     }
 
@@ -53,6 +56,29 @@ class PageController extends Controller
 
         return Inertia::render('Destinations', [
             'destinations' => $destinations,
+        ]);
+    }
+
+    public function visas()
+    {
+        $visas = Visa::active()->orderBy('order')->orderBy('name')->get();
+
+        return Inertia::render('Visas', [
+            'visas' => $visas,
+        ]);
+    }
+
+    public function visa(Visa $visa)
+    {
+        $relatedVisas = Visa::active()
+            ->where('id', '!=', $visa->id)
+            ->orderBy('order')
+            ->take(6)
+            ->get();
+
+        return Inertia::render('Visa/Show', [
+            'visa' => $visa,
+            'relatedVisas' => $relatedVisas,
         ]);
     }
 

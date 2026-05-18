@@ -12,7 +12,7 @@ const toDateTimeInput = (value) => {
 export default function BlogPostForm({ postData = null }) {
     const isEdit = Boolean(postData);
 
-    const { data, setData, post, put, processing, errors } = useForm({
+    const { data, setData, post, processing, errors, transform } = useForm({
         title: postData?.title ?? '',
         excerpt: postData?.excerpt ?? '',
         content: postData?.content ?? '',
@@ -29,7 +29,8 @@ export default function BlogPostForm({ postData = null }) {
         event.preventDefault();
 
         if (isEdit) {
-            put(route('admin.blog-posts.update', postData.slug), { forceFormData: true });
+            transform((data) => ({ ...data, _method: 'put' }));
+            post(route('admin.blog-posts.update', postData.slug), { forceFormData: true });
             return;
         }
 

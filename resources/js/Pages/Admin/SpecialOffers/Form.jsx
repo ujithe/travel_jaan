@@ -12,7 +12,7 @@ const toDateTimeInput = (value) => {
 export default function SpecialOfferForm({ offer = null }) {
     const isEdit = Boolean(offer);
 
-    const { data, setData, post, put, processing, errors } = useForm({
+    const { data, setData, post, processing, errors, transform } = useForm({
         title: offer?.title ?? '',
         description: offer?.description ?? '',
         route: offer?.route ?? '',
@@ -27,7 +27,8 @@ export default function SpecialOfferForm({ offer = null }) {
         event.preventDefault();
 
         if (isEdit) {
-            put(route('admin.special-offers.update', offer.id), { forceFormData: true });
+            transform((data) => ({ ...data, _method: 'put' }));
+            post(route('admin.special-offers.update', offer.id), { forceFormData: true });
             return;
         }
 

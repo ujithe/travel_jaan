@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\FAQController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SpecialOfferController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\VisaController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -15,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/destinations', [PageController::class, 'destinations'])->name('destinations.index');
+Route::get('/visas', [PageController::class, 'visas'])->name('visas.index');
+Route::get('/colombo-to-{visa}-visa', [PageController::class, 'visa'])->name('visas.show');
+Route::get('/visas/{visa}', function (string $visa) {
+    return redirect("/colombo-to-{$visa}-visa", 301);
+})->name('visas.legacy');
 Route::get('/colombo-to-{destination}', [PageController::class, 'destination'])->name('destinations.show');
 Route::get('/destinations/{destination}', function (string $destination) {
     return redirect("/colombo-to-{$destination}", 301);
@@ -48,6 +54,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::redirect('/dashboard', '/admin')->name('dashboard.redirect');
 
     Route::resource('destinations', DestinationController::class);
+    Route::resource('visas', VisaController::class);
     Route::resource('blog-posts', BlogPostController::class);
     Route::resource('special-offers', SpecialOfferController::class);
     Route::resource('testimonials', TestimonialController::class);

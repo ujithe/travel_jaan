@@ -5,17 +5,19 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import AppLayout from '@/Layouts/AppLayout';
 import heroBg from '@/Components/assets/hero.png';
 
-export default function Home({ destinations, specialOffers, testimonials, services }) {
+export default function Home({ destinations, specialOffers, testimonials, services, visas }) {
     const pageRef = useRef(null)
     const heroRef = useRef(null)
     const offersRef = useRef(null)
     const destRef = useRef(null)
+    const visaRef = useRef(null)
     const stepsRef = useRef(null)
     const testiRef = useRef(null)
     const ctaRef = useRef(null)
 
     const destinationStat = destinations?.length ? `${destinations.length}+ featured routes` : '100+ global routes'
     const offerStat = specialOffers?.length ? `${specialOffers.length} live deals` : 'Live deal alerts'
+    const visaList = Array.isArray(visas) ? visas : []
 
     useEffect(() => {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -93,6 +95,7 @@ export default function Home({ destinations, specialOffers, testimonials, servic
 
             revealStagger(offersRef.current?.querySelectorAll('.offer-card'))
             revealStagger(destRef.current?.querySelectorAll('.destination-card'), { y: 26, stagger: 0.1 })
+            revealStagger(visaRef.current?.querySelectorAll('.visa-card'), { y: 26, stagger: 0.1 })
             revealStagger(stepsRef.current?.querySelectorAll('.step-card'), { y: 22, stagger: 0.14 })
             revealStagger(testiRef.current?.querySelectorAll('.testimonial-card'), { y: 22, stagger: 0.14 })
             revealSingle(ctaRef.current, { y: 28 })
@@ -300,6 +303,57 @@ export default function Home({ destinations, specialOffers, testimonials, servic
                                     className="inline-block bg-blue-900 text-white px-6 py-2 mt-5 rounded hover:bg-blue-800 transition"
                                 >
                                     View All Destinations →
+                                </Link>
+                            </div>
+                        </div>
+                    </section>
+                )}
+
+                {/* Visa Preview */}
+                {visaList.length > 0 && (
+                    <section className="py-12 bg-white">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <h2 className="text-3xl font-bold text-center mb-8">Visa Assistance</h2>
+                            <div ref={visaRef} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+                                {visaList.map((visa) => (
+                                    <Link
+                                        key={visa.slug}
+                                        href={route('visas.show', visa.slug)}
+                                        className="group"
+                                    >
+                                        <div className="visa-card card-hover overflow-hidden rounded-2xl border border-slate-100 bg-white h-full">
+                                            <div className="relative h-28">
+                                                {visa.image ? (
+                                                    <img
+                                                        src={visa.image}
+                                                        alt={visa.name}
+                                                        className="h-full w-full object-cover"
+                                                        loading="lazy"
+                                                    />
+                                                ) : (
+                                                    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-emerald-100 via-white to-slate-100">
+                                                        <span className="text-sm font-semibold text-slate-700">{visa.name}</span>
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <div className="p-4">
+                                                <div className="flex items-center gap-2 mb-1">
+                                                    <h3 className="font-semibold text-gray-900 group-hover:text-emerald-600">
+                                                        {visa.name} Visa
+                                                    </h3>
+                                                </div>
+                                                <p className="text-sm text-gray-600">Fast processing with WhatsApp updates</p>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                ))}
+                            </div>
+                            <div className="text-center">
+                                <Link
+                                    href={route('visas.index')}
+                                    className="inline-block bg-emerald-600 text-white px-6 py-2 mt-5 rounded hover:bg-emerald-500 transition"
+                                >
+                                    View All Visas ->
                                 </Link>
                             </div>
                         </div>
