@@ -35,7 +35,7 @@ class DestinationController extends Controller
             'country' => 'required|string|max:255',
             'region' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'image_file' => 'nullable|image|max:5120',
+            'image_file' => 'nullable|image|max:10240',
             'is_featured' => 'nullable|boolean',
         ]);
 
@@ -68,7 +68,7 @@ class DestinationController extends Controller
             'country' => 'required|string|max:255',
             'region' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'image_file' => 'nullable|image|max:5120',
+            'image_file' => 'nullable|image|max:10240',
             'is_featured' => 'nullable|boolean',
         ]);
 

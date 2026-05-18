@@ -12,7 +12,7 @@ class FAQ extends Model
         'question',
         'answer',
         'category',
-        'order',
+
         'is_active',
     ];
 

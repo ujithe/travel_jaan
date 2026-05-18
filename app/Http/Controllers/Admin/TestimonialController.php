@@ -33,7 +33,7 @@ class TestimonialController extends Controller
             'savings' => 'nullable|numeric|min:0',
             'is_featured' => 'boolean',
             'is_approved' => 'boolean',
-            'order' => 'nullable|integer',
+
         ]);
 
         Testimonial::create($validated);
@@ -58,7 +58,7 @@ class TestimonialController extends Controller
             'savings' => 'nullable|numeric|min:0',
             'is_featured' => 'boolean',
             'is_approved' => 'boolean',
-            'order' => 'nullable|integer',
+
         ]);
 
         $testimonial->update($validated);

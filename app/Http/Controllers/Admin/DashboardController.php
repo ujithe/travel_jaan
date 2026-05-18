@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\BlogPost;
 use App\Models\Destination;
 use App\Models\SpecialOffer;
+use App\Models\Visa;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -21,6 +22,8 @@ class DashboardController extends Controller
                 'activeOffers' => SpecialOffer::where('is_active', true)->count(),
                 'blogPosts' => BlogPost::count(),
                 'publishedPosts' => BlogPost::where('is_published', true)->count(),
+                'visas' => Visa::count(),
+                'activeVisas' => Visa::where('is_active', true)->count(),
             ],
         ]);
     }

@@ -16,7 +16,7 @@ export default function DestinationForm({ destination = null }) {
     ];
     const customRegionValue = '__custom__';
 
-    const { data, setData, post, put, processing, errors } = useForm({
+    const { data, setData, post, processing, errors, transform } = useForm({
         name: destination?.name ?? '',
         code: destination?.code ?? '',
         country: destination?.country ?? '',
@@ -30,7 +30,8 @@ export default function DestinationForm({ destination = null }) {
         event.preventDefault();
 
         if (isEdit) {
-            put(route('admin.destinations.update', destination.slug), { forceFormData: true });
+            transform((data) => ({ ...data, _method: 'put' }));
+            post(route('admin.destinations.update', destination.slug), { forceFormData: true });
             return;
         }
 
@@ -98,88 +99,6 @@ export default function DestinationForm({ destination = null }) {
                         ))}
                         <option value={customRegionValue}>Custom region...</option>
                     </select>
-                    {(!data.region || baseRegionOptions.includes(data.region)) ? null : null}
-                    {data.region && !baseRegionOptions.includes(data.region) ? null : null}
-                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
-                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
-                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
-                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
-                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
-                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
-                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
-                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
-                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {(data.region === '' && !baseRegionOptions.includes(data.region)) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
-                    {data.region === '' && !baseRegionOptions.includes(data.region) ? null : null}
                     {errors.region && <p className="mt-1 text-sm text-red-600">{errors.region}</p>}
                 </div>
                 <div>

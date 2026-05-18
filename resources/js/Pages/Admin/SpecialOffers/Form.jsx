@@ -12,7 +12,7 @@ const toDateTimeInput = (value) => {
 export default function SpecialOfferForm({ offer = null }) {
     const isEdit = Boolean(offer);
 
-    const { data, setData, post, put, processing, errors } = useForm({
+    const { data, setData, post, processing, errors, transform } = useForm({
         title: offer?.title ?? '',
         description: offer?.description ?? '',
         route: offer?.route ?? '',
@@ -20,14 +20,14 @@ export default function SpecialOfferForm({ offer = null }) {
         expires_at: toDateTimeInput(offer?.expires_at),
         image_file: null,
         is_active: offer?.is_active ?? true,
-        order: offer?.order ?? 0,
     });
 
     const submit = (event) => {
         event.preventDefault();
 
         if (isEdit) {
-            put(route('admin.special-offers.update', offer.id), { forceFormData: true });
+            transform((data) => ({ ...data, _method: 'put' }));
+            post(route('admin.special-offers.update', offer.id), { forceFormData: true });
             return;
         }
 
@@ -83,17 +83,7 @@ export default function SpecialOfferForm({ offer = null }) {
                     />
                     {errors.expires_at && <p className="mt-1 text-sm text-red-600">{errors.expires_at}</p>}
                 </div>
-                <div>
-                    <label className="mb-1 block text-sm font-medium text-slate-700">Order</label>
-                    <input
-                        type="number"
-                        min="0"
-                        value={data.order}
-                        onChange={(event) => setData('order', event.target.value)}
-                        className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
-                    />
-                    {errors.order && <p className="mt-1 text-sm text-red-600">{errors.order}</p>}
-                </div>
+
             </div>
 
             <div>

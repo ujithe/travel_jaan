@@ -8,6 +8,7 @@ use App\Models\FAQ;
 use App\Models\Service;
 use App\Models\SpecialOffer;
 use App\Models\Testimonial;
+use App\Models\Visa;
 use Inertia\Inertia;
 
 class PageController extends Controller
@@ -23,22 +24,24 @@ class PageController extends Controller
             $destinations = Destination::orderBy('name')->take(12)->get();
         }
 
-        $specialOffers = SpecialOffer::active()->orderBy('order')->take(6)->get();
-        $testimonials = Testimonial::approved()->featured()->orderBy('order')->take(5)->get();
-        $services = Service::active()->orderBy('order')->take(6)->get();
+        $specialOffers = SpecialOffer::active()->take(6)->get();
+        $testimonials = Testimonial::approved()->featured()->take(5)->get();
+        $services = Service::active()->take(6)->get();
+        $visas = Visa::active()->take(8)->get();
 
         return Inertia::render('Home', [
             'destinations' => $destinations,
             'specialOffers' => $specialOffers,
             'testimonials' => $testimonials,
             'services' => $services,
+            'visas' => $visas,
         ]);
     }
 
     public function about()
     {
-        $services = Service::active()->orderBy('order')->get();
-        $testimonials = Testimonial::approved()->orderBy('order')->take(8)->get();
+        $services = Service::active()->get();
+        $testimonials = Testimonial::approved()->take(8)->get();
 
         return Inertia::render('About', [
             'services' => $services,
@@ -53,6 +56,28 @@ class PageController extends Controller
 
         return Inertia::render('Destinations', [
             'destinations' => $destinations,
+        ]);
+    }
+
+    public function visas()
+    {
+        $visas = Visa::active()->orderBy('name')->get();
+
+        return Inertia::render('Visas', [
+            'visas' => $visas,
+        ]);
+    }
+
+    public function visa(Visa $visa)
+    {
+        $relatedVisas = Visa::active()
+            ->where('id', '!=', $visa->id)
+            ->take(6)
+            ->get();
+
+        return Inertia::render('Visa/Show', [
+            'visa' => $visa,
+            'relatedVisas' => $relatedVisas,
         ]);
     }
 
@@ -71,7 +96,7 @@ class PageController extends Controller
 
     public function services()
     {
-        $services = Service::active()->orderBy('order')->get();
+        $services = Service::active()->get();
 
         return Inertia::render('Services', [
             'services' => $services,
@@ -87,7 +112,7 @@ class PageController extends Controller
 
     public function specialOffers()
     {
-        $offers = SpecialOffer::active()->orderBy('order')->get();
+        $offers = SpecialOffer::active()->get();
 
         return Inertia::render('SpecialOffers', [
             'offers' => $offers,
@@ -101,7 +126,7 @@ class PageController extends Controller
 
     public function faq()
     {
-        $faqs = FAQ::active()->orderBy('category')->orderBy('order')->get()
+        $faqs = FAQ::active()->orderBy('category')->get()
             ->groupBy('category');
 
         return Inertia::render('FAQ', [

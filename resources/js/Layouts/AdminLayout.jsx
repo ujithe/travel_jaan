@@ -18,6 +18,11 @@ export default function AdminLayout({ title, children }) {
             active: url.startsWith('/admin/destinations'),
         },
         {
+            href: route('admin.visas.index'),
+            label: 'Visas',
+            active: url.startsWith('/admin/visas'),
+        },
+        {
             href: route('admin.special-offers.index'),
             label: 'Today Deals',
             active: url.startsWith('/admin/special-offers'),
@@ -61,11 +66,10 @@ export default function AdminLayout({ title, children }) {
                             <Link
                                 key={item.href}
                                 href={item.href}
-                                className={`rounded-md px-3 py-2 text-sm ${
-                                    item.active
+                                className={`rounded-md px-3 py-2 text-sm ${item.active
                                         ? 'bg-slate-900 text-white'
                                         : 'text-slate-700 hover:bg-slate-200'
-                                }`}
+                                    }`}
                             >
                                 {item.label}
                             </Link>

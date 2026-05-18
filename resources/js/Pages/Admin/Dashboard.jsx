@@ -11,6 +11,12 @@ export default function Dashboard({ stats }) {
             href: route('admin.destinations.index'),
         },
         {
+            title: 'Visa Destinations',
+            value: stats.activeVisas,
+            subtitle: `${stats.visas} total visas`,
+            href: route('admin.visas.index'),
+        },
+        {
             title: "Today's Deals",
             value: stats.activeOffers,
             subtitle: `${stats.offers} total offers`,
@@ -33,7 +39,7 @@ export default function Dashboard({ stats }) {
                 </p>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
                 {cards.map((card) => (
                     <Link
                         key={card.title}

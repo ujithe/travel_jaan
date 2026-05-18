@@ -4,25 +4,29 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Destination extends Model
+class Visa extends Model
 {
     protected $fillable = [
         'name',
         'slug',
-        'code',
-        'country',
-        'region',
-        'description',
+        'options',
         'image',
-        'is_featured',
+
+        'is_active',
     ];
 
     protected $casts = [
-        'is_featured' => 'boolean',
+        'options' => 'array',
+        'is_active' => 'boolean',
     ];
 
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
     }
 }
