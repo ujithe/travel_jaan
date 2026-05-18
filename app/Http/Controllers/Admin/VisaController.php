@@ -13,8 +13,7 @@ class VisaController extends Controller
 {
     public function index()
     {
-        $visas = Visa::orderBy('order')
-            ->orderBy('name')
+        $visas = Visa::orderBy('name')
             ->paginate(20);
 
         return Inertia::render('Admin/Visas/Index', [
@@ -104,8 +103,8 @@ class VisaController extends Controller
         return $request->validate([
             'name' => 'required|string|max:255',
             'options_text' => 'required|string',
-            'image_file' => 'nullable|image|max:5120',
-            'order' => 'nullable|integer',
+            'image_file' => 'nullable|image|max:10240',
+
             'is_active' => 'boolean',
         ]);
     }

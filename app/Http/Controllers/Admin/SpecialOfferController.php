@@ -12,8 +12,7 @@ class SpecialOfferController extends Controller
 {
     public function index()
     {
-        $offers = SpecialOffer::orderBy('order')
-            ->orderBy('expires_at', 'desc')
+        $offers = SpecialOffer::orderBy('expires_at', 'desc')
             ->paginate(20);
 
         return Inertia::render('Admin/SpecialOffers/Index', [
@@ -34,13 +33,13 @@ class SpecialOfferController extends Controller
             'route' => 'required|string|max:255',
             'discount_percent' => 'nullable|integer|min:0|max:100',
             'expires_at' => 'required|date|after:today',
-            'image_file' => 'nullable|image|max:5120',
+            'image_file' => 'nullable|image|max:10240',
             'is_active' => 'nullable|boolean',
-            'order' => 'nullable|integer',
+
         ]);
 
         $validated['is_active'] = $request->boolean('is_active');
-        $validated['order'] = $validated['order'] ?? 0;
+
         unset($validated['image_file']);
 
         if ($request->hasFile('image_file')) {
@@ -68,13 +67,13 @@ class SpecialOfferController extends Controller
             'route' => 'required|string|max:255',
             'discount_percent' => 'nullable|integer|min:0|max:100',
             'expires_at' => 'required|date',
-            'image_file' => 'nullable|image|max:5120',
+            'image_file' => 'nullable|image|max:10240',
             'is_active' => 'nullable|boolean',
-            'order' => 'nullable|integer',
+
         ]);
 
         $validated['is_active'] = $request->boolean('is_active');
-        $validated['order'] = $validated['order'] ?? 0;
+
         unset($validated['image_file']);
 
         if ($request->hasFile('image_file')) {

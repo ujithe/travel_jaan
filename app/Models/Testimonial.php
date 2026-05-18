@@ -15,7 +15,7 @@ class Testimonial extends Model
         'image',
         'is_featured',
         'is_approved',
-        'order',
+
     ];
 
     protected $casts = [

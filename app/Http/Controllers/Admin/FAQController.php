@@ -11,7 +11,7 @@ class FAQController extends Controller
 {
     public function index()
     {
-        $faqs = FAQ::orderBy('category')->orderBy('order')->paginate(20);
+        $faqs = FAQ::orderBy('category')->paginate(20);
 
         return Inertia::render('Admin/FAQs/Index', [
             'faqs' => $faqs,
@@ -29,7 +29,7 @@ class FAQController extends Controller
             'question' => 'required|string',
             'answer' => 'required|string',
             'category' => 'required|string|max:255',
-            'order' => 'nullable|integer',
+
             'is_active' => 'boolean',
         ]);
 
@@ -51,7 +51,7 @@ class FAQController extends Controller
             'question' => 'required|string',
             'answer' => 'required|string',
             'category' => 'required|string|max:255',
-            'order' => 'nullable|integer',
+
             'is_active' => 'boolean',
         ]);
 

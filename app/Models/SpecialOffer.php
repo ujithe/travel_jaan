@@ -14,7 +14,7 @@ class SpecialOffer extends Model
         'expires_at',
         'image',
         'is_active',
-        'order',
+
     ];
 
     protected $casts = [

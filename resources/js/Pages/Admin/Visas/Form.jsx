@@ -9,7 +9,6 @@ export default function VisaForm({ visa = null }) {
         name: visa?.name ?? '',
         options_text: optionsText,
         image_file: null,
-        order: visa?.order ?? 0,
         is_active: visa?.is_active ?? true,
     });
 
@@ -39,17 +38,7 @@ export default function VisaForm({ visa = null }) {
                     />
                     {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name}</p>}
                 </div>
-                <div>
-                    <label className="mb-1 block text-sm font-medium text-slate-700">Order</label>
-                    <input
-                        type="number"
-                        min="0"
-                        value={data.order}
-                        onChange={(event) => setData('order', event.target.value)}
-                        className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
-                    />
-                    {errors.order && <p className="mt-1 text-sm text-red-600">{errors.order}</p>}
-                </div>
+
             </div>
 
             <div>

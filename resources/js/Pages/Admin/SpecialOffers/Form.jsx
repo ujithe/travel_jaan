@@ -20,7 +20,6 @@ export default function SpecialOfferForm({ offer = null }) {
         expires_at: toDateTimeInput(offer?.expires_at),
         image_file: null,
         is_active: offer?.is_active ?? true,
-        order: offer?.order ?? 0,
     });
 
     const submit = (event) => {
@@ -84,17 +83,7 @@ export default function SpecialOfferForm({ offer = null }) {
                     />
                     {errors.expires_at && <p className="mt-1 text-sm text-red-600">{errors.expires_at}</p>}
                 </div>
-                <div>
-                    <label className="mb-1 block text-sm font-medium text-slate-700">Order</label>
-                    <input
-                        type="number"
-                        min="0"
-                        value={data.order}
-                        onChange={(event) => setData('order', event.target.value)}
-                        className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
-                    />
-                    {errors.order && <p className="mt-1 text-sm text-red-600">{errors.order}</p>}
-                </div>
+
             </div>
 
             <div>

@@ -11,7 +11,7 @@ class Visa extends Model
         'slug',
         'options',
         'image',
-        'order',
+
         'is_active',
     ];
 

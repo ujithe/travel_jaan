@@ -12,7 +12,7 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        $services = Service::orderBy('order')->paginate(20);
+        $services = Service::paginate(20);
 
         return Inertia::render('Admin/Services/Index', [
             'services' => $services,
@@ -31,7 +31,7 @@ class ServiceController extends Controller
             'description' => 'required|string',
             'details' => 'nullable|string',
             'icon' => 'nullable|string',
-            'order' => 'nullable|integer',
+
             'is_active' => 'boolean',
         ]);
 
@@ -56,7 +56,7 @@ class ServiceController extends Controller
             'description' => 'required|string',
             'details' => 'nullable|string',
             'icon' => 'nullable|string',
-            'order' => 'nullable|integer',
+
             'is_active' => 'boolean',
         ]);
 
