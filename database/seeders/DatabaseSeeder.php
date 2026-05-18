@@ -172,11 +172,11 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
-        foreach ($visas as $index => $visa) {
+        foreach ($visas as $visa) {
             $slug = Str::slug($visa['name']);
             Visa::updateOrCreate(
                 ['slug' => $slug],
-                array_merge($visa, ['slug' => $slug, 'order' => $index, 'is_active' => true])
+                array_merge($visa, ['slug' => $slug, 'is_active' => true])
             );
         }
 
