@@ -16,6 +16,12 @@ export default function DestinationShow({ destination, relatedDestinations }) {
             </Head>
 
             <section className="relative overflow-hidden bg-slate-950 pt-28 pb-14 text-white sm:pt-36 sm:pb-16">
+                {destination.image && (
+                    <div
+                        className="absolute inset-0 bg-cover bg-center"
+                        style={{ backgroundImage: `url(${destination.image})` }}
+                    />
+                )}
                 <div
                     className="absolute inset-0 opacity-80"
                     style={{
