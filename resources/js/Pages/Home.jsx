@@ -1,9 +1,97 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Head, Link } from '@inertiajs/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import AppLayout from '@/Layouts/AppLayout';
-import heroBg from '@/Components/assets/hero.png';
+import heroBg from '@/Components/assets/hero2.png';
+
+// 3D Tilt Card Component with Spotlight Glow Effect
+function TiltCard({ children, className = '', glowColor = 'rgba(255, 255, 255, 0.15)', number = '', activeBorderColor = 'rgba(255,255,255,0.2)', ticketMode = false }) {
+    const cardRef = useRef(null);
+    const [coords, setCoords] = useState({ x: 0, y: 0 });
+    const [isHovered, setIsHovered] = useState(false);
+
+    const handleMouseMove = (e) => {
+        const card = cardRef.current;
+        if (!card) return;
+
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((centerY - y) / centerY) * 8;
+        const rotateY = ((x - centerX) / centerX) * 8;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+        setCoords({ x, y });
+        setIsHovered(true);
+    };
+
+    const handleMouseLeave = () => {
+        const card = cardRef.current;
+        if (!card) return;
+
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        setIsHovered(false);
+    };
+
+    return (
+        <div
+            ref={cardRef}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            className={`group relative overflow-hidden rounded-2xl p-6 backdrop-blur transition-all duration-300 ease-out cursor-pointer ${className}`}
+            style={{
+                transformStyle: 'preserve-3d',
+                background: isHovered ? 'rgba(255, 255, 255, 0.08)' : 'rgba(255, 255, 255, 0.04)',
+                border: isHovered ? `1px solid ${activeBorderColor}` : '1px solid rgba(255, 255, 255, 0.08)',
+                boxShadow: isHovered 
+                    ? `0 20px 40px -15px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.15)`
+                    : `0 10px 30px -15px rgba(0, 0, 0, 0.3), inset 0 1px 0.5px rgba(255, 255, 255, 0.05)`,
+            }}
+        >
+            {/* Ticket Notches & Divider */}
+            {ticketMode && (
+                <>
+                    {/* Dashed vertical line */}
+                    <div className="absolute top-0 bottom-0 right-[25%] border-r border-dashed border-white/10 z-10" />
+                    {/* Top semi-circle cutout */}
+                    <div className="absolute -top-3 right-[calc(25%-12px)] w-6 h-6 bg-slate-950 rounded-full border border-white/15 z-10" />
+                    {/* Bottom semi-circle cutout */}
+                    <div className="absolute -bottom-3 right-[calc(25%-12px)] w-6 h-6 bg-slate-950 rounded-full border border-white/15 z-10" />
+                </>
+            )}
+
+            {/* Background Number */}
+            {number && (
+                <div 
+                    className="absolute right-3.5 bottom-1.5 text-7xl font-extrabold text-white/[0.02] select-none pointer-events-none font-display tracking-tighter transition-all duration-300"
+                    style={{
+                        transform: isHovered ? 'translateZ(10px) scale(1.05)' : 'translateZ(0px)',
+                    }}
+                >
+                    {number}
+                </div>
+            )}
+            
+            {/* Dynamic Spotlight Glow */}
+            <div
+                className="pointer-events-none absolute inset-0 transition-opacity duration-300"
+                style={{
+                    opacity: isHovered ? 1 : 0,
+                    background: `radial-gradient(250px circle at ${coords.x}px ${coords.y}px, ${glowColor}, transparent 80%)`,
+                }}
+            />
+            {/* Inner Content with TranslateZ depth */}
+            <div style={{ transform: 'translateZ(25px)', transformStyle: 'preserve-3d' }} className="h-full w-full">
+                {children}
+            </div>
+        </div>
+    );
+}
 
 export default function Home({ destinations, testimonials, services, visas }) {
     const pageRef = useRef(null)
@@ -14,8 +102,56 @@ export default function Home({ destinations, testimonials, services, visas }) {
     const testiRef = useRef(null)
     const ctaRef = useRef(null)
 
+    // Refs for 3D Background Parallax layers
+    const bgImgRef = useRef(null)
+    const bgGlow1Ref = useRef(null)
+    const bgGlow2Ref = useRef(null)
+    const bgGridRef = useRef(null)
+
     const destinationStat = destinations?.length ? `${destinations.length}+ featured routes` : '100+ global routes'
     const visaList = Array.isArray(visas) ? visas : []
+
+    // 3D Background Parallax Mouse Handlers
+    const handleHeroMouseMove = (e) => {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        if (prefersReducedMotion) return
+
+        const { clientX, clientY } = e
+        const centerX = window.innerWidth / 2
+        const centerY = window.innerHeight / 2
+
+        const moveX = (clientX - centerX) / centerX
+        const moveY = (clientY - centerY) / centerY
+
+        // Each layer shifts at a different speed to create true 3D depth perception
+        if (bgImgRef.current) {
+            bgImgRef.current.style.transform = `translate3d(${moveX * -12}px, ${moveY * -12}px, 0) scale(1.05)`
+        }
+        if (bgGlow1Ref.current) {
+            bgGlow1Ref.current.style.transform = `translate3d(${moveX * 30}px, ${moveY * 30}px, 0)`
+        }
+        if (bgGlow2Ref.current) {
+            bgGlow2Ref.current.style.transform = `translate3d(${moveX * -35}px, ${moveY * -35}px, 0)`
+        }
+        if (bgGridRef.current) {
+            bgGridRef.current.style.transform = `translate3d(${moveX * 15}px, ${moveY * 15}px, 0)`
+        }
+    }
+
+    const handleHeroMouseLeave = () => {
+        if (bgImgRef.current) {
+            bgImgRef.current.style.transform = 'translate3d(0px, 0px, 0) scale(1.05)'
+        }
+        if (bgGlow1Ref.current) {
+            bgGlow1Ref.current.style.transform = 'translate3d(0px, 0px, 0)'
+        }
+        if (bgGlow2Ref.current) {
+            bgGlow2Ref.current.style.transform = 'translate3d(0px, 0px, 0)'
+        }
+        if (bgGridRef.current) {
+            bgGridRef.current.style.transform = 'translate3d(0px, 0px, 0)'
+        }
+    }
 
     useEffect(() => {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -116,12 +252,21 @@ export default function Home({ destinations, testimonials, services, visas }) {
             </Head>
 
             <div ref={pageRef}>
-                {/* Super Hero Section */}
-                <section ref={heroRef} className="relative overflow-hidden bg-slate-950 text-white">
-                    <div className="absolute inset-0">
+                {/* Super Hero Section with Mouse Parallax Handlers */}
+                <section 
+                    ref={heroRef} 
+                    className="relative overflow-hidden bg-slate-950 text-white"
+                    onMouseMove={handleHeroMouseMove}
+                    onMouseLeave={handleHeroMouseLeave}
+                >
+                    <div className="absolute inset-0 select-none pointer-events-none">
                         <div
-                            className="absolute inset-0 bg-cover bg-center"
-                            style={{ backgroundImage: `url(${heroBg})` }}
+                            ref={bgImgRef}
+                            className="absolute inset-0 bg-cover bg-center scale(1.05)"
+                            style={{ 
+                                backgroundImage: `url(${heroBg})`,
+                                transition: 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)',
+                            }}
                         />
                         <div
                             className="absolute inset-0 opacity-70"
@@ -129,13 +274,23 @@ export default function Home({ destinations, testimonials, services, visas }) {
                                 backgroundImage: 'radial-gradient(800px circle at 20% 20%, rgba(56, 189, 248, 0.25), transparent 60%), radial-gradient(700px circle at 85% 10%, rgba(251, 191, 36, 0.2), transparent 55%), linear-gradient(180deg, rgba(2, 6, 23, 0.95), rgba(6, 11, 40, 0.98))',
                             }}
                         />
-                        <div className="absolute -top-24 right-10 h-48 w-48 rounded-full bg-amber-400/20 blur-3xl" />
-                        <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-sky-400/20 blur-3xl" />
+                        <div 
+                            ref={bgGlow1Ref}
+                            className="absolute -top-24 right-10 h-48 w-48 rounded-full bg-amber-400/20 blur-3xl"
+                            style={{ transition: 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)' }}
+                        />
+                        <div 
+                            ref={bgGlow2Ref}
+                            className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-sky-400/20 blur-3xl"
+                            style={{ transition: 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)' }}
+                        />
                         <div
+                            ref={bgGridRef}
                             className="absolute inset-0 opacity-15"
                             style={{
                                 backgroundImage: 'linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(0deg, rgba(255,255,255,0.08) 1px, transparent 1px)',
                                 backgroundSize: '36px 36px',
+                                transition: 'transform 0.45s cubic-bezier(0.25, 1, 0.5, 1)',
                             }}
                         />
                     </div>
@@ -154,66 +309,181 @@ export default function Home({ destinations, testimonials, services, visas }) {
                                 </p>
 
                                 <div className="hero-anim grid gap-4 grid-cols-2 pt-2">
-                                    <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                                    <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur">
                                         <p className="text-xs uppercase tracking-wide text-slate-400">Routes Available</p>
                                         <p className="text-lg font-semibold text-white mt-1">{destinationStat}</p>
                                     </div>
-                                    <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                                    <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur">
                                         <p className="text-xs uppercase tracking-wide text-slate-400">Response Speed</p>
                                         <p className="text-lg font-semibold text-white mt-1">Instant Support</p>
                                     </div>
                                 </div>
-                            </div>
-
-                            {/* Right Column: Key Benefits Cards */}
-                            <div className="hero-anim space-y-4 lg:space-y-6">
-                                <div className="border border-white/10 bg-white/5 rounded-2xl p-6 backdrop-blur transition hover:bg-white/10 hover:border-white/20">
-                                    <div className="flex gap-4 items-start">
-                                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-400/10 text-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.15)]">
-                                            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M7 7h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                            </svg>
+                            </div>                            {/* Right Column: 3D Tilting Key Benefits Cards (Boarding Pass Design) */}
+                            <div className="hero-anim space-y-5 lg:space-y-6 flex flex-col justify-center">
+                                <TiltCard 
+                                    glowColor="rgba(251, 191, 36, 0.18)"
+                                    activeBorderColor="rgba(251, 191, 36, 0.35)"
+                                    number="01"
+                                    ticketMode={true}
+                                    className="lg:mr-8 border-l-4 border-l-amber-500/70 pl-6 pr-4 py-6"
+                                >
+                                    <div className="flex w-full items-stretch justify-between relative min-h-[92px]">
+                                        {/* Main Ticket Info (Left 72%) */}
+                                        <div className="w-[72%] flex gap-4 items-start pr-2">
+                                            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-amber-400/25 to-amber-500/5 text-amber-300 border border-amber-400/20 shadow-[0_0_15px_rgba(251,191,36,0.2)]">
+                                                <svg className="h-5.5 w-5.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M7 7h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <span className="text-[8px] tracking-wider uppercase text-amber-300 font-bold bg-amber-400/10 px-1.5 py-0.5 rounded mb-1.5 inline-block">
+                                                    Guaranteed Lowest Rates
+                                                </span>
+                                                <h3 className="text-base font-bold text-white group-hover:text-amber-300 transition-colors duration-300">
+                                                    Cheapest Islandwide Pricing
+                                                </h3>
+                                                <p className="mt-1 text-xs text-slate-300 leading-normal">
+                                                    Unbeatable rates on air tickets and visa services across Sri Lanka.
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <h3 className="text-lg font-bold text-white leading-snug">Cheapest Islandwide Pricing</h3>
-                                            <p className="mt-1.5 text-sm text-slate-300 leading-relaxed">
-                                                Unbeatable rates on air tickets and visa services across Sri Lanka.
-                                            </p>
+
+                                        {/* Boarding Pass Stub (Right 28%) */}
+                                        <div className="w-[28%] flex flex-col justify-between items-center pl-4 py-0.5 text-center relative z-20">
+                                            <div>
+                                                <span className="text-[7.5px] font-mono tracking-widest text-slate-500 uppercase block leading-none">DESTINATION</span>
+                                                <span className="text-[10px] font-bold text-white block mt-0.5 leading-none">COLOMBO</span>
+                                            </div>
+
+                                            {/* Vertical Barcode Lines */}
+                                            <div className="flex items-end justify-center gap-[2px] h-7 w-full opacity-35 group-hover:opacity-65 transition-all duration-300 my-1">
+                                                <div className="w-[1.5px] h-full bg-white/70"></div>
+                                                <div className="w-[3px] h-full bg-white/70"></div>
+                                                <div className="w-[1px] h-full bg-white/70"></div>
+                                                <div className="w-[4px] h-full bg-white/70"></div>
+                                                <div className="w-[1.5px] h-full bg-white/70"></div>
+                                                <div className="w-[2px] h-full bg-white/70"></div>
+                                                <div className="w-[5px] h-full bg-white/70"></div>
+                                                <div className="w-[1px] h-full bg-white/70"></div>
+                                            </div>
+
+                                            <div>
+                                                <span className="text-[7.5px] font-mono tracking-widest text-slate-500 uppercase block leading-none">GATE / SEAT</span>
+                                                <span className="text-[9.5px] font-mono font-bold text-amber-300 block mt-0.5 leading-none">LKR / A-01</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </TiltCard>
                                 
-                                <div className="border border-white/10 bg-white/5 rounded-2xl p-6 backdrop-blur transition hover:bg-white/10 hover:border-white/20">
-                                    <div className="flex gap-4 items-start">
-                                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-400/10 text-emerald-400 shadow-[0_0_20px_rgba(52,211,153,0.15)]">
-                                            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                                            </svg>
+                                <TiltCard 
+                                    glowColor="rgba(52, 211, 153, 0.18)"
+                                    activeBorderColor="rgba(52, 211, 153, 0.35)"
+                                    number="02"
+                                    ticketMode={true}
+                                    className="lg:ml-4 lg:mr-4 border-l-4 border-l-emerald-500/70 pl-6 pr-4 py-6"
+                                >
+                                    <div className="flex w-full items-stretch justify-between relative min-h-[92px]">
+                                        {/* Main Ticket Info (Left 72%) */}
+                                        <div className="w-[72%] flex gap-4 items-start pr-2">
+                                            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-400/25 to-emerald-500/5 text-emerald-300 border border-emerald-400/20 shadow-[0_0_15px_rgba(52,211,153,0.2)]">
+                                                <svg className="h-5.5 w-5.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <span className="text-[8px] tracking-wider uppercase text-emerald-300 font-bold bg-emerald-400/10 px-1.5 py-0.5 rounded mb-1.5 inline-block">
+                                                    Fast 2-Minute Booking
+                                                </span>
+                                                <h3 className="text-base font-bold text-white group-hover:text-emerald-300 transition-colors duration-300">
+                                                    Instant WhatsApp Booking
+                                                </h3>
+                                                <p className="mt-1 text-xs text-slate-300 leading-normal">
+                                                    Drop us a message and book your entire trip in minutes.
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <h3 className="text-lg font-bold text-white leading-snug">Instant WhatsApp Booking</h3>
-                                            <p className="mt-1.5 text-sm text-slate-300 leading-relaxed">
-                                                Drop us a message and book your entire trip in minutes.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div className="border border-white/10 bg-white/5 rounded-2xl p-6 backdrop-blur transition hover:bg-white/10 hover:border-white/20">
-                                    <div className="flex gap-4 items-start">
-                                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-sky-400/10 text-sky-400 shadow-[0_0_20px_rgba(56,189,248,0.15)]">
-                                            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <h3 className="text-lg font-bold text-white leading-snug">Same-Day Flight Confirmations</h3>
-                                            <p className="mt-1.5 text-sm text-slate-300 leading-relaxed">
-                                                Fast-tracked ticketing with zero delays.
-                                            </p>
+                                        {/* Boarding Pass Stub (Right 28%) */}
+                                        <div className="w-[28%] flex flex-col justify-between items-center pl-4 py-0.5 text-center relative z-20">
+                                            <div>
+                                                <span className="text-[7.5px] font-mono tracking-widest text-slate-500 uppercase block leading-none">SERVICE</span>
+                                                <span className="text-[10px] font-bold text-white block mt-0.5 leading-none">WHATSAPP</span>
+                                            </div>
+
+                                            {/* Vertical Barcode Lines */}
+                                            <div className="flex items-end justify-center gap-[2px] h-7 w-full opacity-35 group-hover:opacity-65 transition-all duration-300 my-1">
+                                                <div className="w-[2px] h-full bg-white/70"></div>
+                                                <div className="w-[1.5px] h-full bg-white/70"></div>
+                                                <div className="w-[4px] h-full bg-white/70"></div>
+                                                <div className="w-[1px] h-full bg-white/70"></div>
+                                                <div className="w-[3px] h-full bg-white/70"></div>
+                                                <div className="w-[1.5px] h-full bg-white/70"></div>
+                                                <div className="w-[1px] h-full bg-white/70"></div>
+                                                <div className="w-[5px] h-full bg-white/70"></div>
+                                            </div>
+
+                                            <div>
+                                                <span className="text-[7.5px] font-mono tracking-widest text-slate-500 uppercase block leading-none">GATE / SEAT</span>
+                                                <span className="text-[9.5px] font-mono font-bold text-emerald-300 block mt-0.5 leading-none">CHAT / W-02</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </TiltCard>
+
+                                <TiltCard 
+                                    glowColor="rgba(56, 189, 248, 0.18)"
+                                    activeBorderColor="rgba(56, 189, 248, 0.35)"
+                                    number="03"
+                                    ticketMode={true}
+                                    className="lg:ml-8 border-l-4 border-l-sky-500/70 pl-6 pr-4 py-6"
+                                >
+                                    <div className="flex w-full items-stretch justify-between relative min-h-[92px]">
+                                        {/* Main Ticket Info (Left 72%) */}
+                                        <div className="w-[72%] flex gap-4 items-start pr-2">
+                                            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400/25 to-sky-500/5 text-sky-300 border border-sky-400/20 shadow-[0_0_15px_rgba(56,189,248,0.2)]">
+                                                <svg className="h-5.5 w-5.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <span className="text-[8px] tracking-wider uppercase text-sky-300 font-bold bg-sky-400/10 px-1.5 py-0.5 rounded mb-1.5 inline-block">
+                                                    Same-Day Confirmations
+                                                </span>
+                                                <h3 className="text-base font-bold text-white group-hover:text-sky-300 transition-colors duration-300">
+                                                    Same-Day Flight Confirmations
+                                                </h3>
+                                                <p className="mt-1 text-xs text-slate-300 leading-normal">
+                                                    Fast-tracked ticketing with zero delays.
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        {/* Boarding Pass Stub (Right 28%) */}
+                                        <div className="w-[28%] flex flex-col justify-between items-center pl-4 py-0.5 text-center relative z-20">
+                                            <div>
+                                                <span className="text-[7.5px] font-mono tracking-widest text-slate-500 uppercase block leading-none">SPEED</span>
+                                                <span className="text-[10px] font-bold text-white block mt-0.5 leading-none">SAME-DAY</span>
+                                            </div>
+
+                                            {/* Vertical Barcode Lines */}
+                                            <div className="flex items-end justify-center gap-[2px] h-7 w-full opacity-35 group-hover:opacity-65 transition-all duration-300 my-1">
+                                                <div className="w-[1.5px] h-full bg-white/70"></div>
+                                                <div className="w-[3px] h-full bg-white/70"></div>
+                                                <div className="w-[2px] h-full bg-white/70"></div>
+                                                <div className="w-[1px] h-full bg-white/70"></div>
+                                                <div className="w-[4px] h-full bg-white/70"></div>
+                                                <div className="w-[1.5px] h-full bg-white/70"></div>
+                                                <div className="w-[3px] h-full bg-white/70"></div>
+                                                <div className="w-[1px] h-full bg-white/70"></div>
+                                            </div>
+
+                                            <div>
+                                                <span className="text-[7.5px] font-mono tracking-widest text-slate-500 uppercase block leading-none">GATE / SEAT</span>
+                                                <span className="text-[9.5px] font-mono font-bold text-sky-300 block mt-0.5 leading-none">FAST / S-03</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </TiltCard>
                             </div>
 
                         </div>
