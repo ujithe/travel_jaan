@@ -5,10 +5,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import AppLayout from '@/Layouts/AppLayout';
 import heroBg from '@/Components/assets/hero.png';
 
-export default function Home({ destinations, specialOffers, testimonials, services, visas }) {
+export default function Home({ destinations, testimonials, services, visas }) {
     const pageRef = useRef(null)
     const heroRef = useRef(null)
-    const offersRef = useRef(null)
     const destRef = useRef(null)
     const visaRef = useRef(null)
     const stepsRef = useRef(null)
@@ -16,7 +15,6 @@ export default function Home({ destinations, specialOffers, testimonials, servic
     const ctaRef = useRef(null)
 
     const destinationStat = destinations?.length ? `${destinations.length}+ featured routes` : '100+ global routes'
-    const offerStat = specialOffers?.length ? `${specialOffers.length} live deals` : 'Live deal alerts'
     const visaList = Array.isArray(visas) ? visas : []
 
     useEffect(() => {
@@ -93,7 +91,7 @@ export default function Home({ destinations, specialOffers, testimonials, servic
                 })
             }
 
-            revealStagger(offersRef.current?.querySelectorAll('.offer-card'))
+
             revealStagger(destRef.current?.querySelectorAll('.destination-card'), { y: 26, stagger: 0.1 })
             revealStagger(visaRef.current?.querySelectorAll('.visa-card'), { y: 26, stagger: 0.1 })
             revealStagger(stepsRef.current?.querySelectorAll('.step-card'), { y: 22, stagger: 0.14 })
@@ -185,11 +183,7 @@ export default function Home({ destinations, specialOffers, testimonials, servic
                                     </a>
                                 </div> */}
 
-                                <div className="hero-anim grid gap-4 sm:grid-cols-3">
-                                    <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                                        <p className="text-xs uppercase tracking-wide text-slate-300">Live deals</p>
-                                        <p className="text-lg font-semibold text-white">{offerStat}</p>
-                                    </div>
+                                <div className="hero-anim grid gap-4 sm:grid-cols-2">
                                     <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
                                         <p className="text-xs uppercase tracking-wide text-slate-300">Routes</p>
                                         <p className="text-lg font-semibold text-white">{destinationStat}</p>
@@ -205,58 +199,7 @@ export default function Home({ destinations, specialOffers, testimonials, servic
                     </div>
                 </section>
 
-                {/* Special Offers Section */}
-                {specialOffers.length > 0 && (
-                    <section className="py-12 bg-white">
-                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                            <h2 className="text-3xl font-bold text-center mb-8">Today's Deals</h2>
-                            <div ref={offersRef} className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                {specialOffers.map((offer) => (
-                                    <div
-                                        key={offer.id}
-                                        className="offer-card card-hover overflow-hidden rounded-2xl border border-red-100 bg-white shadow-sm"
-                                    >
-                                        <div className="relative h-40">
-                                            {offer.image ? (
-                                                <img
-                                                    src={offer.image}
-                                                    alt={offer.title}
-                                                    className="h-full w-full object-cover"
-                                                    loading="lazy"
-                                                />
-                                            ) : (
-                                                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-rose-100 via-white to-amber-100">
-                                                    <span className="text-sm font-semibold text-red-700">{offer.route}</span>
-                                                </div>
-                                            )}
-                                            {offer.discount_percent && (
-                                                <div className="absolute right-4 top-4 rounded-full bg-red-600 px-3 py-1 text-xs font-semibold text-white">
-                                                    Save {offer.discount_percent}%
-                                                </div>
-                                            )}
-                                        </div>
-                                        <div className="p-6">
-                                            <p className="text-xs uppercase tracking-wide text-red-500 mb-2">Limited deal</p>
-                                            <h3 className="font-bold text-lg mb-2">{offer.title}</h3>
-                                            <p className="text-gray-600 text-sm mb-4">{offer.route}</p>
-                                            <p className="text-xs text-gray-500 mb-4">
-                                                Expires: {new Date(offer.expires_at).toLocaleDateString()}
-                                            </p>
-                                            <a
-                                                href="https://wa.me/94765933255"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="block w-full bg-green-500 text-white text-center py-2 rounded hover:bg-green-600 transition"
-                                            >
-                                                WhatsApp to Book
-                                            </a>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </section>
-                )}
+
 
                 {/* Destinations Preview */}
                 {destinations.length > 0 && (
@@ -353,7 +296,7 @@ export default function Home({ destinations, specialOffers, testimonials, servic
                                     href={route('visas.index')}
                                     className="inline-block bg-emerald-600 text-white px-6 py-2 mt-5 rounded hover:bg-emerald-500 transition"
                                 >
-                                    View All Visas ->
+                                    View All Visas →
                                 </Link>
                             </div>
                         </div>

@@ -16,12 +16,7 @@ export default function Dashboard({ stats }) {
             subtitle: `${stats.visas} total visas`,
             href: route('admin.visas.index'),
         },
-        {
-            title: "Today's Deals",
-            value: stats.activeOffers,
-            subtitle: `${stats.offers} total offers`,
-            href: route('admin.special-offers.index'),
-        },
+
         {
             title: 'Published Blog Posts',
             value: stats.publishedPosts,
@@ -35,7 +30,7 @@ export default function Dashboard({ stats }) {
             <div className="mb-8">
                 <h2 className="text-2xl font-semibold text-slate-900">Dashboard</h2>
                 <p className="mt-1 text-sm text-slate-600">
-                    Manage homepage sections and content across destinations, deals, and blog.
+                    Manage homepage sections and content across destinations, visas, and blog.
                 </p>
             </div>
 

@@ -5,7 +5,6 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DestinationController;
 use App\Http\Controllers\Admin\FAQController;
 use App\Http\Controllers\Admin\ServiceController;
-use App\Http\Controllers\Admin\SpecialOfferController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\VisaController;
 use App\Http\Controllers\PageController;
@@ -27,7 +26,6 @@ Route::get('/destinations/{destination}', function (string $destination) {
 })->name('destinations.legacy');
 Route::get('/services', [PageController::class, 'services'])->name('services.index');
 Route::get('/services/{service}', [PageController::class, 'service'])->name('services.show');
-Route::get('/special-offers', [PageController::class, 'specialOffers'])->name('special-offers.index');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::get('/faq', [PageController::class, 'faq'])->name('faq');
 Route::get('/blog', [PageController::class, 'blog'])->name('blog.index');
@@ -56,7 +54,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('destinations', DestinationController::class);
     Route::resource('visas', VisaController::class);
     Route::resource('blog-posts', BlogPostController::class);
-    Route::resource('special-offers', SpecialOfferController::class);
     Route::resource('testimonials', TestimonialController::class);
     Route::resource('faqs', FAQController::class);
     Route::resource('services', ServiceController::class);

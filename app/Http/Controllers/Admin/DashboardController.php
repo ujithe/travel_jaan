@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\BlogPost;
 use App\Models\Destination;
-use App\Models\SpecialOffer;
 use App\Models\Visa;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -18,8 +17,6 @@ class DashboardController extends Controller
             'stats' => [
                 'destinations' => Destination::count(),
                 'featuredDestinations' => Destination::where('is_featured', true)->count(),
-                'offers' => SpecialOffer::count(),
-                'activeOffers' => SpecialOffer::where('is_active', true)->count(),
                 'blogPosts' => BlogPost::count(),
                 'publishedPosts' => BlogPost::where('is_published', true)->count(),
                 'visas' => Visa::count(),

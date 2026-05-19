@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Destination;
-use App\Models\SpecialOffer;
 use App\Models\BlogPost;
 use App\Models\Service;
 use App\Models\Testimonial;
@@ -180,19 +179,6 @@ class DatabaseSeeder extends Seeder
             );
         }
 
-        // Seed Special Offers
-        $offers = [
-            ['title' => 'Dubai Flash Sale', 'description' => 'Limited time offer for Dubai flights', 'route' => 'Colombo to Dubai', 'discount_percent' => 10, 'expires_at' => now()->addDays(7), 'is_active' => true],
-            ['title' => 'Singapore Special', 'description' => 'Get the cheapest fares to Singapore', 'route' => 'Colombo to Singapore', 'discount_percent' => 15, 'expires_at' => now()->addDays(14), 'is_active' => true],
-            ['title' => 'UK Adventure', 'description' => 'Fly to London at the best price', 'route' => 'Colombo to London', 'discount_percent' => 12, 'expires_at' => now()->addDays(10), 'is_active' => true],
-        ];
-
-        foreach ($offers as $offer) {
-            SpecialOffer::updateOrCreate(
-                ['title' => $offer['title']],
-                $offer
-            );
-        }
 
         // Seed Services
         $services = [

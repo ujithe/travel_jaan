@@ -11,7 +11,6 @@ export default function Header() {
         { href: '/destinations', label: 'Destinations' },
         { href: '/visas', label: 'Visa' },
         { href: '/services', label: 'Services' },
-        { href: '/special-offers', label: 'Offers' },
         { href: '/blog', label: 'Blog' },
         { href: '/faq', label: 'FAQ' },
         { href: '/contact', label: 'Contact' },

@@ -6,7 +6,6 @@ use App\Models\BlogPost;
 use App\Models\Destination;
 use App\Models\FAQ;
 use App\Models\Service;
-use App\Models\SpecialOffer;
 use App\Models\Testimonial;
 use App\Models\Visa;
 use Inertia\Inertia;
@@ -23,14 +22,12 @@ class PageController extends Controller
             $destinations = Destination::take(12)->get();
         }
 
-        $specialOffers = SpecialOffer::active()->take(6)->get();
         $testimonials = Testimonial::approved()->featured()->take(5)->get();
         $services = Service::active()->take(6)->get();
         $visas = Visa::active()->take(8)->get();
 
         return Inertia::render('Home', [
             'destinations' => $destinations,
-            'specialOffers' => $specialOffers,
             'testimonials' => $testimonials,
             'services' => $services,
             'visas' => $visas,
@@ -109,14 +106,7 @@ class PageController extends Controller
         ]);
     }
 
-    public function specialOffers()
-    {
-        $offers = SpecialOffer::active()->get();
 
-        return Inertia::render('SpecialOffers', [
-            'offers' => $offers,
-        ]);
-    }
 
     public function contact()
     {

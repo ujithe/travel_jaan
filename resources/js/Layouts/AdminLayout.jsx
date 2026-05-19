@@ -23,11 +23,6 @@ export default function AdminLayout({ title, children }) {
             active: url.startsWith('/admin/visas'),
         },
         {
-            href: route('admin.special-offers.index'),
-            label: 'Today Deals',
-            active: url.startsWith('/admin/special-offers'),
-        },
-        {
             href: route('admin.blog-posts.index'),
             label: 'Blog',
             active: url.startsWith('/admin/blog-posts'),
