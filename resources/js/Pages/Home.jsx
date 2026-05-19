@@ -153,20 +153,6 @@ export default function Home({ destinations, testimonials, services, visas }) {
                                     Get the lowest rates in Sri Lanka with the fastest booking process. No office visits required—lock in your tickets and tourist visa changes instantly over WhatsApp. We compare live routes to give you the guaranteed best price and handle all the paperwork while you stay stress-free.
                                 </p>
 
-                                <div className="hero-anim flex flex-wrap gap-2.5 pt-1">
-                                    <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-400/10 px-3.5 py-1.5 text-xs font-semibold text-amber-300 border border-amber-400/20">
-                                        💰 Cheapest Islandwide Pricing
-                                    </span>
-                                    <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-400/10 px-3.5 py-1.5 text-xs font-semibold text-emerald-300 border border-emerald-400/20">
-                                        💬 Instant WhatsApp Booking
-                                    </span>
-                                    <span className="inline-flex items-center gap-1.5 rounded-full bg-sky-400/10 px-3.5 py-1.5 text-xs font-semibold text-sky-300 border border-sky-400/20">
-                                        ⚡ Same-Day Flight Confirmations
-                                    </span>
-                                </div>
-
-                                
-
                                 <div className="hero-anim grid gap-4 grid-cols-2 pt-2">
                                     <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
                                         <p className="text-xs uppercase tracking-wide text-slate-400">Routes Available</p>
@@ -180,8 +166,8 @@ export default function Home({ destinations, testimonials, services, visas }) {
                             </div>
 
                             {/* Right Column: Key Benefits Cards */}
-                            <div className="space-y-4 lg:space-y-6">
-                                <div className="hero-anim border border-white/10 bg-white/5 rounded-2xl p-6 backdrop-blur transition hover:bg-white/10 hover:border-white/20">
+                            <div className="hero-anim space-y-4 lg:space-y-6">
+                                <div className="border border-white/10 bg-white/5 rounded-2xl p-6 backdrop-blur transition hover:bg-white/10 hover:border-white/20">
                                     <div className="flex gap-4 items-start">
                                         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-400/10 text-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.15)]">
                                             <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -197,7 +183,7 @@ export default function Home({ destinations, testimonials, services, visas }) {
                                     </div>
                                 </div>
                                 
-                                <div className="hero-anim border border-white/10 bg-white/5 rounded-2xl p-6 backdrop-blur transition hover:bg-white/10 hover:border-white/20">
+                                <div className="border border-white/10 bg-white/5 rounded-2xl p-6 backdrop-blur transition hover:bg-white/10 hover:border-white/20">
                                     <div className="flex gap-4 items-start">
                                         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-400/10 text-emerald-400 shadow-[0_0_20px_rgba(52,211,153,0.15)]">
                                             <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -213,7 +199,7 @@ export default function Home({ destinations, testimonials, services, visas }) {
                                     </div>
                                 </div>
 
-                                <div className="hero-anim border border-white/10 bg-white/5 rounded-2xl p-6 backdrop-blur transition hover:bg-white/10 hover:border-white/20">
+                                <div className="border border-white/10 bg-white/5 rounded-2xl p-6 backdrop-blur transition hover:bg-white/10 hover:border-white/20">
                                     <div className="flex gap-4 items-start">
                                         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-sky-400/10 text-sky-400 shadow-[0_0_20px_rgba(56,189,248,0.15)]">
                                             <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
