@@ -103,7 +103,7 @@ export default function Home({ destinations, testimonials, services, visas }) {
     }, [])
 
     return (
-        <AppLayout title="JAAN Travels - Cheapest Air Tickets Sri Lanka">
+        <AppLayout title="JAAN Travels - Cheapest Air Tickets Sri Lanka" overlapHero={true}>
             <Head>
                 <meta
                     name="description"
@@ -140,57 +140,92 @@ export default function Home({ destinations, testimonials, services, visas }) {
                         />
                     </div>
 
-                    <div className="relative min-h-[100svh] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-24">
-                        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+                    <div className="relative min-h-[100svh] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 sm:pt-28 sm:pb-16 md:pt-36 md:pb-24">
+                        <div className="grid items-center gap-12 lg:grid-cols-[1fr_1fr]">
                             <div className="space-y-6">
-                                <p className="hero-anim text-xs uppercase tracking-[0.35em] text-amber-300">
+                                <p className="hero-anim text-xs uppercase tracking-[0.35em] text-amber-300 font-semibold">
                                     JAAN TRAVELS
                                 </p>
-                                <h1 className="hero-anim font-display text-4xl sm:text-5xl md:text-6xl font-semibold leading-tight">
-                                    Cheapest air tickets, confirmed the same day.
+                                <h1 className="hero-anim font-display text-4xl sm:text-5xl md:text-6xl font-semibold leading-tight text-white">
+                                    The Cheapest Islandwide Air Tickets & Visa Services
                                 </h1>
-                                <p className="hero-anim text-lg text-slate-200 max-w-xl">
-                                    Lock in the lowest fare with instant WhatsApp booking. We compare live routes and
-                                    handle the confirmation so you can travel stress-free.
+                                <p className="hero-anim text-base sm:text-lg text-slate-200 leading-relaxed max-w-xl">
+                                    Get the lowest rates in Sri Lanka with the fastest booking process. No office visits required—lock in your tickets and tourist visa changes instantly over WhatsApp. We compare live routes to give you the guaranteed best price and handle all the paperwork while you stay stress-free.
                                 </p>
 
-                                <div className="hero-anim flex flex-wrap gap-3">
-                                    <span className="trust-badge rounded-full bg-white/10 px-4 py-2 text-xs font-semibold text-slate-100">
-                                        Best price match
+                                <div className="hero-anim flex flex-wrap gap-2.5 pt-1">
+                                    <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-400/10 px-3.5 py-1.5 text-xs font-semibold text-amber-300 border border-amber-400/20">
+                                        💰 Cheapest Islandwide Pricing
                                     </span>
-                                    <span className="trust-badge rounded-full bg-white/10 px-4 py-2 text-xs font-semibold text-slate-100">
-                                        Same-day confirmations
+                                    <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-400/10 px-3.5 py-1.5 text-xs font-semibold text-emerald-300 border border-emerald-400/20">
+                                        💬 Instant WhatsApp Booking
                                     </span>
-                                    <span className="trust-badge rounded-full bg-white/10 px-4 py-2 text-xs font-semibold text-slate-100">
-                                        10+ years of fares
+                                    <span className="inline-flex items-center gap-1.5 rounded-full bg-sky-400/10 px-3.5 py-1.5 text-xs font-semibold text-sky-300 border border-sky-400/20">
+                                        ⚡ Same-Day Flight Confirmations
                                     </span>
                                 </div>
 
-                                {/* <div className="hero-anim flex flex-col sm:flex-row gap-4">
-                                    <a
-                                        href="https://wa.me/94765933255"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center justify-center cta-btn bg-amber-400 text-slate-900 font-bold py-3 px-8 rounded-lg hover:bg-amber-300"
-                                    >
-                                        Book via WhatsApp
-                                    </a>
-                                    <a
-                                        href="tel:+94765933255"
-                                        className="inline-flex items-center justify-center cta-btn bg-white text-slate-900 font-bold py-3 px-8 rounded-lg hover:bg-slate-100"
-                                    >
-                                        Call +94 76 593 3255
-                                    </a>
-                                </div> */}
+                                
 
-                                <div className="hero-anim grid gap-4 sm:grid-cols-2">
+                                <div className="hero-anim grid gap-4 grid-cols-2 pt-2">
                                     <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                                        <p className="text-xs uppercase tracking-wide text-slate-300">Routes</p>
-                                        <p className="text-lg font-semibold text-white">{destinationStat}</p>
+                                        <p className="text-xs uppercase tracking-wide text-slate-400">Routes Available</p>
+                                        <p className="text-lg font-semibold text-white mt-1">{destinationStat}</p>
                                     </div>
                                     <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                                        <p className="text-xs uppercase tracking-wide text-slate-300">Speed</p>
-                                        <p className="text-lg font-semibold text-white">Same-day ticketing</p>
+                                        <p className="text-xs uppercase tracking-wide text-slate-400">Response Speed</p>
+                                        <p className="text-lg font-semibold text-white mt-1">Instant Support</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Right Column: Key Benefits Cards */}
+                            <div className="space-y-4 lg:space-y-6">
+                                <div className="hero-anim border border-white/10 bg-white/5 rounded-2xl p-6 backdrop-blur transition hover:bg-white/10 hover:border-white/20">
+                                    <div className="flex gap-4 items-start">
+                                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-400/10 text-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.15)]">
+                                            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M7 7h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h3 className="text-lg font-bold text-white leading-snug">Cheapest Islandwide Pricing</h3>
+                                            <p className="mt-1.5 text-sm text-slate-300 leading-relaxed">
+                                                Unbeatable rates on air tickets and visa services across Sri Lanka.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className="hero-anim border border-white/10 bg-white/5 rounded-2xl p-6 backdrop-blur transition hover:bg-white/10 hover:border-white/20">
+                                    <div className="flex gap-4 items-start">
+                                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-400/10 text-emerald-400 shadow-[0_0_20px_rgba(52,211,153,0.15)]">
+                                            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h3 className="text-lg font-bold text-white leading-snug">Instant WhatsApp Booking</h3>
+                                            <p className="mt-1.5 text-sm text-slate-300 leading-relaxed">
+                                                Drop us a message and book your entire trip in minutes.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="hero-anim border border-white/10 bg-white/5 rounded-2xl p-6 backdrop-blur transition hover:bg-white/10 hover:border-white/20">
+                                    <div className="flex gap-4 items-start">
+                                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-sky-400/10 text-sky-400 shadow-[0_0_20px_rgba(56,189,248,0.15)]">
+                                            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h3 className="text-lg font-bold text-white leading-snug">Same-Day Flight Confirmations</h3>
+                                            <p className="mt-1.5 text-sm text-slate-300 leading-relaxed">
+                                                Fast-tracked ticketing with zero delays.
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

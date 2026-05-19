@@ -4,7 +4,7 @@ import AppLayout from '@/Layouts/AppLayout';
 
 export default function DestinationShow({ destination, relatedDestinations }) {
     return (
-        <AppLayout title={destination.seo_title || `Flights to ${destination.name} - JAAN Travels`}>
+        <AppLayout title={destination.seo_title || `Flights to ${destination.name} - JAAN Travels`} overlapHero={true}>
             <Head>
                 <meta
                     name="description"
@@ -15,7 +15,7 @@ export default function DestinationShow({ destination, relatedDestinations }) {
                 )}
             </Head>
 
-            <section className="relative overflow-hidden bg-slate-950 py-14 text-white sm:py-16">
+            <section className="relative overflow-hidden bg-slate-950 pt-28 pb-14 text-white sm:pt-36 sm:pb-16">
                 <div
                     className="absolute inset-0 opacity-80"
                     style={{

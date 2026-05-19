@@ -4,12 +4,12 @@ import AppLayout from '@/Layouts/AppLayout';
 
 export default function About() {
     return (
-        <AppLayout title="About Us - JAAN Travels">
+        <AppLayout title="About Us - JAAN Travels" overlapHero={true}>
             <Head>
                 <meta name="description" content="Learn about JAAN Travels - Sri Lanka's cheapest air ticket provider with same-day WhatsApp booking." />
             </Head>
 
-            <section className="py-12 bg-blue-900 text-white">
+            <section className="bg-blue-900 text-white pt-28 pb-12 sm:pt-36 sm:pb-16">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h1 className="text-3xl sm:text-4xl font-bold mb-6">About JAAN Travels</h1>
                     <p className="text-xl text-gray-200">Sri Lanka's trusted airline ticket provider since 2014</p>

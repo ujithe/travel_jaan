@@ -15,7 +15,7 @@ export default function VisaShow({ visa, relatedVisas }) {
     };
 
     return (
-        <AppLayout title={visa.seo_title || `Visa for ${visa.name} - JAAN Travels`}>
+        <AppLayout title={visa.seo_title || `Visa for ${visa.name} - JAAN Travels`} overlapHero={true}>
             <Head>
                 <meta
                     name="description"
@@ -26,7 +26,7 @@ export default function VisaShow({ visa, relatedVisas }) {
                 )}
             </Head>
 
-            <section className="relative overflow-hidden bg-slate-950 py-14 text-white sm:py-16">
+            <section className="relative overflow-hidden bg-slate-950 pt-28 pb-14 text-white sm:pt-36 sm:pb-16">
                 {visa.image && (
                     <div
                         className="absolute inset-0 bg-cover bg-center"
