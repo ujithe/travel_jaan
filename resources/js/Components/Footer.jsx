@@ -197,9 +197,9 @@ export default function Footer() {
                                 <a 
                                     href="#" 
                                     aria-label="Facebook" 
-                                    className="flex h-8 w-8 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-400 hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(24,119,242,0.3)]"
+                                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-400 hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition-all duration-300 hover:-translate-y-1 hover:shadow-[rgba(24,119,242,0.3)]"
                                 >
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                                         <path d="M18 3h-3a4 4 0 00-4 4v3H8v4h3v7h4v-7h3l1-4h-4V7a1 1 0 011-1h2V3z" />
                                     </svg>
                                 </a>
@@ -207,24 +207,12 @@ export default function Footer() {
                                 <a 
                                     href="#" 
                                     aria-label="Instagram" 
-                                    className="flex h-8 w-8 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-400 hover:bg-gradient-to-tr hover:from-[#f9ce34] hover:via-[#ee2a7b] hover:to-[#6228d7] hover:text-white hover:border-transparent transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(238,42,123,0.3)]"
+                                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-400 hover:bg-gradient-to-tr hover:from-[#f9ce34] hover:via-[#ee2a7b] hover:to-[#6228d7] hover:text-white hover:border-transparent transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(238,42,123,0.3)]"
                                 >
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                                         <rect x="3" y="3" width="18" height="18" rx="5" />
                                         <circle cx="12" cy="12" r="3" />
                                         <circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" stroke="none" />
-                                    </svg>
-                                </a>
-
-                                <a 
-                                    href="https://wa.me/94765933255" 
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label="WhatsApp" 
-                                    className="flex h-8 w-8 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-400 hover:bg-[#25D366] hover:text-white hover:border-[#25D366] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(37,211,102,0.3)]"
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.45L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.965C16.59 1.978 14.12 1.9 11.993 1.9c-5.439 0-9.865 4.37-9.87 9.8-.001 1.776.475 3.51 1.376 5.044L2.447 21.5l4.8-1.256zM17.487 14.39c-.27-.136-1.602-.79-1.852-.88-.25-.09-.432-.136-.613.136-.18.272-.7.88-.858 1.06-.158.182-.317.205-.587.07-1.3-.652-2.185-1.164-3.054-2.656-.23-.396.23-.367.658-1.22.072-.145.037-.272-.018-.382-.055-.11-.432-1.043-.593-1.43-.156-.379-.313-.328-.432-.334-.112-.006-.24-.006-.368-.006-.128 0-.337.048-.513.24-.176.191-.672.657-.672 1.601 0 .943.687 1.854.782 1.987.096.133 1.348 2.06 3.267 2.89.456.197.813.315 1.092.404.46.146.879.125 1.21.076.368-.055 1.602-.656 1.828-1.29.227-.633.227-1.177.16-1.29-.069-.112-.25-.205-.52-.34z"/>
                                     </svg>
                                 </a>
                             </div>
