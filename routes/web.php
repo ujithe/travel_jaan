@@ -16,7 +16,9 @@ Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/destinations', [PageController::class, 'destinations'])->name('destinations.index');
 Route::get('/visas', [PageController::class, 'visas'])->name('visas.index');
-Route::get('/colombo-to-{visa}-visa', [PageController::class, 'visa'])->name('visas.show');
+Route::get('/colombo-to-{visa}-visa', [PageController::class, 'visa'])
+    ->name('visas.show')
+    ->where('visa', '[a-zA-Z0-9\-]+');
 Route::get('/visas/{visa}', function (string $visa) {
     return redirect("/colombo-to-{$visa}-visa", 301);
 })->name('visas.legacy');
