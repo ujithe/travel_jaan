@@ -3,13 +3,15 @@ import { Head, Link } from '@inertiajs/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import AppLayout from '@/Layouts/AppLayout';
-import heroBg from '@/Components/assets/hero2.png';
+import heroBg from '@/Components/assets/hero2.webp';
 
 // 3D Tilt Card Component with Spotlight Glow Effect
 function TiltCard({ children, className = '', glowColor = 'rgba(255, 255, 255, 0.15)', number = '', activeBorderColor = 'rgba(255,255,255,0.2)', ticketMode = false }) {
     const cardRef = useRef(null);
-    const [coords, setCoords] = useState({ x: 0, y: 0 });
+    const glowRef = useRef(null);
     const [isHovered, setIsHovered] = useState(false);
+
+    const handleMouseEnter = () => setIsHovered(true);
 
     const handleMouseMove = (e) => {
         const card = cardRef.current;
@@ -26,8 +28,10 @@ function TiltCard({ children, className = '', glowColor = 'rgba(255, 255, 255, 0
         const rotateY = ((x - centerX) / centerX) * 8;
 
         card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
-        setCoords({ x, y });
-        setIsHovered(true);
+
+        if (glowRef.current) {
+            glowRef.current.style.background = `radial-gradient(250px circle at ${x}px ${y}px, ${glowColor}, transparent 80%)`;
+        }
     };
 
     const handleMouseLeave = () => {
@@ -43,6 +47,7 @@ function TiltCard({ children, className = '', glowColor = 'rgba(255, 255, 255, 0
             ref={cardRef}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
+            onMouseEnter={handleMouseEnter}
             className={`group relative overflow-hidden rounded-2xl p-6 backdrop-blur transition-all duration-300 ease-out cursor-pointer ${className}`}
             style={{
                 transformStyle: 'preserve-3d',
@@ -79,11 +84,9 @@ function TiltCard({ children, className = '', glowColor = 'rgba(255, 255, 255, 0
             
             {/* Dynamic Spotlight Glow */}
             <div
+                ref={glowRef}
                 className="pointer-events-none absolute inset-0 transition-opacity duration-300"
-                style={{
-                    opacity: isHovered ? 1 : 0,
-                    background: `radial-gradient(250px circle at ${coords.x}px ${coords.y}px, ${glowColor}, transparent 80%)`,
-                }}
+                style={{ opacity: isHovered ? 1 : 0 }}
             />
             {/* Inner Content with TranslateZ depth */}
             <div style={{ transform: 'translateZ(25px)', transformStyle: 'preserve-3d' }} className="h-full w-full">
@@ -108,49 +111,47 @@ export default function Home({ destinations, testimonials, services, visas }) {
     const bgGlow2Ref = useRef(null)
     const bgGridRef = useRef(null)
 
+    // RAF throttle refs for hero parallax
+    const rafIdRef = useRef(null)
+    const pendingMouseRef = useRef(null)
+    const prefersReducedMotionRef = useRef(
+        typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    )
+
     const destinationStat = destinations?.length ? `${destinations.length}+ featured routes` : '100+ global routes'
     const visaList = Array.isArray(visas) ? visas : []
 
-    // 3D Background Parallax Mouse Handlers
+    // 3D Background Parallax Mouse Handlers (RAF-throttled)
     const handleHeroMouseMove = (e) => {
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-        if (prefersReducedMotion) return
+        if (prefersReducedMotionRef.current) return
 
-        const { clientX, clientY } = e
-        const centerX = window.innerWidth / 2
-        const centerY = window.innerHeight / 2
+        pendingMouseRef.current = { clientX: e.clientX, clientY: e.clientY }
+        if (rafIdRef.current) return
 
-        const moveX = (clientX - centerX) / centerX
-        const moveY = (clientY - centerY) / centerY
+        rafIdRef.current = requestAnimationFrame(() => {
+            rafIdRef.current = null
+            const { clientX, clientY } = pendingMouseRef.current
+            const centerX = window.innerWidth / 2
+            const centerY = window.innerHeight / 2
+            const moveX = (clientX - centerX) / centerX
+            const moveY = (clientY - centerY) / centerY
 
-        // Each layer shifts at a different speed to create true 3D depth perception
-        if (bgImgRef.current) {
-            bgImgRef.current.style.transform = `translate3d(${moveX * -12}px, ${moveY * -12}px, 0) scale(1.05)`
-        }
-        if (bgGlow1Ref.current) {
-            bgGlow1Ref.current.style.transform = `translate3d(${moveX * 30}px, ${moveY * 30}px, 0)`
-        }
-        if (bgGlow2Ref.current) {
-            bgGlow2Ref.current.style.transform = `translate3d(${moveX * -35}px, ${moveY * -35}px, 0)`
-        }
-        if (bgGridRef.current) {
-            bgGridRef.current.style.transform = `translate3d(${moveX * 15}px, ${moveY * 15}px, 0)`
-        }
+            if (bgImgRef.current) bgImgRef.current.style.transform = `translate3d(${moveX * -12}px, ${moveY * -12}px, 0) scale(1.05)`
+            if (bgGlow1Ref.current) bgGlow1Ref.current.style.transform = `translate3d(${moveX * 30}px, ${moveY * 30}px, 0)`
+            if (bgGlow2Ref.current) bgGlow2Ref.current.style.transform = `translate3d(${moveX * -35}px, ${moveY * -35}px, 0)`
+            if (bgGridRef.current) bgGridRef.current.style.transform = `translate3d(${moveX * 15}px, ${moveY * 15}px, 0)`
+        })
     }
 
     const handleHeroMouseLeave = () => {
-        if (bgImgRef.current) {
-            bgImgRef.current.style.transform = 'translate3d(0px, 0px, 0) scale(1.05)'
+        if (rafIdRef.current) {
+            cancelAnimationFrame(rafIdRef.current)
+            rafIdRef.current = null
         }
-        if (bgGlow1Ref.current) {
-            bgGlow1Ref.current.style.transform = 'translate3d(0px, 0px, 0)'
-        }
-        if (bgGlow2Ref.current) {
-            bgGlow2Ref.current.style.transform = 'translate3d(0px, 0px, 0)'
-        }
-        if (bgGridRef.current) {
-            bgGridRef.current.style.transform = 'translate3d(0px, 0px, 0)'
-        }
+        if (bgImgRef.current) bgImgRef.current.style.transform = 'translate3d(0px, 0px, 0) scale(1.05)'
+        if (bgGlow1Ref.current) bgGlow1Ref.current.style.transform = 'translate3d(0px, 0px, 0)'
+        if (bgGlow2Ref.current) bgGlow2Ref.current.style.transform = 'translate3d(0px, 0px, 0)'
+        if (bgGridRef.current) bgGridRef.current.style.transform = 'translate3d(0px, 0px, 0)'
     }
 
     useEffect(() => {
@@ -263,9 +264,10 @@ export default function Home({ destinations, testimonials, services, visas }) {
                         <div
                             ref={bgImgRef}
                             className="absolute inset-0 bg-cover bg-center scale(1.05)"
-                            style={{ 
+                            style={{
                                 backgroundImage: `url(${heroBg})`,
                                 transition: 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)',
+                                willChange: 'transform',
                             }}
                         />
                         <div
@@ -274,15 +276,15 @@ export default function Home({ destinations, testimonials, services, visas }) {
                                 backgroundImage: 'radial-gradient(800px circle at 20% 20%, rgba(56, 189, 248, 0.25), transparent 60%), radial-gradient(700px circle at 85% 10%, rgba(251, 191, 36, 0.2), transparent 55%), linear-gradient(180deg, rgba(2, 6, 23, 0.95), rgba(6, 11, 40, 0.98))',
                             }}
                         />
-                        <div 
+                        <div
                             ref={bgGlow1Ref}
                             className="absolute -top-24 right-10 h-48 w-48 rounded-full bg-amber-400/20 blur-3xl"
-                            style={{ transition: 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)' }}
+                            style={{ transition: 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)', willChange: 'transform' }}
                         />
-                        <div 
+                        <div
                             ref={bgGlow2Ref}
                             className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-sky-400/20 blur-3xl"
-                            style={{ transition: 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)' }}
+                            style={{ transition: 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)', willChange: 'transform' }}
                         />
                         <div
                             ref={bgGridRef}
@@ -291,6 +293,7 @@ export default function Home({ destinations, testimonials, services, visas }) {
                                 backgroundImage: 'linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(0deg, rgba(255,255,255,0.08) 1px, transparent 1px)',
                                 backgroundSize: '36px 36px',
                                 transition: 'transform 0.45s cubic-bezier(0.25, 1, 0.5, 1)',
+                                willChange: 'transform',
                             }}
                         />
                     </div>
